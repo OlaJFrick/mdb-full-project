@@ -5,6 +5,14 @@
 /tmp
 /out-tsc
 
+nbproject
+desktop.ini
+.vscode
+.jshintrc
+*.sketch
+/dev-password.js
+dev-password.js
+
 # dependencies
 /node_modules
 
