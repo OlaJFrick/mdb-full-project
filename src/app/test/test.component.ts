@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from './services/rest.service';
+import { RestService } from '../services/rest.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-test',
+  templateUrl: './test.component.html',
+  styleUrls: ['./test.component.scss'],
   providers: [
     RestService
   ]
 })
 
-export class AppComponent implements OnInit {
+export class TestComponent implements OnInit {
   mySqlData: any;
 
   constructor(private restservice: RestService) { }
 
   ngOnInit() {
-    this.restservice.getView('films').subscribe(data => {
+    this.restservice.getView('all_films_list').subscribe(data => {
       this.onDbLoad(data);
     }, err => {
         console.log('Error occured.');
