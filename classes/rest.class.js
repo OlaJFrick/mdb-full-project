@@ -94,7 +94,6 @@ module.exports = class Rest {
     this.id = urlParts[1];
     this.method = method;
     this.idColName = this.settings.idMap[this.table] || 'id';
-    // this.table = '`' + this.table + '`';
     this.handleVids = hasBaseUrlVids;
     this.urlQuery = this.req.query;
   }
@@ -145,7 +144,6 @@ module.exports = class Rest {
       ON version.${idColName} = x.${idColName} && version.versionId = x.versionId) AS alias`;
   }
 
-  /* REST GET METHOD */
   async get() {
 
     let sql = 'SELECT * FROM ' + this.selectVidify(this.table);
@@ -207,7 +205,7 @@ module.exports = class Rest {
 
     params = params.concat(limitparams);
 
-    console.log(sql,params)
+    // console.log(sql,params)
     let result = await this.query(sql,params);
 
     /* ERROR HANDLING */
@@ -232,10 +230,10 @@ module.exports = class Rest {
     this.res.json(result);
   }
 
-  /* REST DELETE METHOD */
   async delete() {
     let result = await this.query(
-      'DELETE FROM ' + this.table + ' WHERE `' + this.idColName + '` = ?', [this.id]
+      'DELETE FROM ' + this.table + ' WHERE `' + this.idColName + '` = ?',
+      [this.id]
     );
 
     /* ERROR HANDLING */
@@ -248,7 +246,6 @@ module.exports = class Rest {
     this.res.json(result);
   }
 
-  /* REST POST METHOD */
   async post() {
 
     if (this.handleVids) {
@@ -285,7 +282,6 @@ module.exports = class Rest {
     await this.set();
   }
 
-  /* REST PUT METHOD */
   async put() {
 
     if (this.handleVids) {
@@ -344,6 +340,83 @@ module.exports = class Rest {
 
   }
 
+  async set() {
+    let query = (this.id ? 'UPDATE ' : 'INSERT INTO ') + this.table + ' SET ? ';
+
+    // CHECK IF THE TABLE IS USERS
+    // THEN HASH THE REQ.BODY.PASSWORD
+    if (this.table == '`users`' && this.req.body.password) {
+      let hash = await bcrypt.hash(this.req.body.password, 12);
+      this.req.body.password = hash;
+    }
+
+    // run query with or without id
+    let result = await this.query(
+      query + (this.id ? (' WHERE `' + this.idColName + '` = ?') : ''), [this.req.body, this.id]
+    );
+
+    /* ERROR HANDLING */
+    // IF WE  GET AN ERROR FROM MYSQL
+    if (result.constructor === Error) {
+      this.res.status(500);
+      result = {
+        status: result.sqlMessage
+      };
+    }
+
+    // RETURN RESULT
+    this.res.json(result);
+  }
+
+  /* SEARCH FUNCTION */
+  async search() {
+    /*
+      från current_films vill vi ha id, title, year, genre
+      från current_actors vill vi ha id, firstName, lastName
+      från current_directors vill vi ha id, firstName, lastName
+    */
+
+    /* SEARCH THROUGH CURRENT_FILMS */
+    let filmsKeyword = 'igh';
+
+    let sqlCurrentFilms = 'SELECT id, title, year, genre FROM current_films WHERE ';
+    sqlCurrentFilms += 'title LIKE "%' + filmsKeyword + '%"';
+    sqlCurrentFilms += 'OR year LIKE "%' + filmsKeyword + '%"';
+    sqlCurrentFilms += 'OR genre LIKE "%' + filmsKeyword + '%"';
+
+    let filmsResult = await this.query(sqlCurrentFilms);
+
+    /* SEARCH THROUGH CURRENT_ACTORS */
+    let actorsKeyword = 'ska';
+
+    let sqlCurrentActors = 'SELECT id, firstName, lastName FROM current_actors WHERE ';
+    sqlCurrentActors += 'firstName LIKE "%' + actorsKeyword + '%"';
+    sqlCurrentActors += 'lastName LIKE "%' + actorsKeyword + '%"';
+
+    let actorsResult = await this.query(sqlCurrentActors);
+
+    /* SEARCH THROUGH CURRENT_DIRECTORS */
+    let directorsKeyword = 'ska';
+
+    let sqlCurrentDirectors = 'SELECT id, firstName, lastName FROM current_directors WHERE ';
+    sqlCurrentDirectors += 'firstName LIKE "%' + directorsKeyword + '%"';
+    sqlCurrentDirectors += 'lastName LIKE "%' + directorsKeyword + '%"';
+
+    let DirectorsResult = await this.query(sqlCurrentDirectors);
+
+    // console.log({
+    //   films: filmsResult,
+    //   actors: actorsResult,
+    //   directors: directorsResult
+    // });
+
+    this.res.json({
+      films: filmsResult,
+      actors: actorsResult,
+      directors: directors
+    });
+  }
+
   async findUserToBan() {
     // CHECK IF THERE ARE USERS TO BAN & DELETE
     let checkUsers = await this.query('SELECT * FROM users WHERE warnings = 3 && role != "banned"');
@@ -374,34 +447,6 @@ module.exports = class Rest {
     }
     console.log('Found 3 warnings on ', foundUser);
     console.log('All Posts by User: ', userId, 'has successfully been deleted and user role is now "banned"');
-  }
-
-  async set() {
-    let query = (this.id ? 'UPDATE ' : 'INSERT INTO ') + this.table + ' SET ? ';
-
-    // CHECK IF THE TABLE IS USERS
-    // THEN HASH THE REQ.BODY.PASSWORD
-    if (this.table == '`users`' && this.req.body.password) {
-      let hash = await bcrypt.hash(this.req.body.password, 12);
-      this.req.body.password = hash;
-    }
-
-    // run query with or without id
-    let result = await this.query(
-      query + (this.id ? (' WHERE `' + this.idColName + '` = ?') : ''), [this.req.body, this.id]
-    );
-
-    /* ERROR HANDLING */
-    // IF WE  GET AN ERROR FROM MYSQL
-    if (result.constructor === Error) {
-      this.res.status(500);
-      result = {
-        status: result.sqlMessage
-      };
-    }
-
-    // RETURN RESULT
-    this.res.json(result);
   }
 
   /* QUERY HELPER FUNCTION */
