@@ -90,12 +90,13 @@ module.exports = class Rest {
     let urlParts = url.split(baseUrl, 2)[1].split('/');
 
     // SET PROPERTIES AFTER ANALYSIS
-    this.table = urlParts[0].split(';').join('');
+    this.table = '`' + urlParts[0].split(';').join('').split('?')[0] + '`';
     this.id = urlParts[1];
     this.method = method;
     this.idColName = this.settings.idMap[this.table] || 'id';
-    this.table = '`' + this.table + '`';
+    // this.table = '`' + this.table + '`';
     this.handleVids = hasBaseUrlVids;
+    this.urlQuery = this.req.query;
   }
 
   checkUserRights() {
@@ -128,8 +129,8 @@ module.exports = class Rest {
   // AUTOMATICALLY RETURNS THE NEWEST VERSION OF EVERYTHING
   selectVidify() {
 
-    let table = this.table,
-      idColName = this.idColName;
+    let table = this.table;
+    let idColName = this.idColName;
 
     if (!this.handleVids) {
       return table;
@@ -146,10 +147,68 @@ module.exports = class Rest {
 
   /* REST GET METHOD */
   async get() {
-    let result = await this.query(
-      'SELECT * FROM ' + this.selectVidify() +
-      (this.id ? ' WHERE ' + this.idColName + ' = ?' : ''), [this.id]
-    );
+
+    let sql = 'SELECT * FROM ' + this.selectVidify(this.table);
+    let params = [];
+    let limitparams = [];
+
+    if(this.id){
+      sql += ' WHERE ' + this.idColName + ' = ?';
+      params.push(this.id);
+    }
+    else {
+      sql += '[wherecondition]';
+    }
+
+    if(this.urlQuery.order_by){
+      sql += ' ORDER BY `' + this.urlQuery.order_by + '`';
+    }
+
+    if(this.urlQuery.desc == 1){
+      sql += ' DESC';
+    }
+
+    if(this.urlQuery.limit){
+      sql += ' LIMIT ?';
+      limitparams.push(this.urlQuery.limit / 1);
+    }
+
+    if(this.urlQuery.offset){
+      sql += ' OFFSET ?';
+      limitparams.push(this.urlQuery.offset / 1);
+    }
+
+    delete this.urlQuery.order_by;
+    delete this.urlQuery.desc;
+    delete this.urlQuery.limit;
+    delete this.urlQuery.offset;
+
+    let where = '';
+
+    for (let columnName in this.urlQuery) {
+      let columnVal = decodeURIComponent(this.urlQuery[columnName]);
+
+      columnVal = columnVal.split('*').join('%');
+
+      if (where != '') {
+        where += ' && ';
+      }
+
+      where += '`' + columnName + '` LIKE ?';
+
+      params.push(isNaN(columnVal / 1) ? columnVal : columnVal / 1);
+    }
+
+    if (where != '') {
+      sql = sql.split('[wherecondition]').join(' WHERE ' + where + ' ');
+    } else {
+      sql = sql.split('[wherecondition]').join('');
+    }
+
+    params = params.concat(limitparams);
+
+    console.log(sql,params)
+    let result = await this.query(sql,params);
 
     /* ERROR HANDLING */
     // IF WE  GET AN ERROR FROM MYSQL
@@ -160,9 +219,7 @@ module.exports = class Rest {
     // IF POST CANNOT BE FOUND
     else if (this.id && result.length === 0) {
       this.res.status(500);
-      this.res.json({
-        Error: 'No post could be located'
-      });
+      this.res.json({ Error: 'No post could be located' });
       return;
     }
 
@@ -238,9 +295,7 @@ module.exports = class Rest {
 
       if (!post) {
         this.res.status(500);
-        this.res.json({
-          Error: "A put must have a id in the URL!"
-        });
+        this.res.json({ Error: "A put must have a id in the URL!" });
         return;
       }
 
