@@ -28,11 +28,11 @@ const routes: Routes = [
     component: FrontPageComponent
   },
   {
-    path: 'film-page',
+    path: 'film-page/:id',
     component: FilmPageComponent
   },
   {
-    path: 'person-page',
+    path: 'person-page/:id',
     component: PersonPageComponent
   },
   {

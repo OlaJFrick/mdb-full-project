@@ -166,14 +166,14 @@ AS avgRating FROM current_films AS f;
 
 
 CREATE VIEW top10_highest AS
-SELECT f.id, f.title, f.year, r.avgRating
+SELECT f.id, f.title, f.year, f.imagePath, r.avgRating
 FROM current_films AS f, ratings AS r
 WHERE r.id = f.id
 ORDER BY avgRating DESC;
 
 
 CREATE VIEW top10_lowest AS
-SELECT f.id, f.title, f.year, r.avgRating
+SELECT f.id, f.title, f.year, f.imagePath, r.avgRating
 FROM current_films AS f, ratings AS r
 WHERE r.id = f.id
 ORDER BY avgRating;
