@@ -1,7 +1,8 @@
 const pm = require('promisemaker'),
-  mysql = require('mysql'),
-  dateFormat = require('dateformat'),
-  bcrypt = require('bcrypt');
+      mysql = require('mysql'),
+      dateFormat = require('dateformat'),
+      bcrypt = require('bcrypt'),
+      userRights = require('../user-rights.json');
 
 module.exports = class Rest {
 
@@ -58,6 +59,13 @@ module.exports = class Rest {
 
     this.analyzeUrl();
 
+    // CHECK USER RIGHTS
+    if (!this.checkUserRights()) {
+      this.res.status(403);
+      this.res.json({ Error: 'Not allowed!' });
+      return;
+    }
+
     // CALL THE CORRECT METHOD.
     // 'METHOD' COMES FROM 'ANALYZEURL'
     if (['get', 'post', 'put', 'delete'].includes(this.method)) {
@@ -88,6 +96,33 @@ module.exports = class Rest {
     this.idColName = this.settings.idMap[this.table] || 'id';
     this.table = '`' + this.table + '`';
     this.handleVids = hasBaseUrlVids;
+  }
+
+  checkUserRights() {
+    let ok = false;
+    let table = this.table.replace(/`/g,'');
+    let role = this.req.session.user && this.req.session.user.role;
+    if (!role) { role = 'visitor'; }
+
+    let rights = userRights[role];
+
+    if (rights[table]) {
+      let okMethods = rights[table];
+
+      if (okMethods.constructor !== Array) {
+        // CONVERT TO ARRAY
+        okMethods = [okMethods];
+      }
+
+      for (let okMethod of okMethods) {
+        if (okMethod == this.method) {
+          ok = true;
+        }
+      }
+
+    }
+
+    return ok;
   }
 
   // AUTOMATICALLY RETURNS THE NEWEST VERSION OF EVERYTHING
