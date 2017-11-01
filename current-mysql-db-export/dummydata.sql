@@ -267,7 +267,8 @@ REPLACE INTO `users` (`id`, `warnings`, `firstName`, `lastName`, `email`, `passw
 	(3, 3, 'Bobby', 'Bobsson', 'bobby@bobsson.com', '$2a$12$Twt4KznAn7OENvDcETXwk.CXusC2JVgKb7dfk/KHqRlr4KXkVh8jq', '555-223345', 'banned', '2017-10-06 14:04:18'),
 	(4, 1, 'Stan', 'Marsh', 'stan@marsh.com', '$2a$12$kFA6bf2mMLn1fkv7QyIi0.OW3w2YcsTdpRNH.pIAUyVwQ54EgyqSu', '555-223346', 'user', '2017-10-02 14:04:10'),
 	(5, 2, 'Angelo', 'Magic', 'angelo@magic.com', '$2a$12$RB23ZfmQjfrWqArzUHmu2eRp1Zcw0EwdlbrQFzmxG.fVPb.DH34EG', '555-223347', 'user', '2017-10-26 14:04:18'),
-	(6, 2, 'Trolle', 'Baratheon', 'robert@baratheon.com', '$2a$12$DJqS9SQsmkkpH6iDNK7RxOKG2F6CHa1NyMzw/VzebY3Etxuq3SH4W', '555-223348', 'user', '2017-10-19 14:04:18');
+	(6, 2, 'Trolle', 'Baratheon', 'robert@baratheon.com', '$2a$12$DJqS9SQsmkkpH6iDNK7RxOKG2F6CHa1NyMzw/VzebY3Etxuq3SH4W', '555-223348', 'user', '2017-10-19 14:04:18'),
+	(8,0,'Test','User','user@mdb.com','$2a$12$H/iwJs5GEJ1aqM4IYwzKoupI1q.TqbeINnVyHCtXemmzEafSLklJW',NULL,'user','2017-11-01 12:16:08');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
