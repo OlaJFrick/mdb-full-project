@@ -30,8 +30,10 @@
         <p class="text-left align-middle">{{item.title}}</p>
       </div>
       <div class="col-2">
-
-        <p class="text-left"><app-star-rating [rating]="item.avgRating"></app-star-rating>({{item.avgRating || 'not rated'}})</p>
+        <div class="text-left">
+          <app-star-rating [rating]="item.avgRating"></app-star-rating>
+          <p class="rating-text">Rating: {{item.avgRating || 'not rated'}}</p>
+        </div>
       </div>
       <div class="col-2">
         <p class="text-left">{{item.starring}}</p>
@@ -40,7 +42,6 @@
         <p class="text-left">{{item.directed}}</p>
       </div>
     </div>
-
     <div class="row hidden-md-up align-items-center">
       <div class="col-6">
         <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">

@@ -18,13 +18,13 @@ export class ListTop10Component implements OnInit {
 
   ngOnInit() {
 
-    this.restservice.get('top10_highest?order_by=avgRating&desc=1').then(highestData => {
+    this.restservice.get('top10_highest?limit=10&order_by=avgRating&desc=1').then(highestData => {
       this.highestData = highestData.json();
     }, err => {
         console.log('Error occured.');
     });
 
-    this.restservice.get('top10_lowest').then(lowestData => {
+    this.restservice.get('top10_lowest?limit=10').then(lowestData => {
       this.lowestData = lowestData.json();
     }, err => {
         console.log('Error occured.');
