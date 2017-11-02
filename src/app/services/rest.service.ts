@@ -10,23 +10,23 @@ export class RestService {
 
   constructor(private http: Http) { }
 
-  private buildUrl(tableName: string, id?: number){
+  private buildUrl(tableName: string, id?: number) {
     return this.url + 'rest/' + tableName + (id ? '/' + id : '');
   }
 
-  get(tableName: string, id?: number) {
+  get(tableName: string, id?: number): Promise<any> {
     return this.http.get(this.buildUrl(tableName, id)).toPromise();
   }
 
-  post(tableName: string, body: object, id?: number) {
+  post(tableName: string, body: object, id?: number): Promise<any> {
     return this.http.post(this.buildUrl(tableName, id), body).toPromise();
   }
 
-  put(tableName: string, body: object, id?: number) {
+  put(tableName: string, body: object, id?: number): Promise<any> {
     return this.http.put(this.buildUrl(tableName, id), body).toPromise();
   }
 
-  delete(tableName: string, id: number) {
+  delete(tableName: string, id: number): Promise<any> {
     return this.http.delete(this.buildUrl(tableName, id)).toPromise();
   }
 
