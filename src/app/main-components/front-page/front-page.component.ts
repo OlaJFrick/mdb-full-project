@@ -17,13 +17,13 @@ export class FrontPageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.restservice.get('top10_highest?limit=5').subscribe(data => {
+    this.restservice.get('top10_highest?limit=5').then(data => {
       this.topfilms = data.json();
     }, err => {
         console.log('Error occured.');
     });
 
-    this.restservice.get('current_films?limit=5&order_by=timeCreated').subscribe(data => {
+    this.restservice.get('current_films?limit=5&order_by=timeCreated').then(data => {
       this.latestfilms = data.json();
     }, err => {
         console.log('Error occured.');
