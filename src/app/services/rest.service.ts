@@ -10,7 +10,7 @@ export class RestService {
 
   constructor(private http: Http) { }
 
-  private buildUrl(tableName: string, id?: number){
+  private buildUrl(tableName: string, id?: number) {
     return this.url + 'rest/' + tableName + (id ? '/' + id : '');
   }
 
