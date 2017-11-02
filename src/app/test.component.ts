@@ -15,7 +15,7 @@ export class TestComponent implements OnInit {
   constructor(private restservice: RestService) { }
 
   ngOnInit() {
-    this.restservice.get('all_films_list').subscribe(data => {
+    this.restservice.get('all_films_list').then(data => {
       this.onDbLoad(data);
     }, err => {
         console.log('Error occured.');

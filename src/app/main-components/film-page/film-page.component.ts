@@ -25,7 +25,7 @@ export class FilmPageComponent implements OnInit {
   ngOnInit() {
     this.filmid = this.location.path().slice(11);
 
-    this.restservice.get('current_films', this.filmid).subscribe(data => {
+    this.restservice.get('current_films', this.filmid).then(data => {
       this.onDbLoad(data);
     }, err => {
       console.log('Error occured.');
