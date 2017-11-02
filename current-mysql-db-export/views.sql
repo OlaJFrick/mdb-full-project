@@ -17,7 +17,7 @@
 
 # WORKING VIEWS:
 
-CREATE VIEW ratings AS
+CREATE OR REPLACE VIEW ratings AS
 SELECT
 f.id,
 f.title,
@@ -40,7 +40,7 @@ JOIN films_actors as fa
 ON p.id = fa.actorId
 GROUP BY id;
 
-CREATE VIEW current_films AS
+CREATE OR REPLACE VIEW current_films AS
 SELECT f.*
 FROM films as f
 JOIN (
@@ -67,7 +67,7 @@ ON p.id = fd.directorId
 GROUP BY id;
 
 
-CREATE VIEW all_actors_list AS
+CREATE OR REPLACE VIEW all_actors_list AS
 SELECT
 a.id,
 CONCAT(a.firstName, ' ', a.lastName) AS name,
@@ -80,7 +80,7 @@ WHERE f.id = fa.filmId && a.id = fa.actorId
 GROUP BY a.id
 ORDER BY a.lastname;
 
-CREATE VIEW all_directors_list AS
+CREATE OR REPLACE VIEW all_directors_list AS
 SELECT
 d.id,
 CONCAT(d.firstName, ' ', d.lastName) AS name,
@@ -94,7 +94,7 @@ GROUP BY d.id
 ORDER BY d.lastname;
 
 
-CREATE VIEW film_roles AS
+CREATE OR REPLACE VIEW film_roles AS
 SELECT
 f.id AS filmId,
 a.id AS actorId,
@@ -107,7 +107,7 @@ FROM current_actors AS a, current_films AS f, films_actors AS fa
 WHERE f.id = fa.filmId && a.id = fa.actorId
 ORDER BY f.id, fa.isMainCharacter DESC, a.lastname;
 
-CREATE VIEW person_as_actor AS
+CREATE OR REPLACE VIEW person_as_actor AS
 SELECT
 f.id AS filmId,
 a.id AS personId,
@@ -119,7 +119,7 @@ FROM current_actors AS a, current_films AS f, films_actors AS fa
 WHERE f.id = fa.filmId && a.id = fa.actorId
 ORDER BY f.year;
 
-CREATE VIEW person_as_director AS
+CREATE OR REPLACE VIEW person_as_director AS
 SELECT
 f.id AS filmId,
 d.id AS personId,
@@ -130,7 +130,7 @@ FROM current_directors AS d, current_films AS f, films_directors AS fd
 WHERE f.id = fd.filmId && d.id = fd.directorId
 ORDER BY f.year;
 
-CREATE VIEW film_starring AS
+CREATE OR REPLACE VIEW film_starring AS
 SELECT
 f.id,
 f.title,
@@ -140,7 +140,7 @@ WHERE f.id = fa.filmId && a.id = fa.actorId
 GROUP BY f.id
 ORDER BY f.title;
 
-CREATE VIEW film_directed AS
+CREATE OR REPLACE VIEW film_directed AS
 SELECT
 f.id,
 f.title,
@@ -150,7 +150,7 @@ WHERE f.id = fa.filmId && d.id = fa.directorId
 GROUP BY f.id
 ORDER BY f.title;
 
-CREATE VIEW all_films_list AS
+CREATE OR REPLACE VIEW all_films_list AS
 SELECT f.id,
 f.title,
 f.year,
@@ -165,21 +165,21 @@ WHERE id = f.id)
 AS avgRating FROM current_films AS f;
 
 
-CREATE VIEW top10_highest AS
+CREATE OR REPLACE VIEW top10_highest AS
 SELECT f.id, f.title, f.year, f.imagePath, r.avgRating
 FROM current_films AS f, ratings AS r
 WHERE r.id = f.id
 ORDER BY avgRating DESC;
 
 
-CREATE VIEW top10_lowest AS
+CREATE OR REPLACE VIEW top10_lowest AS
 SELECT f.id, f.title, f.year, f.imagePath, r.avgRating
 FROM current_films AS f, ratings AS r
 WHERE r.id = f.id
 ORDER BY avgRating;
 
 
-CREATE VIEW all_reviews_list AS
+CREATE OR REPLACE VIEW all_reviews_list AS
 SELECT
 f.id,
 f.title,
@@ -193,7 +193,7 @@ WHERE f.id = r.filmId && r.changerId = u.id
 ORDER BY f.timeCreated DESC;
 
 
-CREATE VIEW admin_all_activity AS
+CREATE OR REPLACE VIEW admin_all_activity AS
 SELECT
 id,
 versionId,
