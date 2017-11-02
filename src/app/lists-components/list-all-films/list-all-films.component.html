@@ -1,3 +1,35 @@
-<p>
-  list-all-films works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+
+      <div class="col-2 offset-1">
+        <h2>Picture</h2>
+      </div>
+
+      <div class="col-2">
+        <h2>Title</h2>
+      </div>
+
+      <div class="col-2">
+        <h2>Rating</h2>
+      </div>
+
+      <div class="col-2">
+        <h2>Starring</h2>
+      </div>
+
+      <div class="col-2">
+        <h2>Directed by</h2>
+      </div>
+
+    <div class="col-12 offset-1 list-all-films-container" *ngFor="let item of mySqlData">
+      <ul>
+        <li><img class="mdb-default-image" src="../../assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"></li>
+        <li>{{item.title}}</li>
+        <li>{{item.avgRating}}</li>
+        <li>{{item.starring}}</li>
+        <li></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
