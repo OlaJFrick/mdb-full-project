@@ -12,10 +12,9 @@ export class RestService {
 
   constructor(private http: Http) { }
 
-  getView(tableName: string) {
-    return this.http.get(this.url + 'rest/' + tableName);
+  get(tableName: string, id?: number) {
+    const idString: string = id ? '/' + id : '';
+    return this.http.get(this.url + 'rest/' + tableName + idString);
   }
-
-  // Add POST, PUT, DELETE below (Dennnis? :D)
 
 }

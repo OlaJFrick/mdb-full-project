@@ -12,29 +12,36 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
   ]
 })
 export class FilmPageComponent implements OnInit {
-  filmdata: any;
+  filmdata: any = {};
   location: Location;
   filmid: any;
   film: any;
 
   constructor(private restservice: RestService, location: Location) {
     this.location = location;
+    this.filmdata.imagePath = 'default.png';
   }
 
   ngOnInit() {
-    this.restservice.getView('current_films').subscribe(data => {
+    this.filmid = this.location.path().slice(11);
+
+    this.restservice.get('current_films', this.filmid).subscribe(data => {
       this.onDbLoad(data);
     }, err => {
       console.log('Error occured.');
     });
 
-    this.filmid = this.location.path().slice(11);
+    this.manipulate();
   }
 
   onDbLoad(data) {
     const result: any = data.json();
-    this.filmdata = result[this.filmid - 1];
+    this.filmdata = result;
     console.log(this.filmdata, 'this.filmdata');
+  }
+
+  manipulate() {
+
   }
 
 }
