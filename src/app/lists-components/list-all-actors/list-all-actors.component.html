@@ -1,50 +1,54 @@
 <div class="container">
   <div class="row">
-
-    <div class="col-2">
-      <h3>Picture</h3>
+    <div class="col-xs-12 col-md-12">
+      <h1 class="display-4 text-left">All Actors</h1>
+      <hr>
     </div>
-
+  </div>
+  <div class="row hidden-sm-down">
+    <div class="col-2">
+    </div>
     <div class="col-3">
-      <h3>Name</h3>
+      <p class="text-left"><strong>Name</strong></p>
     </div>
-
     <div class="col-2">
-      <h3>Nationality</h3>
+      <p class="text-left"><strong>Nationality</strong></p>
     </div>
-
     <div class="col-2">
-      <h3>Gender</h3>
+      <p class="text-left"><strong>Gender</strong></p>
     </div>
-
     <div class="col-3">
-      <h3>Known for roles in</h3>
+      <p class="text-left"><strong>Known for roles in</strong></p>
     </div>
-
-    <div class="col-12 list-all-actors-container" *ngFor="let item of mySqlData">
-      <div class="row">
-        <div class="col-2">
-          <img class="mdb-default-image" src="../../assets/images/persons/{{item.imagePath}}"
-                routerLink="/person-page/{{item.id}}">
-        </div>
-
-        <div class="col-3">
-          <h6>{{item.name}}</h6>
-        </div>
-
-        <div class="col-2">
-          <h6>{{item.nationality}}</h6>
-        </div>
-
-        <div class="col-2">
-          <h6>{{item.gender}}</h6>
-        </div>
-
-        <div class="col-3">
-          <h6>{{item.films}}</h6>
-        </div>
+  </div>
+  <div class="col-12 list-all-actors-container" *ngFor="let item of mySqlData">
+    <div class="row hidden-sm-down align-items-center">
+      <div class="col-2">
+        <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
+      </div>
+      <div class="col-3">
+        <p class="text-left align-middle">{{item.name}}</p>
+      </div>
+      <div class="col-2">
+        <p class="text-left">{{item.nationality}}</p>
+      </div>
+      <div class="col-2">
+        <p class="text-left">{{item.gender}}</p>
+      </div>
+      <div class="col-3">
+        <p class="text-left">{{item.films}}</p>
       </div>
     </div>
 
+    <div class="row hidden-md-up align-items-center">
+      <div class="col-6">
+        <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
+      </div>
+      <div class="col-6">
+        <p class="text-left">{{item.name}}</p>
+        <p class="text-left">{{item.nationality}}</p>
+        <p class="text-left">Known for roles in: ({{item.films}})</p>
+      </div>
+    </div>
   </div>
 </div>
