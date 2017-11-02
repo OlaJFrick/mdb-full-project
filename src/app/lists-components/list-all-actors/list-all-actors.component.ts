@@ -16,7 +16,7 @@ export class ListAllFilmsComponent implements OnInit {
   constructor(private restservice: RestService) { }
 
   ngOnInit() {
-    this.restservice.get('all_actors_list').subscribe(data => {
+    this.restservice.get('all_actors_list').then(data => {
       this.onDbLoad(data);
     }, err => {
         console.log('Error occured.');
