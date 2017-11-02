@@ -37,7 +37,7 @@
       <figure class="figure">
         <img class="img-fluid mdb-image" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
         <figcaption class="figure-caption">{{item.title}} ({{item.year}})</figcaption>
-        <figcaption class="figure-caption">STARS</figcaption>
+        <app-star-rating [rating]="item.avgRating"></app-star-rating>
         <figcaption class="figure-caption">Rating: {{item.avgRating}}</figcaption>
       </figure>
     </div>

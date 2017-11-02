@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.20)
 # Database: mdb
-# Generation Time: 2017-11-02 11:58:47 +0000
+# Generation Time: 2017-11-02 14:15:22 +0000
 # ************************************************************
 
 
@@ -46,8 +46,8 @@ LOCK TABLES `films` WRITE;
 
 INSERT INTO `films` (`id`, `versionId`, `changerId`, `title`, `year`, `genre`, `plot`, `imagePath`, `youtubeUrl`, `timeCreated`)
 VALUES
-	(1,1,1,'It','2017','Horror','Suddenly, the small town of Derry, in the US state of Maine, is freaking out of terror when several children mysteriously begin to disappear. Some children face their biggest fears when they end up in the evil clown Pennywise Society, whose story as a killer extends far, far back in time. Bill Skarsgård plays the lead in the new horror movie It builds on Stephen Kings well-known novel with the same name.','default.png','https://www.youtube.com/watch?v=xKJmEC5ieOk','2017-11-01 22:40:11'),
-	(1,2,6,'Not It','2017','Horror','Suddenly, the small town of Derry, in the US state of Maine, is freaking out of terror when several children mysteriously begin to disappear. Some children face their biggest fears when they end up in the evil clown Pennywise Society, whose story as a killer extends far, far back in time. Bill Skarsgård plays the lead in the new horror movie It builds on Stephen Kings well-known novel with the same name.','default.png','https://www.youtube.com/watch?v=xKJmEC5ieOk','2017-11-02 12:40:35'),
+	(1,1,1,'It','2017','Horror','Suddenly, the small town of Derry, in the US state of Maine, is freaking out of terror when several children mysteriously begin to disappear. Some children face their biggest fears when they end up in the evil clown Pennywise Society, whose story as a killer extends far, far back in time. Bill Skarsgård plays the lead in the new horror movie It builds on Stephen Kings well-known novel with the same name.','it.jpg','https://www.youtube.com/watch?v=xKJmEC5ieOk','2017-11-02 15:13:50'),
+	(1,2,6,'Not It','2017','Horror','Suddenly, the small town of Derry, in the US state of Maine, is freaking out of terror when several children mysteriously begin to disappear. Some children face their biggest fears when they end up in the evil clown Pennywise Society, whose story as a killer extends far, far back in time. Bill Skarsgård plays the lead in the new horror movie It builds on Stephen Kings well-known novel with the same name.','it.jpg','https://www.youtube.com/watch?v=xKJmEC5ieOk','2017-11-02 15:13:42'),
 	(2,1,1,'Harry Potter and the Chamber of Secrets','2002','Adventure','The summer break is finally over! Harry Potter has longed back to his second year at Hogwarts School for Witchcraft and Witchcraft. But how will he stand out with the new, meticulous professor Lockman? What hides Hagrids past? And who\'s really unhappy myrtle? The real problems begin when someone, or something, glorifies one Hogwarteleven after another. Is it Harry\'s greatest enemy, Draco Malfoy, behind? Or is it that everyone at Hogwarts suspects - Harry Potter himself?','harry_potter_and_the_chamber_of_secrets.jpg','https://www.youtube.com/watch?v=1bq0qff4iF8','2017-11-02 12:38:40'),
 	(2,2,6,'Furry Potter and the Chamber of Secrets','2002','Adventure','The summer break is finally over! Harry Potter has longed back to his second year at Hogwarts School for Witchcraft and Witchcraft. But how will he stand out with the new, meticulous professor Lockman? What hides Hagrids past? And who\'s really unhappy myrtle? The real problems begin when someone, or something, glorifies one Hogwarteleven after another. Is it Harry\'s greatest enemy, Draco Malfoy, behind? Or is it that everyone at Hogwarts suspects - Harry Potter himself?','harry_potter_and_the_chamber_of_secrets.jpg','https://www.youtube.com/watch?v=1bq0qff4iF8','2017-11-02 12:40:30'),
 	(3,1,1,'The Rock','1996','Action','A mStanley Goodspeed, who lives in Washington D.C., is a biochemist who works for the FBI. Soon after his fiancée Carla Pestalozzi announces that she is pregnant, Stanley gets a call from FBI director James Womack. Womack tells Stanley that San Francisco´s Alcatraz Island has been taken hostage, along with 81 tourists, by marine General Francis Xavier Hummel who, for years, has been protesting the government´s refusal to pay benefits to families of war veterans who died during covert military operations. The death of his wife Barbara Hummel on March 9, 1995 drove General Hummel over the edge, and now he´s holding hostages in order to get his point across. Stanley is needed because General Hummel has stolen some VX gas warheads and has announced that he will launch them onto San Francisco unless his demands are met. Stanley knows how to disarm the bombs, but Stanley needs someone who knows Alcatraz well enough to get him inside. That man is former British intelligence agent John Patrick.','the_rock.jpg','https://www.youtube.com/watch?v=6DWu_dT0Phc','2017-11-02 12:22:23'),
@@ -69,16 +69,16 @@ VALUES
 	(19,1,1,'Interstellar','2014','Adventure','Earth´s future has been riddled by disasters, famines, and droughts. There is only one way to ensure mankind´s survival: Interstellar travel. A newly discovered wormhole in the far reaches of our solar system allows a team of astronauts to go where no man has gone before, a planet that may have the right environment to sustain human life.','interstellar.jpg','https://www.youtube.com/watch?v=zSWdZVtXT7E','2017-11-02 12:56:59'),
 	(20,1,1,'Gladiator','2000','Action','Maximus is a powerful Roman general, loved by the people and the aging Emperor, Marcus Aurelius. Before his death, the Emperor chooses Maximus to be his heir over his own son, Commodus, and a power struggle leaves Maximus and his family condemned to death. The powerful general is unable to save his family, and his loss of will allows him to get captured and put into the Gladiator games until he dies. The only desire that fuels him now is the chance to rise to the top so that he will be able to look into the eyes of the man who will feel his revenge.','gladiator.jpg','https://www.youtube.com/watch?v=Q-b7B8tOAQU','2017-11-02 12:56:50'),
 	(21,1,1,'Forest Gump','1994','Comedy','Forrest Gump is a simple man with a low I.Q. but good intentions. He is running through childhood with his best and only friend Jenny. His \"mama\" teaches him the ways of life and leaves him to choose his destiny. Forrest joins the army for service in Vietnam, finding new friends called Dan and Bubba, he wins medals, creates a famous shrimp fishing fleet, inspires people to jog, starts a ping-pong craze, creates the smiley, writes bumper stickers and songs, donates to people and meets the president several times. However, this is all irrelevant to Forrest who can only think of his childhood sweetheart Jenny Curran, who has messed up her life. Although in the end all he wants to prove is that anyone can love anyone.','forrest_gump.jpg','https://www.youtube.com/watch?v=uPIEn0M8su0','2017-11-02 12:58:30'),
-	(22,1,1,'Notorious!','1946','Thriller','','default.png','','2017-11-01 22:34:08'),
+	(22,1,1,'Notorious!','1946','Thriller','','notorious.jpg','','2017-11-02 14:57:35'),
 	(23,1,1,'Vertigo','1958','Thriller','','vertigo.jpg','','2017-11-01 22:35:14'),
-	(24,1,1,'The Big Lebowski','1998','Comedy','','default.png','','2017-11-01 22:40:31'),
-	(25,1,1,'The Day of the Locust','1975','Drama','','default.png','','2017-11-01 22:40:32'),
-	(26,1,1,'Midnight Cowboy','1969','Drama','','default.png','','2017-11-01 22:40:33'),
-	(27,1,1,'The Wrestler','2008','Drama','','default.png','','2017-11-01 22:40:34'),
-	(28,1,1,'What Ever Happened to Baby Jane?','1962','Drama','','default.png','','2017-11-01 22:40:35'),
-	(29,1,1,'Seance on a Wet Afternoon','1964','Crime','','default.png','','2017-11-01 22:40:36'),
-	(30,1,1,'Paper Moon','1973','Drama','','default.png','','2017-11-01 22:40:37'),
-	(31,1,4,'North by Northwest','1959','Thriller','','default.png','','2017-11-01 22:40:38');
+	(24,1,1,'The Big Lebowski','1998','Comedy','','the_big_lebowski.jpg','','2017-11-02 14:59:58'),
+	(25,1,1,'The Day of the Locust','1975','Drama','','the_day_of_the_locust.jpg','','2017-11-02 15:01:55'),
+	(26,1,1,'Midnight Cowboy','1969','Drama','','midnight_cowboy.jpg','','2017-11-02 15:03:18'),
+	(27,1,1,'The Wrestler','2008','Drama','','the_wrestler.jpg','','2017-11-02 15:04:57'),
+	(28,1,1,'What Ever Happened to Baby Jane?','1962','Drama','','what_ever_happened_to_baby_jane.jpg','','2017-11-02 15:06:20'),
+	(29,1,1,'Seance on a Wet Afternoon','1964','Crime','','seance_on_a_wet_afternoon.jpg','','2017-11-02 15:08:08'),
+	(30,1,1,'Paper Moon','1973','Drama','','paper_moon.jpg','','2017-11-02 15:11:14'),
+	(31,1,4,'North by Northwest','1959','Thriller','','north_by_northwest.jpg','','2017-11-02 15:11:08');
 
 /*!40000 ALTER TABLE `films` ENABLE KEYS */;
 UNLOCK TABLES;

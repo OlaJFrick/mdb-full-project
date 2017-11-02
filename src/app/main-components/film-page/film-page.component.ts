@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../services/rest.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { StarRatingComponent } from '../../reusable-components/star-rating/star-rating.component';
 
 @Component({
   selector: 'app-film-page',
@@ -13,12 +14,10 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 })
 export class FilmPageComponent implements OnInit {
   filmdata: any = {};
-  location: Location;
   filmid: any;
   film: any;
 
-  constructor(private restservice: RestService, location: Location) {
-    this.location = location;
+  constructor(private restservice: RestService, private location: Location) {
     this.filmdata.imagePath = 'default.png';
   }
 
@@ -26,22 +25,10 @@ export class FilmPageComponent implements OnInit {
     this.filmid = this.location.path().slice(11);
 
     this.restservice.get('current_films', this.filmid).then(data => {
-      this.onDbLoad(data);
+      this.filmdata = data.json();
     }, err => {
       console.log('Error occured.');
     });
-
-    this.manipulate();
-  }
-
-  onDbLoad(data) {
-    const result: any = data.json();
-    this.filmdata = result;
-    console.log(this.filmdata, 'this.filmdata');
-  }
-
-  manipulate() {
-
   }
 
 }
