@@ -1,11 +1,6 @@
-<p>
-  film-page works!
-</p>
-
-<h4>{{filmdata.title}}</h4>
-<h6>{{filmdata.id}}</h6>
+<h4>{{filmdata.title}} ({{filmdata.year}})</h4>
 <img class="mdb-default-image" src="/assets/images/films/{{filmdata.imagePath}}">
+<app-star-rating [id]="filmdata.id"></app-star-rating>
 <h6>{{filmdata.genre}}</h6>
-<h6>{{filmdata.year}}</h6>
 <h6>{{filmdata.plot}}</h6>
 
