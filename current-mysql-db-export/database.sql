@@ -13,6 +13,7 @@
 
 
 -- Dumping database structure for mdb
+DROP DATABASE IF EXISTS `mdb`;
 CREATE DATABASE IF NOT EXISTS `mdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `mdb`;
 
