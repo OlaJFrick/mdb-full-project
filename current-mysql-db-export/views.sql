@@ -158,10 +158,15 @@ f.imagePath,
 FROM film_starring
 WHERE id = f.id)
 AS starring,
+(SELECT director
+FROM film_directed
+WHERE id = f.id)
+AS directed,
 (SELECT avgRating
 FROM ratings
 WHERE id = f.id)
-AS avgRating FROM current_films AS f;
+AS avgRating FROM current_films AS f
+ORDER BY title;
 
 
 CREATE OR REPLACE VIEW top10_highest AS

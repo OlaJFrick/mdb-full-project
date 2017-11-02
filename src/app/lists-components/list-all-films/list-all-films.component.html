@@ -1,35 +1,55 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-
-      <div class="col-2 offset-1">
-        <h2>Picture</h2>
-      </div>
-
+    <div class="col-xs-12 col-md-12">
+      <h1 class="display-4 text-left">All Films</h1>
+      <hr>
+    </div>
+  </div>
+  <div class="row hidden-sm-down">
+    <div class="col-2">
+    </div>
+    <div class="col-3">
+      <p class="text-left"><strong>Title</strong></p>
+    </div>
+    <div class="col-2">
+      <p class="text-left"><strong>Rating</strong></p>
+    </div>
+    <div class="col-2">
+      <p class="text-left"><strong>Staring</strong></p>
+    </div>
+    <div class="col-3">
+      <p class="text-left"><strong>Directed By</strong></p>
+    </div>
+  </div>
+  <div class="col-12 list-all-actors-container" *ngFor="let item of mySqlData">
+    <div class="row hidden-sm-down align-items-center">
       <div class="col-2">
-        <h2>Title</h2>
+        <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
       </div>
-
+      <div class="col-3">
+        <p class="text-left align-middle">{{item.title}}</p>
+      </div>
       <div class="col-2">
-        <h2>Rating</h2>
-      </div>
 
+        <p class="text-left"><app-star-rating [rating]="item.avgRating"></app-star-rating>({{item.avgRating || 'not rated'}})</p>
+      </div>
       <div class="col-2">
-        <h2>Starring</h2>
+        <p class="text-left">{{item.starring}}</p>
       </div>
-
-      <div class="col-2">
-        <h2>Directed by</h2>
+      <div class="col-3">
+        <p class="text-left">{{item.directed}}</p>
       </div>
-
-    <div class="col-12 offset-1 list-all-films-container" *ngFor="let item of mySqlData">
-      <ul>
-        <li><img class="mdb-default-image" src="../../assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"></li>
-        <li>{{item.title}}</li>
-        <li>{{item.avgRating}}</li>
-        <li>{{item.starring}}</li>
-        <li></li>
-      </ul>
     </div>
 
+    <div class="row hidden-md-up align-items-center">
+      <div class="col-6">
+        <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
+      </div>
+      <div class="col-6">
+        <p class="text-left"><strong>{{item.title}}</strong></p>
+        <p class="text-left">Starring: {{item.starring}}</p>
+        <p class="text-left">Directed by: {{item.directed}}</p>
+      </div>
+    </div>
   </div>
 </div>

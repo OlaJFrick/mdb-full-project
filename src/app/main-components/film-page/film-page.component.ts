@@ -26,6 +26,7 @@ export class FilmPageComponent implements OnInit {
 
     this.restservice.get('current_films', this.filmid).then(data => {
       this.filmdata = data.json();
+      console.log(data.json());
     }, err => {
       console.log('Error occured.');
     });
