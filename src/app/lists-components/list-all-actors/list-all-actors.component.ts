@@ -10,7 +10,7 @@ import { RestService } from '../../services/rest.service';
   ]
 })
 
-export class ListAllFilmsComponent implements OnInit {
+export class ListAllActorsComponent implements OnInit {
   mySqlData: any;
 
   constructor(private restservice: RestService) { }
