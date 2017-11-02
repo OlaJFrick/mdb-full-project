@@ -11,8 +11,6 @@ import { RestService } from '../../services/rest.service';
 })
 
 export class ListTop10Component implements OnInit {
-  mySqlData: any;
-
   highestData: any;
   lowestData: any;
 
