@@ -11,10 +11,11 @@ import { RestService } from '../../services/rest.service';
 })
 
 export class ListTop10Component implements OnInit {
-  highestData: any;
-  lowestData: any;
+  highestData: object[];
+  lowestData: object[];
 
-  constructor(private restservice: RestService) { }
+  constructor(private restservice: RestService) {
+  }
 
   ngOnInit() {
 
