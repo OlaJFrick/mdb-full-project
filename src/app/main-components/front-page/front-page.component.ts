@@ -11,13 +11,10 @@ import { RestService } from '../../services/rest.service';
 })
 
 export class FrontPageComponent implements OnInit {
-  topfilms: any = {};
-  latestfilms: any = {};
+  topfilms: object[];
+  latestfilms: object[];
 
   constructor(private restservice: RestService) {
-    const img = 'default.png';
-    this.topfilms.imagePath = img;
-    this.latestfilms.imagePath = img;
   }
 
   ngOnInit() {
