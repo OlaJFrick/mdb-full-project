@@ -20,7 +20,6 @@
 CREATE OR REPLACE VIEW ratings AS
 SELECT
 f.id,
-f.title,
 ROUND(AVG(r.rating), 2) AS avgRating
 FROM reviews AS r, films AS f
 WHERE r.filmId = f.id
