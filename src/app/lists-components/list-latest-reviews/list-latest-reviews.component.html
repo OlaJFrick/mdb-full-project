@@ -1,3 +1,28 @@
-<p>
-  list-latest-reviews works!
-</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col-2">
+      <h1>LATEST</h1>
+      <h1>REVIEWS</h1>
+    </div>
+
+    <div class="col-10 offset-2" *ngFor="let item of mySqlData">
+      <div class="row">
+        <div class="col-3">
+          <img class="mdb-default-image" src="../../assets/images/films/{{item.imagePath}}"
+                routerLink="/film-page/{{item.id}}">
+        </div>
+
+
+        <div class="col-6">
+          <h6>title: {{item.title}}</h6>
+          <p>text: {{item.textbody}}</p>
+          <p>username: {{item.username}}</p>
+          <p>rating: {{item.rating}} / created: {{item.timeCreated}}</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

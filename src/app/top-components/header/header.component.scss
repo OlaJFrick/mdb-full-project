@@ -1,4 +1,84 @@
 .main-logo {
-  height: 70px;
+  width: 160px;
+  position: relative;
   padding-right: 10px;
+  cursor: pointer;
+}
+
+.header {
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+.header-link button {
+	padding: 20px;
+	color: #F8F8FF;
+	background-color: #000000;
+	border-color: #333333;
+	border-radius: 5px 20px 5px 5px;
+
+
+}
+
+.header-link button:hover {
+	color: #A9A9A9;
+	background-color: #4d4d4d;
+	cursor: pointer;
+
+}
+
+.header-link button:active {
+	color: #FF1493;
+	background-color: #4d4d4d;
+	cursor: pointer;
+
+}
+
+.user-screen {
+	border: solid 1px #999999;
+	border-radius: 10px;
+}
+
+.user-screen ul {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.user-screen li {
+	float: left;
+}
+
+.user-screen li a {
+	display: block;
+	color: #808080;
+	margin-left: 5px;
+}
+
+.header a {
+	color: 	#999999;
+}
+
+.header-styling a:hover {
+	color: #808080;
+}
+
+
+
+@media screen and (max-width: 400px) {
+	.main-logo {
+		width: 40%;
+	}
+}
+
+@media (min-width: 400px) and (max-width: 576px) {
+	.hamburger-center {
+		position: relative;
+	}
+
+	.hamburger-center-button {
+		right: 0px;
+		top: 15%;
+	}
 }

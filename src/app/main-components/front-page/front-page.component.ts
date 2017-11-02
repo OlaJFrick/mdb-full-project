@@ -9,31 +9,29 @@ import { RestService } from '../../services/rest.service';
     RestService
   ]
 })
-export class FrontPageComponent implements OnInit {
-  topfilms: any;
-  latestfilms: any;
 
-  constructor(private restservice: RestService) { }
+export class FrontPageComponent implements OnInit {
+  topfilms: any = {};
+  latestfilms: any = {};
+
+  constructor(private restservice: RestService) {
+    const img = 'default.png';
+    this.topfilms.imagePath = img;
+    this.latestfilms.imagePath = img;
+  }
 
   ngOnInit() {
 
     this.restservice.get('top10_highest?limit=5').then(data => {
       this.topfilms = data.json();
     }, err => {
-        console.log('Error occured.');
+      console.log('Error occured.');
     });
 
-    this.restservice.get('current_films?limit=5&order_by=timeCreated').then(data => {
+    this.restservice.get('current_films?limit=5&order_by=timeCreated&desc=1').then(data => {
       this.latestfilms = data.json();
     }, err => {
-        console.log('Error occured.');
+      console.log('Error occured.');
     });
-
   }
-
-  // onDbLoad(data) {
-  //   this.topfilms = data.json();
-  //   // console.log(this.topfilms, 'this.mySqlData');
-  // }
-
 }

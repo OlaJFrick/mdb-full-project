@@ -2,7 +2,7 @@
   "admin": {
     "admin_all_activity": ["get", "post", "put", "delete"],
     "all_actors_list": ["get", "post", "put", "delete"],
-    "all_diectors_list": ["get", "post", "put", "delete"],
+    "all_directors_list": ["get", "post", "put", "delete"],
     "all_films_list": ["get", "post", "put", "delete"],
     "all_reviews_list": ["get", "post", "put", "delete"],
     "current_actors": ["get", "post", "put", "delete"],
@@ -26,7 +26,7 @@
 
   "user": {
     "all_actors_list": ["get", "post", "put", "delete"],
-    "all_diectors_list": ["get", "post", "put", "delete"],
+    "all_directors_list": ["get", "post", "put", "delete"],
     "all_films_list": ["get", "post", "put", "delete"],
     "all_reviews_list": ["get", "post", "put", "delete"],
     "current_actors": ["get", "post", "put", "delete"],
@@ -50,7 +50,7 @@
 
   "banned": {
     "all_actors_list": "get",
-    "all_diectors_list": "get",
+    "all_directors_list": "get",
     "all_films_list": "get",
     "all_reviews_list": "get",
     "current_actors": "get",
@@ -74,7 +74,7 @@
 
   "visitor": {
     "all_actors_list": "get",
-    "all_diectors_list": "get",
+    "all_directors_list": "get",
     "all_films_list": "get",
     "all_reviews_list": "get",
     "current_actors": "get",

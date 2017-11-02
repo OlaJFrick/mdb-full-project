@@ -1,30 +1,57 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm">
-      <app-search></app-search>
+    <div class="col-8">
+      <app-search class="search" type="text" placeholder="Search"></app-search>
+    </div>
+    <div class="col-4">
+      <div class="user-screen">
+        <ul>
+          <li>
+            <a class="navbar-brand">
+              <img src="http://www.centerforgreatapes.org/themes/CGA/img/slider-4.jpg" width="30" height="30" alt="">
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="person-page/person-page">Username</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="person-page/person-page">Edit settings</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="row">
     <div class="col-sm">
-      <ul class="nav">
-        <img class="main-logo" routerLink="/" src="../../../assets/images/mdb-logo.png">
-        <li class="nav-item">
-          <button class="nav-link" routerLink="lists/list-all-films">All Movies</button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link" routerLink="lists/list-all-actors">All Actors</button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link" routerLink="lists/list-all-directors">All Directors</button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link" routerLink="lists/list-top-10">Top 10</button>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link" routerLink="lists/list-latest-reviews">Latest Reviews</button>
-        </li>
-        <app-statusbar></app-statusbar>
-      </ul>
+      <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <div class="header">
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="">
+                <img class="main-logo" routerLink="/" src="../../../assets/images/mdb-logo.png">
+              </li>
+              <li class="nav-item header-link">
+                <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-films">All Movies</button>
+              </li>
+              <li class="nav-item header-link">
+                <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-actors">All Actors</button>
+              </li>
+              <li class="nav-item header-link">
+                <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-directors">All Directors</button>
+              </li>
+              <li class="nav-item header-link">
+                <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-top-10">Top 10</button>
+              </li>
+              <li class="nav-item header-link">
+                <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-latest-reviews">Latest Reviews</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   </div>
 </div>
