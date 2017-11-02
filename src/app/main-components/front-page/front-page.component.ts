@@ -18,6 +18,7 @@ export class FrontPageComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.restservice.get('top10_highest?limit=5').then(data => {
       this.topfilms = data.json();
     }, err => {

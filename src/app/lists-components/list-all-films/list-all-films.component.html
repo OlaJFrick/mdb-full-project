@@ -1,63 +1,35 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
 
-    <div class="col-2">
-      <h3>Picture</h3>
-    </div>
-
-    <div class="col-2">
-      <h3>Title</h3>
-    </div>
-
-    <div class="col-2">
-      <h3>Rating</h3>
-    </div>
-
-    <div class="col-2">
-      <h3>Year</h3>
-    </div>
-
-    <div class="col-2">
-      <h3>Actors</h3>
-    </div>
-
-    <div class="col-2">
-      <h3>Director(s)</h3>
-    </div>
-
-    <div class="col-12 list-all-films-container" *ngFor="let item of mySqlData">
-      <div class="row">
-        <div class="col-2">
-          <img class="mdb-default-image" src="../../assets/images/films/{{item.imagePath}}"
-                routerLink="/film-page/{{item.id}}">
-        </div>
-
-        <div class="col-2">
-          <h6>{{item.title}}</h6>
-        </div>
-
-        <div class="col-2">
-          <h6>{{item.avgScore}}</h6>
-        </div>
-
-        <div class="col-2">
-          <h6>{{item.year}}</h6>
-        </div>
-
-        <div class="col-2">
-          <h6>{{item.starring}}</h6>
-        </div>
-
-        <div class="col-2">
-          <h6>{{item.director}}</h6>
-        </div>
-
+      <div class="col-2 offset-1">
+        <h2>Picture</h2>
       </div>
+
+      <div class="col-2">
+        <h2>Title</h2>
+      </div>
+
+      <div class="col-2">
+        <h2>Rating</h2>
+      </div>
+
+      <div class="col-2">
+        <h2>Starring</h2>
+      </div>
+
+      <div class="col-2">
+        <h2>Directed by</h2>
+      </div>
+
+    <div class="col-12 offset-1 list-all-films-container" *ngFor="let item of mySqlData">
+      <ul>
+        <li><img class="mdb-default-image" src="../../assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"></li>
+        <li>{{item.title}}</li>
+        <li>{{item.avgRating}}</li>
+        <li>{{item.starring}}</li>
+        <li></li>
+      </ul>
     </div>
 
   </div>
 </div>
-
-<!-- <li>
-  <img class="mdb-default-image" src="../../assets/images/persons/{{item.imagePath}}" routerLink="/person/{{item.id}}">
-</li> -->
