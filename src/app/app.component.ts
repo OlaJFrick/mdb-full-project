@@ -11,20 +11,11 @@ import { RestService } from './services/rest.service';
 })
 
 export class AppComponent implements OnInit {
-  mySqlData: any;
 
   constructor(private restservice: RestService) { }
 
   ngOnInit() {
-    this.restservice.getView('films').subscribe(data => {
-      this.onDbLoad(data);
-    }, err => {
-        console.log('Error occured.');
-    });
+
   }
 
-  onDbLoad(data) {
-    this.mySqlData = data.json();
-    // console.log(this.mySqlData, 'this.mySqlData');
-  }
 }

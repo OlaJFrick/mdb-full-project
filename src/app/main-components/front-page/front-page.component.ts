@@ -10,21 +10,30 @@ import { RestService } from '../../services/rest.service';
   ]
 })
 export class FrontPageComponent implements OnInit {
-  mySqlData: any;
+  topfilms: any;
+  latestfilms: any;
 
   constructor(private restservice: RestService) { }
 
   ngOnInit() {
-    this.restservice.getView('top10_highest').subscribe(data => {
-      this.onDbLoad(data);
+
+    this.restservice.get('top10_highest?limit=5').subscribe(data => {
+      this.topfilms = data.json();
     }, err => {
         console.log('Error occured.');
     });
+
+    this.restservice.get('current_films?limit=5&order_by=timeCreated').subscribe(data => {
+      this.latestfilms = data.json();
+    }, err => {
+        console.log('Error occured.');
+    });
+
   }
 
-  onDbLoad(data) {
-    this.mySqlData = data.json();
-    console.log(this.mySqlData, 'this.mySqlData');
-  }
+  // onDbLoad(data) {
+  //   this.topfilms = data.json();
+  //   // console.log(this.topfilms, 'this.mySqlData');
+  // }
 
 }

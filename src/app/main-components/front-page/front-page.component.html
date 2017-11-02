@@ -1,8 +1,14 @@
-<p>
-  front-page works!
-</p>
+<h1>LATEST FILMS</h1>
 
-<div *ngFor="let item of mySqlData">
+<div *ngFor="let item of latestfilms">
+  <img class="mdb-default-image" src="../../assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
+  <h6>id: {{item.id}}, title: {{item.title}}</h6>
+  <p>year: {{item.year}}</p>
+  <p>Added: {{item.timeCreated | date}}</p>
+</div>
+
+<h1>TOP 10</h1>
+<div *ngFor="let item of topfilms">
   <img class="mdb-default-image" src="../../assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
   <h6>id: {{item.id}}, title: {{item.title}}</h6>
   <p>year: {{item.year}}</p>
