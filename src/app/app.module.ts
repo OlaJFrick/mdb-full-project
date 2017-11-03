@@ -5,7 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {InlineEditorModule} from '@qontu/ngx-inline-editor';
+import { InlineEditorModule } from '@qontu/ngx-inline-editor';
 
 import { AppComponent } from './app.component';
 import { TestComponent } from './test.component';

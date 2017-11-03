@@ -9,13 +9,21 @@
 
       <h6 class="text-left">
         <inline-editor type="text" [(ngModel)]="personData.nationality" (onSave)="saveEditable($event)"></inline-editor>
+        <span *ngIf="actorData && directorData">
+          - Actor, Director
+        </span>
+        <span *ngIf="!actorData">- Director</span>
+        <span *ngIf="!directorData">- Actor</span>
       </h6>
+
       <h6 class="text-left">Born:
-        <inline-editor type="text" [(ngModel)]="personData.birth" (onSave)="saveEditable($event)"></inline-editor>
+        <inline-editor type="text" [ngModel]="personData.birth | date" (ngModelChange)="personData.birth=$event"
+                                    (onSave)="saveEditable($event)"></inline-editor>
       </h6>
 
       <h6 class="text-left" *ngIf="personData.death">Deceased:
-        <inline-editor type="text" [(ngModel)]="personData.death" (onSave)="saveEditable($event)"></inline-editor>
+        <inline-editor type="text" [ngModel]="personData.death | date" (ngModelChange)="personData.death=$event"
+                                    (onSave)="saveEditable($event)"></inline-editor>
       </h6>
     </div>
 
@@ -73,12 +81,9 @@
             </div>
 
             <div class="col">
+              <span>as</span>
               <inline-editor type="text" [(ngModel)]="actorData.character" (onSave)="saveEditable($event)"></inline-editor>
             </div>
-
-            <!-- <div class="col">
-              <app-star-rating [id]="actorData.filmId"></app-star-rating>
-            </div> -->
 
           </div>
         </div>
