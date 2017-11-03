@@ -1,32 +1,70 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-3">
-      <h5 class="text-left">
-       <inline-editor type="text" [(ngModel)]="filmdata.title" (onSave)="saveEditable($event)"></inline-editor>
+  <div class="row text-left">
+    <div class="col-12 col-md-3">
+      <h5>
+       <inline-editor type="text" [(ngModel)]="film.title" (onSave)="saveEditable($event)"></inline-editor>
       </h5>
-      <p class="text-left">AVG Rating:
-        <app-star-rating [rating]="filmdata.avgRating"></app-star-rating>
-        ({{filmdata.avgRating}})
+      <p>AVG Rating:
+        <app-star-rating [rating]="film.avgRating"></app-star-rating>
+        ({{film.avgRating}})
       </p>
-      <img class="img-fluid" src="/assets/images/films/{{filmdata.imagePath}}">
-      <h6 class="text-left">Year:
-       <inline-editor type="text" [(ngModel)]="filmdata.year" (onSave)="saveEditable($event)"></inline-editor>
+      <img class="img-fluid" src="/assets/images/films/{{film.imagePath}}">
+      <h6>Year:
+       <inline-editor type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event)"></inline-editor>
       </h6>
-      <h6 class="text-left">Genre:
-             <inline-editor type="text" [(ngModel)]="filmdata.genre" (onSave)="saveEditable($event)"></inline-editor>
-            </h6>
+      <h6>Genre:
+        <inline-editor type="text" [(ngModel)]="film.genre" (onSave)="saveEditable($event)"></inline-editor>
+      </h6>
     </div>
-    <div class="col-xs-12 col-md-5">
-      <!-- <h1 class="display-4 text-left">{{filmdata.title}}</h1> -->
+    <div class="col-12 col-md-5">
       <h6 class="text-left">PLOT SUMMERY:</h6>
       <hr>
-      <p class="text-left">
-        <inline-editor type="textarea" [(ngModel)]="filmdata.plot" (onSave)="saveEditable($event)"></inline-editor>
+      <p>
+        <inline-editor type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event)"></inline-editor>
       </p>
     </div>
-    <div class="col-xs-12 col-md-4">
-      <h6 class="text-left">REVIEWS:</h6>
+    <div class="col-12 col-md-4">
+      <h6>REVIEWS:</h6>
       <hr>
+      <p>{{reviewstatus}}</p>
+      <div *ngFor="let review of reviews">
+        <p *ngIf="review.textbody">
+          <em>"{{review.textbody}}"</em>
+          <cite title="Source Title">- {{review.username}}</cite>
+        </p>
+        <div class="d-inline-block mr-2">
+          <app-star-rating [rating]="review.rating"></app-star-rating>
+        </div>
+        <span>{{review.timeCreated | date}}</span>
+        <p *ngIf="!review.textbody">
+          {{review.textbody || '* Only Rated - by ' + review.username}}
+        </p>
+        <hr />
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="button" class="add-review btn btn-secondary btn" (click)="reviewForm = !reviewForm">Add your review</button>
+          <form *ngIf="reviewForm" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+            <div class="form-group">
+              <br>
+              <label for="textbody">Review of '{{film.title}}'</label>
+              <textarea class="form-control" id="textbody" name="textbody" rows="3" ngModel></textarea>
+            </div>
+            <div class="form-group">
+              <label for="rating">Rating</label>
+              <select type="select" class="form-control" name="rating" id="rating" ngModel>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
+            <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="reviewForm = !reviewForm">Cancel</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -1,3 +1,100 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-12 col-md-3">
+      <h1 class="text-left">{{personData.firstName}}</h1>
+      <h1 class="text-left">{{personData.lastName}}</h1>
+
+      <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{personData.imagePath}}" routerLink="/person-page/{{personData.id}}">
+
+      <h6 class="text-left">
+        <inline-editor type="text" [(ngModel)]="personData.nationality" (onSave)="saveEditable($event)"></inline-editor>
+      </h6>
+      <h6 class="text-left">Born:
+        <inline-editor type="text" [(ngModel)]="personData.birth" (onSave)="saveEditable($event)"></inline-editor>
+      </h6>
+
+      <h6 class="text-left" *ngIf="personData.death">Deceased:
+        <inline-editor type="text" [(ngModel)]="personData.death" (onSave)="saveEditable($event)"></inline-editor>
+      </h6>
+    </div>
+
+    <div class="col-12 col-md-9">
+
+      <div class="row">
+        <div class="col-12 col-md-12 mb-4">
+          <h5>MINI BIO</h5>
+          <hr>
+          <p class="text-left">
+            <inline-editor type="text" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event)"></inline-editor>
+          </p>
+        </div>
+
+        <div class="col-md-12 mb-4" *ngIf="directorData">
+          <h5>HAS DIRECTED</h5>
+          <hr>
+
+          <div class="row align-items-center">
+
+            <div class="col-2">
+              <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{directorData.imagePath}}" routerLink="/film-page/{{directorData.filmId}}">
+            </div>
+
+            <div class="col">
+              <inline-editor type="text" [(ngModel)]="directorData.title" (onSave)="saveEditable($event)"></inline-editor>
+            </div>
+
+            <div class="col">
+              <inline-editor type="text" [(ngModel)]="directorData.year" (onSave)="saveEditable($event)"></inline-editor>
+            </div>
+
+            <div class="col">
+              <app-star-rating [id]="directorData.filmId"></app-star-rating>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mb-4" *ngIf="actorData">
+          <h5>HAS ACTED IN</h5>
+          <hr>
+
+          <div class="row align-items-center">
+
+            <div class="col-2">
+              <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{actorData.imagePath}}" routerLink="/film-page/{{actorData.filmId}}">
+            </div>
+
+            <div class="col">
+              <inline-editor type="text" [(ngModel)]="actorData.title" (onSave)="saveEditable($event)"></inline-editor>
+            </div>
+
+            <div class="col">
+              <inline-editor type="text" [(ngModel)]="actorData.year" (onSave)="saveEditable($event)"></inline-editor>
+            </div>
+
+            <div class="col">
+              <inline-editor type="text" [(ngModel)]="actorData.character" (onSave)="saveEditable($event)"></inline-editor>
+            </div>
+
+            <!-- <div class="col">
+              <app-star-rating [id]="actorData.filmId"></app-star-rating>
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+</div>
+
+
+
 <!-- <p>{{personData.firstName}}</p>
 <p>{{personData.lastName}}</p>
 <p>{{personData.birth}}</p>
@@ -8,4 +105,6 @@
 <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{personData.imagePath}}" routerLink="/person-page/{{personData.id}}"> -->
 
 
-<p>{{directorData.title}}</p>
+<!-- <p>{{directorData.title}}</p> -->
+
+<!-- <p>{{actorData.title}}</p> -->

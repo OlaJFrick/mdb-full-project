@@ -36,7 +36,6 @@ $fancy-font: 'Raleway', sans-serif;
 
 body {
   margin-top: 10px;
-  text-align: center;
   font-family: $default-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -106,3 +105,12 @@ a.c-inline-editor {
 //     vertical-align: middle;
 // }
 
+/* HR */
+hr {
+  clear:both;
+  display:block;
+  width: 100%;
+  border: 1px solid black;
+  border-top: 1px solid black;
+
+}
