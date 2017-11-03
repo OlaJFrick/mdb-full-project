@@ -24,8 +24,11 @@ export class ListLatestReviewsComponent implements OnInit {
   }
 
   onDbLoad(data) {
-    this.mySqlData = data.json();
-    // console.log(this.mySqlData, 'this.mySqlData');
+    const datafilter = data.json();
+    // Only display the films with 'textbody' reviews, not rating only.
+    this.mySqlData = datafilter.filter((res) => {
+      return res = res.textbody;
+    });
   }
 
 }

@@ -72,12 +72,12 @@ a.id,
 CONCAT(a.firstName, ' ', a.lastName) AS name,
 a.nationality,
 a.gender,
-group_concat(`f`.`title` separator ',') AS films,
+group_concat(`f`.`title` separator ', ') AS films,
 a.imagePath
 FROM current_actors AS a, current_films AS f, films_actors AS fa
 WHERE f.id = fa.filmId && a.id = fa.actorId
 GROUP BY a.id
-ORDER BY a.lastname;
+ORDER BY name;
 
 CREATE OR REPLACE VIEW all_directors_list AS
 SELECT
@@ -85,12 +85,12 @@ d.id,
 CONCAT(d.firstName, ' ', d.lastName) AS name,
 d.nationality,
 d.gender,
-group_concat(`f`.`title` separator ',') AS films,
+group_concat(`f`.`title` separator ', ') AS films,
 d.imagePath
 FROM current_directors AS d, current_films AS f, films_directors AS fd
 WHERE d.id = fd.directorId && f.id = fd.filmId
 GROUP BY d.id
-ORDER BY d.lastname;
+ORDER BY name;
 
 
 CREATE OR REPLACE VIEW film_roles AS
