@@ -24,7 +24,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(new Cookiesession().middleware());
 
-
 /* NOT MIDDLEWARE */
 new Login(app);
 new Search(app);
@@ -42,8 +41,8 @@ app.use(Rest.start({
     films_actors: 'filmId',
     films_directors: 'filmId',
     film_roles: 'filmId',
-    person_as_actor: 'filmId',
-    person_as_director: 'filmId'
+    person_as_actor: 'personId',
+    person_as_director: 'personId'
   },
   runtimeErrors: false
 }));
