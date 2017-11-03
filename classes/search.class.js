@@ -1,6 +1,3 @@
-const pm = require('promisemaker'),
-      mysql = require('mysql');
-
 module.exports = class Search {
 
   async search() {

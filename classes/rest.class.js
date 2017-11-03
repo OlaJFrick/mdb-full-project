@@ -90,24 +90,24 @@ module.exports = class Rest {
     let urlParts = url.split(baseUrl, 2)[1].split('/');
 
     // SET PROPERTIES AFTER ANALYSIS
-    this.table = '`' + urlParts[0].split(';').join('').split('?')[0] + '`';
+    this.tableWithoutBackticks = urlParts[0].split(';').join('').split('?')[0];
+    this.table = '`' + this.tableWithoutBackticks + '`';
     this.id = urlParts[1];
     this.method = method;
-    this.idColName = this.settings.idMap[this.table] || 'id';
+    this.idColName = this.settings.idMap[this.tableWithoutBackticks] || 'id';
     this.handleVids = hasBaseUrlVids;
     this.urlQuery = this.req.query;
   }
 
   checkUserRights() {
     let ok = false;
-    let table = this.table.replace(/`/g,'');
     let role = this.req.session.user && this.req.session.user.role;
     if (!role) { role = 'visitor'; }
 
     let rights = userRights[role];
 
-    if (rights[table]) {
-      let okMethods = rights[table];
+    if (rights[this.tableWithoutBackticks]) {
+      let okMethods = rights[this.tableWithoutBackticks];
 
       if (okMethods.constructor !== Array) {
         // CONVERT TO ARRAY
@@ -205,7 +205,6 @@ module.exports = class Rest {
 
     params = params.concat(limitparams);
 
-    // console.log(sql,params)
     let result = await this.query(sql,params);
 
     /* ERROR HANDLING */

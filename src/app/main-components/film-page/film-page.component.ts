@@ -12,6 +12,7 @@ import { StarRatingComponent } from '../../reusable-components/star-rating/star-
     Location, { provide: LocationStrategy, useClass: PathLocationStrategy }
   ]
 })
+
 export class FilmPageComponent implements OnInit {
   film: any = {};
   reviews: any;

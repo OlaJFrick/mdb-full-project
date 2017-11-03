@@ -1,24 +1,25 @@
-<div class="container">
+<div class="container text-left">
   <div class="row">
 
-    <div class="col-2">
+    <div class="col-3">
       <h1>LATEST</h1>
       <h1>REVIEWS</h1>
     </div>
 
-    <div class="col-10 offset-2" *ngFor="let item of mySqlData">
-      <div class="row">
-        <div class="col-3">
-          <!-- <img class="mdb-default-image" src="../../assets/images/films/{{item.imagePath}}"
-                routerLink="/film-page/{{item.id}}"> -->
+    <div class="col-7 mb-3">
+      <div class="row item py-4" *ngFor="let item of mySqlData">
+        <div class="col-4">
+          <img class="mdb-default-image img-fluid" src="../../assets/images/films/{{item.imagePath}}"
+                routerLink="/film-page/{{item.id}}">
         </div>
 
 
-        <div class="col-6">
-          <h6>title: {{item.title}}</h6>
-          <p>text: {{item.textbody}}</p>
-          <p>username: {{item.username}}</p>
-          <p>rating: {{item.rating}} / created: {{item.timeCreated}}</p>
+        <div class="col-8">
+          <h5 class="mb-3">{{item.title}}</h5>
+          <p>{{item.textbody}}</p>
+          <p>– {{item.username}}</p>
+          <div class="d-inline-block mr-3"><app-star-rating [rating]="item.rating"></app-star-rating></div>
+          <span>Created: {{item.timeCreated | date}}</span>
         </div>
 
       </div>
