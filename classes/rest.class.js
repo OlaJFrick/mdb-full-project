@@ -57,7 +57,10 @@ module.exports = class Rest {
       this.settings.baseUrlForVidTables += '/';
     }
 
-    this.analyzeUrl();
+    if (this.analyzeUrl()) {
+      // return if Url was not /rest or /vid.
+      return;
+    }
 
     // CHECK USER RIGHTS
     if (!this.checkUserRights()) {
@@ -83,7 +86,7 @@ module.exports = class Rest {
 
     if (!hasBaseUrl && !hasBaseUrlVids) {
       this.next();
-      return;
+      return true;
     }
 
     // REMOVE BASEURL. SPLIT ON '/'
