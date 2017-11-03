@@ -1,6 +1,32 @@
-<h4>{{filmdata.title}} ({{filmdata.year}})</h4>
-<img class="mdb-default-image" src="/assets/images/films/{{filmdata.imagePath}}">
-<app-star-rating [id]="filmdata.id"></app-star-rating>
-<h6>{{filmdata.genre}}</h6>
-<h6>{{filmdata.plot}}</h6>
-
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <h5 class="text-left">
+       <inline-editor type="text" [(ngModel)]="filmdata.title" (onSave)="saveEditable($event)"></inline-editor>
+      </h5>
+      <p class="text-left">AVG Rating:
+        <app-star-rating [rating]="filmdata.avgRating"></app-star-rating>
+        ({{filmdata.avgRating}})
+      </p>
+      <img class="img-fluid" src="/assets/images/films/{{filmdata.imagePath}}">
+      <h6 class="text-left">Year:
+       <inline-editor type="text" [(ngModel)]="filmdata.year" (onSave)="saveEditable($event)"></inline-editor>
+      </h6>
+      <h6 class="text-left">Genre:
+             <inline-editor type="text" [(ngModel)]="filmdata.genre" (onSave)="saveEditable($event)"></inline-editor>
+            </h6>
+    </div>
+    <div class="col-xs-12 col-md-5">
+      <!-- <h1 class="display-4 text-left">{{filmdata.title}}</h1> -->
+      <h6 class="text-left">PLOT SUMMERY:</h6>
+      <hr>
+      <p class="text-left">
+        <inline-editor type="textarea" [(ngModel)]="filmdata.plot" (onSave)="saveEditable($event)"></inline-editor>
+      </p>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <h6 class="text-left">REVIEWS:</h6>
+      <hr>
+    </div>
+  </div>
+</div>

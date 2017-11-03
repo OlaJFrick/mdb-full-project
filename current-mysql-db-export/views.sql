@@ -150,10 +150,7 @@ GROUP BY f.id
 ORDER BY f.title;
 
 CREATE OR REPLACE VIEW all_films_list AS
-SELECT f.id,
-f.title,
-f.year,
-f.imagePath,
+SELECT f.*,
 (SELECT starring
 FROM film_starring
 WHERE id = f.id)

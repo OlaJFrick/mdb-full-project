@@ -24,12 +24,17 @@ export class FilmPageComponent implements OnInit {
   ngOnInit() {
     this.filmid = this.location.path().slice(11);
 
-    this.restservice.get('current_films', this.filmid).then(data => {
+    this.restservice.get('all_films_list', this.filmid).then(data => {
       this.filmdata = data.json();
-      console.log(data.json());
     }, err => {
       console.log('Error occured.');
     });
+
+  }
+
+  saveEditable(value) {
+    // call to http service
+    console.log('http.service: ' + value);
   }
 
 }

@@ -332,7 +332,13 @@ REPLACE INTO `reviews` (`id`, `changerId`, `filmId`, `rating`, `textbody`, `time
  (97,6,23,'4',NULL,'2017-11-02 21:45:36'),
  (98,6,24,'2',NULL,'2017-11-02 21:45:36'),
  (99,6,25,'2',NULL,'2017-11-02 21:45:36'),
- (100,6,26,'4',NULL,'2017-11-02 21:45:36');
+ (100,6,26,'4',NULL,'2017-11-02 21:45:36'),
+ (101,1,1,'4',"Even though this movie didn't scare me,it was the first time I heard people scream in the audience ever. This movie was absolutely brilliant. It looked beautiful, the actors did a splendid job and this adaptation of IT really added something valuable.I do have to say that the first half of the movie didn't quite capture me, but then it just got better and it kept surprising me.",'2017-11-03 22:45:01'),
+ (102,2,1,'2',"This movie has big issues. IT isn't scary. IT's story is weak, if you can even call it a story. IT has too many underdeveloped characters. And IT is a counterproductive villain with no concrete rules for what IT can or can not do.",'2017-11-03 22:45:01'),
+ (103,3,1,'3','Average','2017-11-03 22:45:01'),
+ (104,4,1,'5',"The acting. Great performances all round. The kids had great chemistry, and you really believe that they were all great friends. It reminded me of Stand By Me and The Goonies. Out of the child actors, Richie (played by Finn Wolfhard) was my favourite and his jokes cracked the whole cinema up. Bill Skarsgård as Pennywise is scary and really creeped me out, but for me there was just something missing about his character and I think he wasn't given enough dialogue.",'2017-11-03 22:45:01'),
+ (105,5,1,'4',"I guess this movie will please those not familiar with the book much more than those who are. That being said, I don't think it is possible to make a satisfying adaption of IT without doing it the Game of Thrones way. More time is needed to dwell on each of the novel's parts to create the feel the book gave us. To tell the story as it was told on paper. So I guess I'll forgive the filmmakers for that.",'2017-11-03 22:45:01'),
+ (106,6,1,'1','Trolle was here','2017-11-03 20:45:01');
  /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 
 -- Dumpar data för tabell mdb.users: ~6 rows (approximately)
