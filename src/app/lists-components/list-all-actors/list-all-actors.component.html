@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-12">
-      <h1 class="display-4 text-left">All Actors</h1>
+      <h1 class="display-4">All Actors</h1>
       <hr>
     </div>
   </div>
@@ -9,16 +9,16 @@
     <div class="col-2">
     </div>
     <div class="col-3">
-      <p class="text-left"><strong>Name</strong></p>
+      <p> <strong>Name</strong></p>
     </div>
     <div class="col-2">
-      <p class="text-left"><strong>Nationality</strong></p>
+      <p> <strong>Nationality</strong></p>
     </div>
     <div class="col-2">
-      <p class="text-left"><strong>Gender</strong></p>
+      <p> <strong>Gender</strong></p>
     </div>
     <div class="col-3">
-      <p class="text-left"><strong>Known for roles in</strong></p>
+      <p> <strong>Known for roles in</strong></p>
     </div>
   </div>
   <div class="col-12 list-all-actors-container" *ngFor="let item of mySqlData">
@@ -27,16 +27,16 @@
         <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
       </div>
       <div class="col-3">
-        <p class="text-left align-middle">{{item.name}}</p>
+        <p class="align-middle">{{item.name}}</p>
       </div>
       <div class="col-2">
-        <p class="text-left">{{item.nationality}}</p>
+        <p> {{item.nationality}}</p>
       </div>
       <div class="col-2">
-        <p class="text-left">{{item.gender}}</p>
+        <p> {{item.gender}}</p>
       </div>
       <div class="col-3">
-        <p class="text-left">{{item.films}}</p>
+        <p> {{item.films}}</p>
       </div>
     </div>
 
@@ -45,9 +45,9 @@
         <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
       </div>
       <div class="col-6">
-        <p class="text-left">{{item.name}}</p>
-        <p class="text-left">{{item.nationality}}</p>
-        <p class="text-left">Known for roles in: ({{item.films}})</p>
+        <p> {{item.name}}</p>
+        <p> {{item.nationality}}</p>
+        <p> Known for roles in: ({{item.films}})</p>
       </div>
     </div>
   </div>

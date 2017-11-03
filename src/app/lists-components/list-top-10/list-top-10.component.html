@@ -1,26 +1,29 @@
 <div class="container">
+
   <div class="row">
     <div class="col-xs-12 col-md-12">
-      <h1 class="display-4 text-left">Top 10 Highest</h1>
+      <h1 class="display-4">Top 10 Highest</h1>
       <hr>
     </div>
   </div>
+
   <div class="row hidden-sm-down">
     <div class="col-2">
     </div>
     <div class="col-2">
-      <p class="text-left"><strong>Rank</strong></p>
+      <p><strong>Rank</strong></p>
     </div>
     <div class="col-3">
-      <p class="text-left"><strong>Title</strong></p>
+      <p><strong>Title</strong></p>
     </div>
     <div class="col-3">
-      <p class="text-left"><strong>Rating</strong></p>
+      <p><strong>Rating</strong></p>
     </div>
     <div class="col-2">
-      <p class="text-left"><strong>Year</strong></p>
+      <p><strong>Year</strong></p>
     </div>
   </div>
+
   <div class="col-12 list-all-actors-container" *ngFor="let item of highestData, let i = index">
     <div class="row hidden-sm-down align-items-center">
       <div class="col-2">
@@ -28,19 +31,19 @@
                 routerLink="/film-page/{{item.id}}">
       </div>
       <div class="col-2">
-        <p class="text-left align-middle">{{i + 1 }}</p>
+        <p class="align-middle">{{i + 1 }}</p>
       </div>
       <div class="col-3">
-        <p class="text-left">{{item.title}}</p>
+        <p>{{item.title}}</p>
       </div>
       <div class="col-3">
-        <div class="text-left">
+        <div>
           <app-star-rating [rating]="item.avgRating"></app-star-rating>
           <p class="rating-text">Rating: {{item.avgRating || 'not rated'}}</p>
         </div>
       </div>
       <div class="col-2">
-        <p class="text-left">{{item.year}}</p>
+        <p>{{item.year}}</p>
       </div>
     </div>
 
@@ -49,9 +52,9 @@
         <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
       </div>
       <div class="col-6">
-        <p class="text-left">{{item.name}}</p>
-        <p class="text-left">{{item.nationality}}</p>
-        <p class="text-left">Known for roles in: ({{item.films}})</p>
+        <p>{{item.name}}</p>
+        <p>{{item.nationality}}</p>
+        <p>Known for roles in: ({{item.films}})</p>
       </div>
     </div>
   </div>
@@ -60,7 +63,7 @@
 
   <div class="row">
     <div class="col-xs-12 col-md-12">
-      <h1 class="display-4 text-left">Top 10 Lowest</h1>
+      <h1 class="display-4">Top 10 Lowest</h1>
       <hr>
     </div>
   </div>
@@ -68,18 +71,19 @@
     <div class="col-2">
     </div>
     <div class="col-2">
-      <p class="text-left"><strong>Rank</strong></p>
+      <p><strong>Rank</strong></p>
     </div>
     <div class="col-3">
-      <p class="text-left"><strong>Title</strong></p>
+      <p><strong>Title</strong></p>
     </div>
     <div class="col-3">
-      <p class="text-left"><strong>Rating</strong></p>
+      <p><strong>Rating</strong></p>
     </div>
     <div class="col-2">
-      <p class="text-left"><strong>Year</strong></p>
+      <p><strong>Year</strong></p>
     </div>
   </div>
+
   <div class="col-12 list-all-actors-container" *ngFor="let item of lowestData, let i = index">
     <div class="row hidden-sm-down align-items-center">
       <div class="col-2">
@@ -87,19 +91,19 @@
                 routerLink="/film-page/{{item.id}}">
       </div>
       <div class="col-2">
-        <p class="text-left align-middle">{{i + 1 }}</p>
+        <p class="align-middle">{{i + 1 }}</p>
       </div>
       <div class="col-3">
-        <p class="text-left">{{item.title}}</p>
+        <p>{{item.title}}</p>
       </div>
       <div class="col-3">
-        <div class="text-left">
+        <div>
           <app-star-rating [rating]="item.avgRating"></app-star-rating>
           <p class="rating-text">Rating: {{item.avgRating || 'not rated'}}</p>
         </div>
       </div>
       <div class="col-2">
-        <p class="text-left">{{item.year}}</p>
+        <p>{{item.year}}</p>
       </div>
     </div>
 
@@ -108,9 +112,9 @@
         <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
       </div>
       <div class="col-6">
-        <p class="text-left">{{item.name}}</p>
-        <p class="text-left">{{item.nationality}}</p>
-        <p class="text-left">Known for roles in: ({{item.films}})</p>
+        <p>{{item.name}}</p>
+        <p>{{item.nationality}}</p>
+        <p>Known for roles in: ({{item.films}})</p>
       </div>
     </div>
   </div>

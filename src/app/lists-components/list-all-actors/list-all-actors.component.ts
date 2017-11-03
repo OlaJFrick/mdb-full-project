@@ -27,5 +27,4 @@ export class ListAllActorsComponent implements OnInit {
     this.mySqlData = data.json();
     // console.log(this.mySqlData, 'this.mySqlData');
   }
-
 }
