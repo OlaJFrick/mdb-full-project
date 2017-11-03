@@ -47,7 +47,7 @@ export class FilmPageComponent implements OnInit {
     });
 
     if (this.reviews.length === 0) {
-      this.reviewstatus = 'No reviews';
+      this.reviewstatus = 'No reviews yet';
     }
   }
 

@@ -28,8 +28,8 @@
       <hr>
       <p>{{reviewstatus}}</p>
       <div *ngFor="let review of reviews">
-        <p><em>"{{review.textbody}}"</em></p>
         <p *ngIf="review.textbody">
+          <em>"{{review.textbody}}"</em>
           <cite title="Source Title">- {{review.username}}</cite>
         </p>
         <div class="d-inline-block mr-2">
@@ -37,13 +37,13 @@
         </div>
         <span>{{review.timeCreated | date}}</span>
         <p *ngIf="!review.textbody">
-          {{review.textbody || 'Rating - by ' + review.username}}
+          {{review.textbody || '* Only Rated - by ' + review.username}}
         </p>
         <hr />
       </div>
       <div class="row">
         <div class="col">
-          <button type="button" class="add-review btn btn-secondary btn-sm" (click)="reviewForm = !reviewForm">Add your review</button>
+          <button type="button" class="add-review btn btn-secondary btn" (click)="reviewForm = !reviewForm">Add your review</button>
           <form *ngIf="reviewForm" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
             <div class="form-group">
               <br>
