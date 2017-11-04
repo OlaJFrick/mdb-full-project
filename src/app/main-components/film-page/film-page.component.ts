@@ -19,7 +19,9 @@ export class FilmPageComponent implements OnInit {
   filmid: any;
   reviewstatus = '';
   reviewForm = false;
-  // film: any;
+  directorData: any;
+  actorData: any;
+  highlight = 'row align-items-center mb-3 bg-secondary py-3 rounded';
 
   constructor(private restservice: RestService, private location: Location) {
     this.film.imagePath = 'default.png';
@@ -32,6 +34,21 @@ export class FilmPageComponent implements OnInit {
       this.film = data.json();
     }, err => {
       console.log('Error occured.');
+    });
+
+    this.restservice.get('film_directed', this.filmid).then(data => {
+      this.directorData = data.json();
+      // console.log(this.directorData);
+    }, err => {
+      console.log('director error');
+    });
+
+    this.restservice.get('film_roles').then(data => {
+     this.actorData = data.json().filter((res) => {
+           return res.filmId === this.filmid;
+         });
+    }, err => {
+      console.log('actor error');
     });
 
     this.restservice.get('all_reviews_list').then(data => {

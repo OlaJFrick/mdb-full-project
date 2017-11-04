@@ -133,6 +133,8 @@ CREATE OR REPLACE VIEW film_starring AS
 SELECT
 f.id,
 f.title,
+a.actorId,
+a.imagePath,
 group_concat(DISTINCT a.firstName, ' ', a.lastName separator ', ') AS starring
 FROM current_films AS f, current_actors AS a, films_actors AS fa
 WHERE f.id = fa.filmId && a.id = fa.actorId
@@ -143,6 +145,8 @@ CREATE OR REPLACE VIEW film_directed AS
 SELECT
 f.id,
 f.title,
+d.actorId,
+d.imagePath,
 group_concat(DISTINCT d.firstName, ' ', d.lastName separator ', ') AS director
 FROM current_films AS f, current_directors AS d, films_directors AS fa
 WHERE f.id = fa.filmId && d.id = fa.directorId

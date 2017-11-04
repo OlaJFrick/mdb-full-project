@@ -1,27 +1,68 @@
 <div class="container">
   <div class="row">
+
     <div class="col-12 col-md-3">
-      <h5>
+      <h1>
        <inline-editor type="text" [(ngModel)]="film.title" (onSave)="saveEditable($event)"></inline-editor>
-      </h5>
-      <p>AVG Rating:
-        <app-star-rating [rating]="film.avgRating"></app-star-rating>
-        ({{film.avgRating}})
-      </p>
-      <img class="img-fluid" src="/assets/images/films/{{film.imagePath}}">
-      <h6>Year:
+      </h1>
+      <div class="mb-2">
+        <div class="d-inline-block mr-2">
+          <span>AVG Rating:</span>
+        </div>
+        <div class="d-inline-block mr-2">
+          <app-star-rating [rating]="film.avgRating"></app-star-rating>
+        </div>
+        <span>({{film.avgRating}})</span>
+      </div>
+
+      <img class="img-fluid img-thumbnail mb-2" src="/assets/images/films/{{film.imagePath}}">
+
+      <h6>Relase Year:
        <inline-editor type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event)"></inline-editor>
       </h6>
       <h6>Genre:
         <inline-editor type="text" [(ngModel)]="film.genre" (onSave)="saveEditable($event)"></inline-editor>
       </h6>
     </div>
+
     <div class="col-12 col-md-5">
       <h6>PLOT SUMMERY:</h6>
       <hr>
       <p>
         <inline-editor type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event)"></inline-editor>
       </p>
+
+      <div *ngIf="directorData">
+        <h6>DIRECTED BY</h6>
+        <hr>
+        <div class="row align-items-center">
+          <div class="col-3">
+            <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{directorData.imagePath}}" routerLink="/person-page/{{directorData.directorId}}">
+          </div>
+          <div class="col">
+            <inline-editor type="text" [(ngModel)]="directorData.director" (onSave)="saveEditable($event)"></inline-editor>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div *ngIf="actorData">
+        <h6>STARRING</h6>
+        <hr>
+        <div *ngFor="let actor of actorData">
+          <div [ngClass]="actor.isMainCharacter ? highlight : 'row align-items-center mb-3'">
+            <div class="col-3">
+              <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}">
+            </div>
+            <div class="col">
+              <inline-editor type="text" [ngClass]="actor.isMainCharacter ? 'font-weight-bold' : ''" [(ngModel)]="actor.name" (onSave)="saveEditable($event)"></inline-editor>
+            </div>
+            <div class="col">
+              as
+              <inline-editor type="text" [(ngModel)]="actor.character" (onSave)="saveEditable($event)"></inline-editor>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-12 col-md-4">
       <h6>REVIEWS:</h6>
@@ -30,14 +71,16 @@
       <div *ngFor="let review of reviews">
         <p *ngIf="review.textbody">
           <em>"{{review.textbody}}"</em>
-          <cite title="Source Title">- {{review.username}}</cite>
         </p>
+        <p *ngIf="review.textbody" class="mb-2" title="Source Title">Posted by - <span class="font-weight-bold">{{review.username}}
+          </span></p>
         <div class="d-inline-block mr-2">
           <app-star-rating [rating]="review.rating"></app-star-rating>
         </div>
         <span>{{review.timeCreated | date}}</span>
-        <p *ngIf="!review.textbody">
-          {{review.textbody || '* Only Rated - by ' + review.username}}
+        <p *ngIf="!review.textbody">Rating Only by -
+          <span class="font-weight-bold">{{review.username}}
+          </span>
         </p>
         <hr />
       </div>

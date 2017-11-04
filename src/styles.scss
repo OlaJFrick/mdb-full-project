@@ -43,6 +43,12 @@ body {
   color: $color-black;
 }
 
+// == Since I can't get bootstraps bg-secondary to work:
+
+.bg-secondary {
+  background: #eceeef;
+}
+
 
 //== Editable Content (inline-editor)
 
@@ -51,9 +57,8 @@ a.c-inline-editor {
   color: #428bca;
   border-bottom: dashed 1px #428bca;
   cursor: pointer;
-  line-height: 2;
-  margin-right: 5px;
-  margin-left: 5px;
+  line-height: 1.6;
+  background: #f1f1f1;
 }
 .c-inline-editor.editable-empty,
 .c-inline-editor.editable-empty:hover,
@@ -110,7 +115,7 @@ hr {
   clear:both;
   display:block;
   width: 100%;
-  border: 1px solid black;
+  // border: 1px solid black;
   border-top: 1px solid black;
 
 }
