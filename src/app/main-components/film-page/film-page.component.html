@@ -12,8 +12,12 @@
         <div class="d-inline-block mr-2">
           <app-star-rating [rating]="film.avgRating"></app-star-rating>
         </div>
-        <span>({{film.avgRating}})</span>
+       <span>({{film.avgRating}} / by <strong>{{film.ratingCount}}</strong> Users)</span>
+
+      <div class="mr-2">
       </div>
+      </div>
+
 
       <img class="img-fluid img-thumbnail mb-2" src="/assets/images/films/{{film.imagePath}}">
 

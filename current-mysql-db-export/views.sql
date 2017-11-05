@@ -20,10 +20,17 @@
 CREATE OR REPLACE VIEW ratings AS
 SELECT
 f.id,
-ROUND(AVG(r.rating), 2) AS avgRating
-FROM reviews AS r, films AS f
-WHERE r.filmId = f.id
+ROUND(AVG(r.rating), 2) AS avgRating,
+rc.counter
+FROM reviews AS r, films AS f, ratingcount AS rc
+WHERE r.filmId = f.id && rc.filmId = f.id
 GROUP BY id;
+
+CREATE OR REPLACE VIEW ratingcount AS
+SELECT *,
+COUNT(changerId)
+FROM reviews
+GROUP BY filmId;
 
 
 CREATE OR REPLACE VIEW current_actors AS
@@ -163,22 +170,27 @@ AS starring,
 FROM film_directed
 WHERE id = f.id)
 AS directed,
+(SELECT counter
+FROM ratings
+WHERE id = f.id)
+AS ratingCount,
 (SELECT avgRating
 FROM ratings
 WHERE id = f.id)
-AS avgRating FROM current_films AS f
+AS avgRating
+FROM current_films AS f
 ORDER BY title;
 
 
 CREATE OR REPLACE VIEW top10_highest AS
-SELECT f.id, f.title, f.year, f.imagePath, r.avgRating
+SELECT f.id, f.title, f.year, f.imagePath, r.avgRating, r.counter
 FROM current_films AS f, ratings AS r
 WHERE r.id = f.id
 ORDER BY avgRating DESC;
 
 
 CREATE OR REPLACE VIEW top10_lowest AS
-SELECT f.id, f.title, f.year, f.imagePath, r.avgRating
+SELECT f.id, f.title, f.year, f.imagePath, r.avgRating, r.counter
 FROM current_films AS f, ratings AS r
 WHERE r.id = f.id
 ORDER BY avgRating;

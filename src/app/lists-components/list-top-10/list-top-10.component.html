@@ -16,10 +16,10 @@
     <div class="col-3">
       <p><strong>Title</strong></p>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <p><strong>Rating</strong></p>
     </div>
-    <div class="col-2">
+    <div class="col-1">
       <p><strong>Year</strong></p>
     </div>
   </div>
@@ -36,14 +36,17 @@
       <div class="col-3">
         <p>{{item.title}}</p>
       </div>
-      <div class="col-3">
+      <div class="col-4">
         <div>
           <app-star-rating [rating]="item.avgRating"></app-star-rating>
-          <p class="rating-text">Rating: {{item.avgRating || 'not rated'}}</p>
+          <p class="rating-text">AVG Rating: {{item.avgRating || 'not rated'}} / by {{item.counter}}
+            <span *ngIf="item.counter != 1">Users</span><span *ngIf="item.counter == 1">User</span>
+          </p>
+
         </div>
       </div>
-      <div class="col-2">
-        <p>{{item.year}}</p>
+      <div class="col-1">
+        <p class="text-right">{{item.year}}</p>
       </div>
     </div>
 
@@ -76,10 +79,10 @@
     <div class="col-3">
       <p><strong>Title</strong></p>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <p><strong>Rating</strong></p>
     </div>
-    <div class="col-2">
+    <div class="col-1">
       <p><strong>Year</strong></p>
     </div>
   </div>
@@ -96,13 +99,15 @@
       <div class="col-3">
         <p>{{item.title}}</p>
       </div>
-      <div class="col-3">
+      <div class="col-4">
         <div>
-          <app-star-rating [rating]="item.avgRating"></app-star-rating>
-          <p class="rating-text">Rating: {{item.avgRating || 'not rated'}}</p>
+          <p class="rating-text">AVG Rating: {{item.avgRating || 'not rated'}} / by {{item.counter}}
+            <span *ngIf="item.counter != 1">Users</span>
+            <span *ngIf="item.counter == 1">User</span>
+          </p>
         </div>
       </div>
-      <div class="col-2">
+      <div class="col-1">
         <p>{{item.year}}</p>
       </div>
     </div>
