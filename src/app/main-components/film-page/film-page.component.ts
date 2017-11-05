@@ -18,6 +18,7 @@ export class FilmPageComponent implements OnInit {
   film: any = {};
   reviews: any;
   filmid: any;
+  filmVersionId: any;
   reviewstatus = '';
   reviewForm = false;
   directorData: any;
@@ -33,6 +34,7 @@ export class FilmPageComponent implements OnInit {
 
     this.restservice.get('all_films_list', this.filmid).then(data => {
       this.film = data.json();
+      this.filmVersionId = this.film.versionId;
     }, err => {
       console.log('Error occured.');
     });
@@ -70,11 +72,36 @@ export class FilmPageComponent implements OnInit {
   }
 
   onSubmit(form: any): void {
+
+      // need to be added afte we have sessions working.
+      form.changerId = 1;
+
+      form.filmId = this.filmid;
       console.log('you submitted value:', form);
+
+      this.restservice.post('reviews', form, this.filmid).then(data => {
+        // this.film = data.json();
+      }, err => {
+        console.log('Error occured.');
+      });
     }
 
-  saveEditable(value) {
+  saveEditable(value, table, column) {
+
+    const body = {};
+    body[column] = value;
+    body['changerId'] = 2;
+    // body['versionId'] = this.filmVersionId + 1;
+
     // call to http service
-    console.log('http.service: ' + value);
+    // console.log('films', body, 1);
+    this.restservice.put(table, body, this.filmid).then(res => {
+      res.json();
+    }, err => {
+      console.log('Error occured.');
+    });
+
+
+
   }
 }

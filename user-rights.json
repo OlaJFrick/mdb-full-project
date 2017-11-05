@@ -32,7 +32,7 @@
     "current_actors": ["get", "post", "put", "delete"],
     "current_directors": ["get", "post", "put", "delete"],
     "current_films": ["get", "post", "put", "delete"],
-    "films": ["get", "put"],
+    "films": ["get", "post", "put", "delete"],
     "films_actors": ["get", "post", "put", "delete"],
     "films_directors": ["get", "post", "put", "delete"],
     "film_directed": ["get", "post", "put", "delete"],

@@ -1,4 +1,5 @@
 const express = require('express'),
+      cors = require('cors')
   	  app = express(),
       bodyParser = require('body-parser'),
       cookieParser = require('cookie-parser'),
@@ -8,16 +9,13 @@ const express = require('express'),
       Search = require('./classes/search.class'),
       devPassword = require('./dev-password');
 
+
 process.on('unhandledRejection', error=>console.log('unhandledRejection', error));
 
 const cookieSession = new Cookiesession();
 
 // Added CORS to read further: https://enable-cors.org/server_expressjs.html
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors());
 
 /* MIDDLEWARE */
 app.use(bodyParser.json());

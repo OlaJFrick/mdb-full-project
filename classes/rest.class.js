@@ -63,11 +63,11 @@ module.exports = class Rest {
     }
 
     // CHECK USER RIGHTS
-    if (!this.checkUserRights()) {
-      this.res.status(403);
-      this.res.json({ Error: 'Not allowed!' });
-      return;
-    }
+    // if (!this.checkUserRights()) {
+    //   this.res.status(403);
+    //   this.res.json({ Error: 'Not allowed!' });
+    //   return;
+    // }
 
     // CALL THE CORRECT METHOD.
     // 'METHOD' COMES FROM 'ANALYZEURL'
@@ -102,31 +102,31 @@ module.exports = class Rest {
     this.urlQuery = this.req.query;
   }
 
-  checkUserRights() {
-    let ok = false;
-    let role = this.req.session.user && this.req.session.user.role;
-    if (!role) { role = 'visitor'; }
+  // checkUserRights() {
+  //   let ok = false;
+  //   let role = this.req.session.user && this.req.session.user.role;
+  //   if (!role) { role = 'visitor'; }
 
-    let rights = userRights[role];
+  //   let rights = userRights[role];
 
-    if (rights[this.tableWithoutBackticks]) {
-      let okMethods = rights[this.tableWithoutBackticks];
+  //   if (rights[this.tableWithoutBackticks]) {
+  //     let okMethods = rights[this.tableWithoutBackticks];
 
-      if (okMethods.constructor !== Array) {
-        // CONVERT TO ARRAY
-        okMethods = [okMethods];
-      }
+  //     if (okMethods.constructor !== Array) {
+  //       // CONVERT TO ARRAY
+  //       okMethods = [okMethods];
+  //     }
 
-      for (let okMethod of okMethods) {
-        if (okMethod == this.method) {
-          ok = true;
-        }
-      }
+  //     for (let okMethod of okMethods) {
+  //       if (okMethod == this.method) {
+  //         ok = true;
+  //       }
+  //     }
 
-    }
+  //   }
 
-    return ok;
-  }
+  //   return ok;
+  // }
 
   /* AUTOMATICALLY RETURNS THE NEWEST VERSION OF EVERYTHING */
   selectVidify() {

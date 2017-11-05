@@ -3,7 +3,7 @@
 
     <div class="col-12 col-md-3">
       <h1>
-       <inline-editor type="text" [(ngModel)]="film.title" (onSave)="saveEditable($event)"></inline-editor>
+       <inline-editor type="text" [(ngModel)]="film.title" (onSave)="saveEditable($event, 'films', 'title')"></inline-editor>
       </h1>
       <div class="mb-2">
         <div class="d-inline-block mr-2">
@@ -18,10 +18,10 @@
       <img class="img-fluid img-thumbnail mb-2" src="/assets/images/films/{{film.imagePath}}">
 
       <h6>Relase Year:
-       <inline-editor type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event)"></inline-editor>
+       <inline-editor type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event, 'films', 'year')"></inline-editor>
       </h6>
       <h6>Genre:
-        <inline-editor type="text" [(ngModel)]="film.genre" (onSave)="saveEditable($event)"></inline-editor>
+        <inline-editor type="text" [(ngModel)]="film.genre" (onSave)="saveEditable($event, 'films', 'genre')"></inline-editor>
       </h6>
 
     </div>
@@ -31,7 +31,7 @@
       <h6>PLOT SUMMERY:</h6>
       <hr>
       <p>
-        <inline-editor type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event)"></inline-editor>
+        <inline-editor type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event, 'films', 'plot')"></inline-editor>
       </p>
 
       <h6>OFFICIAL TRAILER:</h6>
@@ -40,7 +40,7 @@
         <iframe width="560" height="315" [src]="film.youtubeUrl | safeurl" frameborder="0" allowfullscreen></iframe>
       </div>
       <p>
-        <inline-editor type="text" [(ngModel)]="film.youtubeUrl" (onSave)="saveEditable($event)"></inline-editor>
+        <inline-editor type="text" [(ngModel)]="film.youtubeUrl" (onSave)="saveEditable($event, 'films', 'youtubeUrl')"></inline-editor>
       </p>
 
       <div *ngIf="directorData">
