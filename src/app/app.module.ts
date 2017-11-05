@@ -43,6 +43,7 @@ import { StatusbarComponent } from './top-components/statusbar/statusbar.compone
 
 // pipes
 import { DatePipe } from './pipes/date.pipe';
+import { SafeurlPipe } from './pipes/safeurl.pipe';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { DatePipe } from './pipes/date.pipe';
     AdminAddFilmComponent,
     AdminAllActivityComponent,
     AdminListUsersComponent,
-    DatePipe
+    DatePipe,
+    SafeurlPipe
   ],
   imports: [
     AppRoutingModule,
