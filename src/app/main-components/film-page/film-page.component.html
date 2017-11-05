@@ -23,13 +23,24 @@
       <h6>Genre:
         <inline-editor type="text" [(ngModel)]="film.genre" (onSave)="saveEditable($event)"></inline-editor>
       </h6>
+
     </div>
 
     <div class="col-12 col-md-5">
+
       <h6>PLOT SUMMERY:</h6>
       <hr>
       <p>
         <inline-editor type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event)"></inline-editor>
+      </p>
+
+      <h6>OFFICIAL TRAILER:</h6>
+      <hr>
+      <div *ngIf="film.youtubeUrl" class="embed-responsive embed-responsive-4by3 mb-2">
+        <iframe width="560" height="315" [src]="film.youtubeUrl | safeurl" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <p>
+        <inline-editor type="text" [(ngModel)]="film.youtubeUrl" (onSave)="saveEditable($event)"></inline-editor>
       </p>
 
       <div *ngIf="directorData">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../services/rest.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { StarRatingComponent } from '../../reusable-components/star-rating/star-rating.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-film-page',
