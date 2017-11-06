@@ -204,6 +204,8 @@ f.imagePath,
 r.rating,
 r.textbody,
 concat(u.firstName, ' ', u.lastName) As username,
+u.id AS userId,
+r.id AS reviewId,
 r.timeCreated
 FROM current_films AS f, reviews AS r, users AS u
 WHERE f.id = r.filmId && r.changerId = u.id
