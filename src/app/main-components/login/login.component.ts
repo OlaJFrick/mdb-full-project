@@ -17,28 +17,35 @@ import { GlobalService } from '../../services/global.service';
 export class LoginComponent {
 
   credentials = {
-    email: '',
-    password: ''
+    email: 'admin@mdb.com',
+    password: 'amy123'
   }
 
-  user = {};
+  constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) {
+    // console.log('ighas');
+    // this.restservice.get('login').then(res => {
 
-  constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) { }
+    //   this.globalservice.user = res.json().user;
+
+    //   console.log('user:', res.json());
+    // }, err => {
+    //   console.log('you\'re out');
+    // });
+    this.login();
+  }
 
   login() {
     this.restservice.post('login', this.credentials).then(res => {
-      res.json();
 
-      if (res.json().status === 'logged in') {
+      if (res.json().user) {
         this.router.navigateByUrl('/');
       }
 
       this.globalservice.user = res.json().user;
 
-      console.log('user:', this.user);
-      console.log('you\'re in:', res.json());
+      console.log('you\'re in2:', res.json());
     }, err => {
-      console.log('you\'re out');
+      console.log('you\'re out2');
     });
   }
 
