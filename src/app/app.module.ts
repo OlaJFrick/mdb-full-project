@@ -45,6 +45,9 @@ import { StatusbarComponent } from './top-components/statusbar/statusbar.compone
 // pipes
 import { SafeurlPipe } from './pipes/safeurl.pipe';
 
+// services
+import { GlobalService } from './services/global.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +85,7 @@ import { SafeurlPipe } from './pipes/safeurl.pipe';
     AngularFontAwesomeModule,
     InlineEditorModule
   ],
-  providers: [],
+  providers: [GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

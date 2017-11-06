@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { RestService } from '../../services/rest.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,9 @@ export class LoginComponent {
     password: ''
   }
 
-  constructor(private restservice: RestService, private router: Router) {
-  }
+  user = {};
+
+  constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) { }
 
   login() {
     this.restservice.post('login', this.credentials).then(res => {
@@ -31,9 +33,12 @@ export class LoginComponent {
         this.router.navigateByUrl('/');
       }
 
+      this.globalservice.user = res.json().user;
+
+      console.log('user:', this.user);
       console.log('you\'re in:', res.json());
     }, err => {
-      console.log('you\'re out:');
+      console.log('you\'re out');
     });
   }
 
