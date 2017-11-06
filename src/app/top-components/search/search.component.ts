@@ -13,20 +13,36 @@ export class SearchComponent {
   films = [];
   hasResults = false;
   hidden = true;
+  shouldHide = false;
 
   constructor(private http: Http) { }
 
   onKey(e) { this.performSearch(e.target.value); }
-  onBlur() { this.hidden = true; }
+  onBlur() {
+    this.shouldHide = true;
+    setTimeout(() => {
+      this.hidden = this.shouldHide;
+      this.shouldHide = false;
+    }, 10);
+  }
+
+  onFocus() {
+    setTimeout(() => {
+      this.hidden = this.shouldHide = false;
+    }, 1);
+  }
 
   performSearch(searchWord: string) {
+    if (!searchWord) {
+      this.hasResults = false;
+      return;
+    }
     this.http.get('http://localhost:3000/search/' + searchWord).toPromise().then(data => {
       const sr = data.json();
       Object.assign(this, sr);
 
       this.hidden = false;
       this.hasResults = sr.actors.length || sr.directors.length || sr.films.length;
-      console.log(sr);
     }, err => {
         console.log('Error occured.');
     });

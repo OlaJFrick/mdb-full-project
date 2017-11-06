@@ -1,27 +1,32 @@
 <div class="searchArea">
-    <input type="text" class="form-control" placeholder="Search" (input)="onKey($event)" (blur)="onBlur()">
-    <div class="searchDropdown" [ngClass]="{'d-none': hidden}">
+    <input type="text" class="form-control" placeholder="Search" (input)="onKey($event)" (blur)="onBlur()" (focus)="onFocus()">
+    <div class="searchDropdown" [ngClass]="{'d-none': hidden}" (blur)="onBlur()" (mousedown)="onFocus()">
       <div *ngIf="hasResults" class="container-fluid py-2">
         <h4 *ngIf="actors.length">Actors</h4>
-        <div *ngFor="let item of actors" class="row" routerLink="/person-page/{{item.id}}">
+        <a *ngFor="let item of actors" class="row align-items-center" href="/person-page/{{item.id}}">
           <div class="col-2">
             <img class="img-fluid img-thumbnail" src="/assets/images/persons/{{item.imagePath}}">
           </div>
-          <div class="col-4">
-            <p>{{item.firstName}} {{item.lastName}}</p>
+          <div class="col">
+            <p>{{item.firstName}} {{item.lastName}} ({{item.birth | date: 'yyyy'}})</p>
           </div>
-          <div class="col-2">
-            <p>({{item.birth}})</p>
-          </div>
-        </div>
+        </a>
         <h4 *ngIf="directors.length">Directors</h4>
-        <div *ngFor="let item of directors" class="row">
-          <div class="col">{{item.firstName}} {{item.lastName}}</div>
-        </div>
+        <a *ngFor="let item of directors" class="row align-items-center" href="/person-page/{{item.id}}">
+          <div class="col-2">
+            <img class="img-fluid img-thumbnail" src="/assets/images/persons/{{item.imagePath}}">
+          </div>
+          <div class="col">
+            <p>{{item.firstName}} {{item.lastName}} ({{item.birth | date: 'yyyy'}})</p>
+          </div>
+        </a>
         <h4 *ngIf="films.length">Films</h4>
-        <div *ngFor="let item of films" class="row">
+        <a *ngFor="let item of films" class="row align-items-center" href="/film-page/{{item.id}}">
+          <div class="col-2">
+            <img class="img-fluid img-thumbnail" src="/assets/images/films/{{item.imagePath}}">
+          </div>
           <div class="col">{{item.title}}</div>
-        </div>
+        </a>
       </div>
 
       <div *ngIf="!hasResults" class="container-fluid py-2">
