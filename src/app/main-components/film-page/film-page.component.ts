@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 import { RestService } from '../../services/rest.service';
 import { GlobalService } from '../../services/global.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
@@ -25,8 +26,10 @@ export class FilmPageComponent implements OnInit {
   directorData: any;
   actorData: any;
   highlight = 'row align-items-center mb-3 bg-secondary py-3 rounded';
+  editableSelect: number;
+  genreSelectOptions = [];
 
-  constructor(private restservice: RestService, private location: Location, private globalservice: GlobalService) {
+  constructor(private http: Http, private restservice: RestService, private location: Location, private globalservice: GlobalService) {
     this.film.imagePath = 'default.png';
 
     this.restservice.post('login', {
@@ -43,6 +46,9 @@ export class FilmPageComponent implements OnInit {
 
     this.restservice.get('all_films_list', this.filmid).then(data => {
       this.film = data.json();
+      console.log(this.film.genre);
+      this.loadGenres();
+
       this.filmVersionId = this.film.versionId;
     }, err => {
       console.log('Error occured.');
@@ -64,6 +70,7 @@ export class FilmPageComponent implements OnInit {
     });
 
     this.loadReviews();
+
   }
 
   loadReviews() {
@@ -74,6 +81,25 @@ export class FilmPageComponent implements OnInit {
         if (this.reviews.length === 0) {
           this.reviewstatus = 'No reviews yet';
         }
+    }, err => {
+        console.log('Error occured.');
+    });
+  }
+
+  loadGenres() {
+
+    this.http.get('http://localhost:3000/genre/').toPromise().then(data => {
+
+      const gs = data.json();
+      this.genreSelectOptions = [];
+
+      for (let i = 0; i < gs.length; i++) {
+        this.genreSelectOptions.push({ value: i, text: gs[i] });
+      }
+      this.editableSelect = this.genreSelectOptions.findIndex((g) => {
+        return g.text === this.film.genre
+      });
+
     }, err => {
         console.log('Error occured.');
     });
@@ -112,6 +138,9 @@ export class FilmPageComponent implements OnInit {
 
     const body = this.film;
     body[colName] = value;
+    if (colName === 'genre') {
+      body['genre'] = this.genreSelectOptions[value].text;
+    }
 
     // OPPPS Change after login is fixed.
     body['changerId'] = this.globalservice.user.id;
@@ -123,9 +152,6 @@ export class FilmPageComponent implements OnInit {
     delete body.directed;
     delete body.versionId;
     delete body.timeCreated;
-
-    // console.log(body);
-    // body['versionId'] = this.filmVersionId + 1;
 
     // call to http service
     console.log('films', body, 1);

@@ -26,6 +26,18 @@ app.use(new Cookiesession().middleware());
 new Login(app);
 new Search(app);
 
+/ * Create URL for Genre */
+
+app.get('/genre', async (req, res) => {
+  let s = await Rest.query('DESCRIBE films genre');
+  s = s[0].Type;
+  s = s.split('set(')[1].split(')')[0];
+
+  // make an Array instead of a string
+  s = eval('Array('+s+')');
+  res.json(s);
+});
+
 app.use(Rest.start({
   dbCredentials: {
     host: '127.0.0.1',
