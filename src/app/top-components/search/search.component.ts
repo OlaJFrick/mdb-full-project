@@ -1,15 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
 
-  constructor() { }
+export class SearchComponent {
+  actors = [];
+  directors = [];
+  films = [];
+  hasResults = false;
+  hidden = true;
 
-  ngOnInit() {
+  constructor(private http: Http) { }
+
+  onKey(e) { this.performSearch(e.target.value); }
+  onBlur() { this.hidden = true; }
+
+  performSearch(searchWord: string) {
+    this.http.get('http://localhost:3000/search/' + searchWord).toPromise().then(data => {
+      const sr = data.json();
+      Object.assign(this, sr);
+
+      this.hidden = false;
+      this.hasResults = sr.actors.length || sr.directors.length || sr.films.length;
+      console.log(sr);
+    }, err => {
+        console.log('Error occured.');
+    });
   }
-
 }

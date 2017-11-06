@@ -1,1 +1,32 @@
-<input type="text" class="form-control" placeholder="Search">
+<div class="searchArea">
+    <input type="text" class="form-control" placeholder="Search" (input)="onKey($event)" (blur)="onBlur()">
+    <div class="searchDropdown" [ngClass]="{'d-none': hidden}">
+      <div *ngIf="hasResults" class="container-fluid py-2">
+        <h4 *ngIf="actors.length">Actors</h4>
+        <div *ngFor="let item of actors" class="row" routerLink="/person-page/{{item.id}}">
+          <div class="col-2">
+            <img class="img-fluid img-thumbnail" src="/assets/images/persons/{{item.imagePath}}">
+          </div>
+          <div class="col-4">
+            <p>{{item.firstName}} {{item.lastName}}</p>
+          </div>
+          <div class="col-2">
+            <p>({{item.birth}})</p>
+          </div>
+        </div>
+        <h4 *ngIf="directors.length">Directors</h4>
+        <div *ngFor="let item of directors" class="row">
+          <div class="col">{{item.firstName}} {{item.lastName}}</div>
+        </div>
+        <h4 *ngIf="films.length">Films</h4>
+        <div *ngFor="let item of films" class="row">
+          <div class="col">{{item.title}}</div>
+        </div>
+      </div>
+
+      <div *ngIf="!hasResults" class="container-fluid py-2">
+        <p class="mb-0">No result(s) found.</p>
+      </div>
+
+    </div>
+</div>
