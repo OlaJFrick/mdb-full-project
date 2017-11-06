@@ -54,7 +54,7 @@ export class FilmPageComponent implements OnInit {
       console.log('actor error');
     });
 
-    this.restservice.get('all_reviews_list').then(data => {
+    this.restservice.get('all_reviews_list?order_by=timeCreated&desc=1').then(data => {
         this.loadReviews(data);
     }, err => {
         console.log('Error occured.');
@@ -75,33 +75,42 @@ export class FilmPageComponent implements OnInit {
 
       // need to be added afte we have sessions working.
       form.changerId = 1;
-
       form.filmId = this.filmid;
       console.log('you submitted value:', form);
 
-      this.restservice.post('reviews', form, this.filmid).then(data => {
-        // this.film = data.json();
+      this.restservice.put('reviews', form).then(res => {
+        res.json();
+        this.ngOnInit()
       }, err => {
         console.log('Error occured.');
       });
     }
 
-  saveEditable(value, table, column) {
+  saveEditable(value, table, colName) {
 
-    const body = {};
-    body[column] = value;
-    body['changerId'] = 2;
+    const body = this.film;
+    body[colName] = value;
+
+    // OPPPS Change after login is fixed.
+    body['changerId'] = 3;
+
+    delete body.id;
+    delete body.avgRating;
+    delete body.ratingCount;
+    delete body.starring;
+    delete body.directed;
+    delete body.versionId;
+    delete body.timeCreated;
+
+    // console.log(body);
     // body['versionId'] = this.filmVersionId + 1;
 
     // call to http service
-    // console.log('films', body, 1);
-    this.restservice.put(table, body, this.filmid).then(res => {
+    console.log('films', body, 1);
+    this.restservice.postVid(table, body, this.filmid).then(res => {
       res.json();
     }, err => {
       console.log('Error occured.');
     });
-
-
-
   }
 }

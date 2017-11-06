@@ -39,7 +39,7 @@
       <div class="col-4">
         <div>
           <app-star-rating [rating]="item.avgRating"></app-star-rating>
-          <p class="rating-text">AVG Rating: {{item.avgRating || 'not rated'}} / by {{item.counter}}
+          <p class="rating-text">AVG Rating: {{item.avgRating | number: '1.2-2' || 'not rated'}} / by {{item.counter}}
             <span *ngIf="item.counter != 1">Users</span><span *ngIf="item.counter == 1">User</span>
           </p>
 
@@ -101,7 +101,7 @@
       </div>
       <div class="col-4">
         <div>
-          <p class="rating-text">AVG Rating: {{item.avgRating || 'not rated'}} / by {{item.counter}}
+          <p class="rating-text">AVG Rating: {{item.avgRating | number: '1.2-2' || 'not rated'}} / by {{item.counter}}
             <span *ngIf="item.counter != 1">Users</span>
             <span *ngIf="item.counter == 1">User</span>
           </p>

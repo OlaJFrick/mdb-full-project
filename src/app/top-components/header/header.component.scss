@@ -5,9 +5,13 @@
   cursor: pointer;
 }
 
+.main-logo:focus {
+  outline: none !important;
+}
+
 .header {
 	width: 100%;
-	margin-bottom: 50px;
+	margin-bottom: 100px;
 }
 
 .header-link button {
@@ -16,13 +20,11 @@
 	background-color: #000000;
 	border-color: #333333;
 	border-radius: 5px 20px 5px 5px;
-
-
 }
 
 .header-link button:hover {
 	color: #A9A9A9;
-	background-color: #4d4d4d;
+	background-color: #333333;
 	cursor: pointer;
 
 }
@@ -30,13 +32,28 @@
 .header-link button:active {
 	color: #FF1493;
 	background-color: #4d4d4d;
-	cursor: pointer;
+	box-shadow: 5px 5px 5px #888888;
+	border-color: #4d4d4d;
+}
 
+.header-link button:focus {
+	color: #FF1493;
+	background-color: #4d4d4d;
+	box-shadow: 5px 5px 5px #888888;
+	border-color: #4d4d4d;
+	outline: none !important;
 }
 
 .user-screen {
-	border: solid 1px #999999;
-	border-radius: 10px;
+	border: solid 1px 	#D3D3D3;
+	border-radius: 20px;
+	padding: 3px;
+}
+
+.user-screen img {
+	border-radius: 15px;
+  	width: 40px;
+  	height: 40px;
 }
 
 .user-screen ul {
@@ -53,7 +70,15 @@
 .user-screen li a {
 	display: block;
 	color: #808080;
-	margin-left: 5px;
+	margin-left: 3px;
+}
+
+.user-screen li a:hover {
+	color: 	#D3D3D3;
+}
+
+.user-screen li a:active {
+	color: #FF1493;
 }
 
 .header a {
@@ -80,5 +105,37 @@
 	.hamburger-center-button {
 		right: 0px;
 		top: 15%;
+	}
+}
+
+@media (max-width: 575px) {
+	.header-link button {
+		padding: 5px;
+		color: #000000;
+		background-color: white;
+		border: none;
+	}
+
+	.header-link button:hover {
+		color: #A9A9A9;
+		background-color: white;
+		cursor: pointer;
+		border: none;
+
+	}
+
+	.header-link button:active {
+		color: #FF1493;
+		background-color: white;
+		box-shadow: 0;
+		border: none;
+	}
+
+	.header-link button:focus {
+		color: #FF1493;
+		background-color: white;
+		box-shadow: 0 0 0 0;
+		border: none;
+		outline: none !important;
 	}
 }
