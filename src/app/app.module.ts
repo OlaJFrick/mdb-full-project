@@ -42,7 +42,6 @@ import { SidebarComponent } from './top-components/sidebar/sidebar.component';
 import { StatusbarComponent } from './top-components/statusbar/statusbar.component';
 
 // pipes
-import { DatePipe } from './pipes/date.pipe';
 import { SafeurlPipe } from './pipes/safeurl.pipe';
 
 @NgModule({
@@ -69,7 +68,6 @@ import { SafeurlPipe } from './pipes/safeurl.pipe';
     AdminAddFilmComponent,
     AdminAllActivityComponent,
     AdminListUsersComponent,
-    DatePipe,
     SafeurlPipe
   ],
   imports: [
