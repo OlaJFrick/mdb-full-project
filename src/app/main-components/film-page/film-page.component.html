@@ -12,7 +12,15 @@
         <div class="d-inline-block mr-2">
           <app-star-rating [rating]="film.avgRating"></app-star-rating>
         </div>
-       <span>({{film.avgRating}} / by <strong>{{film.ratingCount}}</strong> Users)</span>
+        <br>
+       <span>({{film.avgRating | number: '1.2-2'}}
+        <span *ngIf="film.ratingCount">
+        / by <strong>{{film.ratingCount}}</strong> Users)
+        </span>
+        <span *ngIf="!film.ratingCount">
+        No ratings yet)
+        </span>
+      </span>
 
       <div class="mr-2">
       </div>

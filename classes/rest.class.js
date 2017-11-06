@@ -258,8 +258,8 @@ module.exports = class Rest {
 
       // INSERT INTO TABLE. GIVE VERSION ID = 1 IF IT IS A NEW INSERT
       let query = `INSERT INTO ${this.table} SET
-        ${this.idColName} = IFNULL((SELECT MAX(${this.idColName}) + 1 FROM ${this.table} AS x), 1),
-        versionId = 1
+        ${this.idColName} = ${this.id},
+        versionId = IFNULL((SELECT MAX(versionId) + 1 FROM ${this.table} AS x WHERE ${this.idColName} = ${this.id}), 1)
       `;
 
       // LOOP THROUGH THE OBJECT KEYS
@@ -311,7 +311,7 @@ module.exports = class Rest {
       let values = Object.values(props);
 
       let query = `INSERT INTO ${this.table} SET
-        id = ${this.id},
+        ${this.idColName} = ${this.id},
         versionId = IFNULL((SELECT MAX(versionId) + 1 FROM ${this.table} AS x WHERE ${this.idColName} = ${this.id}), 1)`;
 
       for (let key of keys) {

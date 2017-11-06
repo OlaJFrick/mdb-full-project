@@ -80,7 +80,7 @@ module.exports = class Login {
           delete user.password;
 
           req.session.user = user;
-          res.json({ user: user, status: 'logged in! :D' });
+          res.json({ user: user, status: 'logged in' });
           return;
         }
       }

@@ -31,6 +31,7 @@ import { LoginComponent } from './main-components/login/login.component';
 import { PersonPageComponent } from './main-components/person-page/person-page.component';
 import { RegisterComponent } from './main-components/register/register.component';
 import { UserPanelComponent } from './main-components/user-panel/user-panel.component';
+import { ReturnToTop }        from './main-components/return-to-top/return-to-top.component';
 
 // reusable-components
 import { StarRatingComponent } from './reusable-components/star-rating/star-rating.component';
@@ -42,8 +43,10 @@ import { SidebarComponent } from './top-components/sidebar/sidebar.component';
 import { StatusbarComponent } from './top-components/statusbar/statusbar.component';
 
 // pipes
-import { DatePipe } from './pipes/date.pipe';
 import { SafeurlPipe } from './pipes/safeurl.pipe';
+
+// services
+import { GlobalService } from './services/global.service';
 
 @NgModule({
   declarations: [
@@ -65,11 +68,11 @@ import { SafeurlPipe } from './pipes/safeurl.pipe';
     LoginComponent,
     UserPanelComponent,
     StatusbarComponent,
+    ReturnToTop,
     AdminPanelComponent,
     AdminAddFilmComponent,
     AdminAllActivityComponent,
     AdminListUsersComponent,
-    DatePipe,
     SafeurlPipe
   ],
   imports: [
@@ -82,7 +85,7 @@ import { SafeurlPipe } from './pipes/safeurl.pipe';
     AngularFontAwesomeModule,
     InlineEditorModule
   ],
-  providers: [],
+  providers: [GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

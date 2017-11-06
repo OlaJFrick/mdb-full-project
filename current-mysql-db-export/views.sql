@@ -17,6 +17,12 @@
 
 # WORKING VIEWS:
 
+CREATE OR REPLACE VIEW ratingcount AS
+SELECT *,
+COUNT(changerId) AS counter
+FROM reviews
+GROUP BY filmId;
+
 CREATE OR REPLACE VIEW ratings AS
 SELECT
 f.id,
@@ -25,12 +31,6 @@ rc.counter
 FROM reviews AS r, films AS f, ratingcount AS rc
 WHERE r.filmId = f.id && rc.filmId = f.id
 GROUP BY id;
-
-CREATE OR REPLACE VIEW ratingcount AS
-SELECT *,
-COUNT(changerId)
-FROM reviews
-GROUP BY filmId;
 
 
 CREATE OR REPLACE VIEW current_actors AS
@@ -140,7 +140,7 @@ CREATE OR REPLACE VIEW film_starring AS
 SELECT
 f.id,
 f.title,
-a.actorId,
+a.id AS actorId,
 a.imagePath,
 group_concat(DISTINCT a.firstName, ' ', a.lastName separator ', ') AS starring
 FROM current_films AS f, current_actors AS a, films_actors AS fa
@@ -152,7 +152,7 @@ CREATE OR REPLACE VIEW film_directed AS
 SELECT
 f.id,
 f.title,
-d.actorId,
+d.id AS actorId,
 d.imagePath,
 group_concat(DISTINCT d.firstName, ' ', d.lastName separator ', ') AS director
 FROM current_films AS f, current_directors AS d, films_directors AS fa
@@ -204,6 +204,8 @@ f.imagePath,
 r.rating,
 r.textbody,
 concat(u.firstName, ' ', u.lastName) As username,
+u.id AS userId,
+r.id AS reviewId,
 r.timeCreated
 FROM current_films AS f, reviews AS r, users AS u
 WHERE f.id = r.filmId && r.changerId = u.id

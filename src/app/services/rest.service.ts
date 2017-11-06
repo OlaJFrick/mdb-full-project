@@ -14,12 +14,20 @@ export class RestService {
     return this.url + 'rest/' + tableName + (id ? '/' + id : '');
   }
 
+  private buildUrlVid(tableName: string, id?: number) {
+    return this.url + 'vid/' + tableName + (id ? '/' + id : '');
+  }
+
   get(tableName: string, id?: number) {
     return this.http.get(this.buildUrl(tableName, id)).toPromise();
   }
 
   post(tableName: string, body: object, id?: number) {
     return this.http.post(this.buildUrl(tableName, id), body).toPromise();
+  }
+
+  postVid(tableName: string, body: object, id?: number) {
+    return this.http.post(this.buildUrlVid(tableName, id), body).toPromise();
   }
 
   put(tableName: string, body: object, id?: number) {
