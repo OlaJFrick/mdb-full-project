@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `films` (
   `timeCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`,`versionId`),
   KEY `FK_films_users` (`changerId`),
-  CONSTRAINT `FK_films_users` FOREIGN KEY (`changerId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_films_users` FOREIGN KEY (`changerId`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
