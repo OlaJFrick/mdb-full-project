@@ -38,51 +38,51 @@
           </p>
         </div>
 
-        <div class="col-md-12 mb-4" *ngIf="directorData">
+        <div class="col-md-12 mb-4" *ngIf="directorData.length">
           <h5>HAS DIRECTED</h5>
           <hr>
 
-          <div class="row align-items-center">
+          <div class="row align-items-center" *ngFor="let director of directorData">
 
             <div class="col-2">
-              <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{directorData.imagePath}}" routerLink="/film-page/{{directorData.filmId}}">
+              <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{director.imagePath}}" routerLink="/film-page/{{director.filmId}}">
             </div>
 
             <div class="col">
-              <inline-editor type="text" [(ngModel)]="directorData.title" (onSave)="saveEditable($event)"></inline-editor>
+              <inline-editor type="text" [(ngModel)]="director.title" (onSave)="saveEditable($event)"></inline-editor>
             </div>
 
             <div class="col">
-              <inline-editor type="text" [(ngModel)]="directorData.year" (onSave)="saveEditable($event)"></inline-editor>
+              <inline-editor type="text" [(ngModel)]="director.year" (onSave)="saveEditable($event)"></inline-editor>
             </div>
 
             <div class="col">
-              <app-star-rating [id]="directorData.filmId"></app-star-rating>
+              <app-star-rating [id]="director.filmId"></app-star-rating>
             </div>
           </div>
         </div>
 
-        <div class="col-md-12 mb-4" *ngIf="actorData">
+        <div class="col-md-12 mb-4" *ngIf="actorData.length">
           <h5>HAS ACTED IN</h5>
           <hr>
 
-          <div class="row align-items-center">
+          <div class="row align-items-center" *ngFor="let actor of actorData">
 
             <div class="col-2">
-              <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{actorData.imagePath}}" routerLink="/film-page/{{actorData.filmId}}">
+              <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{actor.imagePath}}" routerLink="/film-page/{{actor.filmId}}">
             </div>
 
             <div class="col">
-              <inline-editor type="text" [(ngModel)]="actorData.title" (onSave)="saveEditable($event)"></inline-editor>
+              <inline-editor type="text" [(ngModel)]="actor.title" (onSave)="saveEditable($event)"></inline-editor>
             </div>
 
             <div class="col">
-              <inline-editor type="text" [(ngModel)]="actorData.year" (onSave)="saveEditable($event)"></inline-editor>
+              <inline-editor type="text" [(ngModel)]="actor.year" (onSave)="saveEditable($event)"></inline-editor>
             </div>
 
             <div class="col">
               <span>as</span>
-              <inline-editor type="text" [(ngModel)]="actorData.character" (onSave)="saveEditable($event)"></inline-editor>
+              <inline-editor type="text" [(ngModel)]="actor.character" (onSave)="saveEditable($event)"></inline-editor>
             </div>
 
           </div>
