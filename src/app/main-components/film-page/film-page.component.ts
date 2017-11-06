@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../services/rest.service';
+import { GlobalService } from '../../services/global.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { StarRatingComponent } from '../../reusable-components/star-rating/star-rating.component';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -25,7 +26,7 @@ export class FilmPageComponent implements OnInit {
   actorData: any;
   highlight = 'row align-items-center mb-3 bg-secondary py-3 rounded';
 
-  constructor(private restservice: RestService, private location: Location) {
+  constructor(private restservice: RestService, private location: Location, private globalservice: GlobalService) {
     this.film.imagePath = 'default.png';
   }
 
@@ -92,7 +93,7 @@ export class FilmPageComponent implements OnInit {
     body[colName] = value;
 
     // OPPPS Change after login is fixed.
-    body['changerId'] = 3;
+    body['changerId'] = this.globalservice.user.id;
 
     delete body.id;
     delete body.avgRating;
