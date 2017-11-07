@@ -38,6 +38,7 @@ export class LoginComponent {
       if (res.json().user) {
         this.router.navigateByUrl('/');
       }
+
       this.globalservice.user = res.json().user;
     }, err => {
       console.log('login error: ');

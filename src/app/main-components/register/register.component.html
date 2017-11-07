@@ -1,3 +1,48 @@
-<p>
-  register works!
-</p>
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-4 offset-md-3">
+      <h3>REGISTER</h3>
+      <hr>
+
+      <div class="row">
+        <div class="col-md-12">
+
+          <form (ngSubmit)="register()">
+
+            <div class="form-group">
+              <input type="text" placeholder="FIRST NAME" class="form-control"
+                      [(ngModel)]="registerCredentials.firstName" name="firstName">
+            </div>
+
+            <div class="form-group">
+              <input type="text" placeholder="LAST NAME" class="form-control"
+                      [(ngModel)]="registerCredentials.lastName" name="lastName">
+            </div>
+
+            <div class="form-group">
+              <input type="tel" placeholder="PHONE NUMBER" class="form-control"
+                      [(ngModel)]="registerCredentials.phone" name="phone">
+            </div>
+
+            <div class="form-group">
+              <input type="email" placeholder="EMAIL" class="form-control"
+                      [(ngModel)]="registerCredentials.email" name="email">
+            </div>
+
+            <div class="form-group">
+              <input type="password" placeholder="PASSWORD" class="form-control"
+                      [(ngModel)]="registerCredentials.password" name="password">
+            </div>
+
+            <button type="submit" class="btn btn-secondary btn-sm">Submit</button>
+
+          </form>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

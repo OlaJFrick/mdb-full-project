@@ -250,6 +250,10 @@ module.exports = class Rest {
 
   async post() {
 
+    if (this.tableWithoutBackticks == 'users') {
+      if (await this.checkDuplicateUser()) { return; }
+    }
+
     if (this.handleVids) {
       // SPLIT UP 'REQ.BODY'
       // BY EXTRACTING KEYS AND VALUES
@@ -400,6 +404,21 @@ module.exports = class Rest {
     }
     console.log('Found 3 warnings on ', foundUser);
     console.log('All Posts by User: ', userId, 'has successfully been deleted and user role is now "banned"');
+  }
+
+  async checkDuplicateUser(){
+    let s = await this.query('SELECT email FROM users WHERE email = ?',
+      [this.req.body.email]
+    );
+
+    if (s.length) {
+      this.res.json({
+        user: false,
+        Error: 'User already exists in the database'
+      });
+    }
+
+    return s.length;
   }
 
   /* QUERY HELPER FUNCTION */
