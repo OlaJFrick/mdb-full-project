@@ -139,3 +139,146 @@
 		outline: none !important;
 	}
 }
+
+
+
+
+
+
+
+.mdbsidenav {
+
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+.username {
+    display: inline;
+    border-radius: 15px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    background: white;
+}
+/* The navigation menu links */
+.mdbsidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 65px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+/* When you mouse over the navigation links, change their color */
+.mdbsidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+/* Position and style the close button (top right corner) */
+.mdbsidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .mdbsidenav {padding-top: 15px;}
+    .mdbsidenav a {font-size: 18px;}
+}
+.openButton {
+    font-size: 50px;
+}
+
+.navLine{
+    width: 600px;
+    height: 1px;
+    background-color: #F8F8FF;
+    margin-left: 40px;
+}
+#mdbMySidenav>:last-child {
+    color: white;
+    font-size: 15px;
+}
+
+
+
+.hamburger {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 96px;
+  height: 96px;
+  font-size: 0;
+  text-indent: -9999px;
+  cursor: pointer;
+  outline: none;
+  background: none;
+  border: 0;
+  z-index: 999999;
+}
+
+
+.hamburger span {
+  display: block;
+  position: absolute;
+  top: 44px;
+  left: 18px;
+  right: 18px;
+  height: 8px;
+  background: #FF1493;
+}
+
+.hamburger span::before,
+.hamburger span::after {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #FF1493;
+  content: "";
+}
+
+.hamburger span::before {
+  top: -20px;
+}
+
+.hamburger span::after {
+  bottom: -20px;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .user-screen {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+    .hamburger {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+    .header-link button {
+		display: none;
+	}
+}
+
