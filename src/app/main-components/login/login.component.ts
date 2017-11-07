@@ -28,8 +28,6 @@ export class LoginComponent {
   loginCheck() {
     this.restservice.get('login').then(res => {
       this.globalservice.user = res.json().user;
-      console.log('loginCheck1: ', res.json().user);
-      console.log('loginCheck2: ', res.json());
     }, err => {
       console.log('loginCheck error: ');
     });
@@ -37,14 +35,19 @@ export class LoginComponent {
 
   login() {
     this.restservice.post('login', this.credentials).then(res => {
-      // if (res.json().user) {
-      //   this.router.navigateByUrl('/');
-      // }
-
+      if (res.json().user) {
+        this.router.navigateByUrl('/');
+      }
       this.globalservice.user = res.json().user;
-      console.log('login1: ', res.json());
     }, err => {
       console.log('login error: ');
+    });
+  }
+
+  logout() {
+    this.globalservice.user = false;
+    this.restservice.delete('login').then(res => {
+      console.log(res.json());
     });
   }
 
