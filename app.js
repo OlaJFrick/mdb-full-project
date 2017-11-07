@@ -15,7 +15,8 @@ process.on('unhandledRejection', error=>console.log('unhandledRejection', error)
 const cookieSession = new Cookiesession();
 
 // Added CORS to read further: https://enable-cors.org/server_expressjs.html
-app.use(cors());
+// app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 /* MIDDLEWARE */
 app.use(bodyParser.json());

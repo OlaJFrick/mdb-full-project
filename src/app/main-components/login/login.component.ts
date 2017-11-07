@@ -22,30 +22,29 @@ export class LoginComponent {
   }
 
   constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) {
-    // console.log('ighas');
-    // this.restservice.get('login').then(res => {
+    this.loginCheck();
+  }
 
-    //   this.globalservice.user = res.json().user;
-
-    //   console.log('user:', res.json());
-    // }, err => {
-    //   console.log('you\'re out');
-    // });
-    this.login();
+  loginCheck() {
+    this.restservice.get('login').then(res => {
+      this.globalservice.user = res.json().user;
+      console.log('loginCheck1: ', res.json().user);
+      console.log('loginCheck2: ', res.json());
+    }, err => {
+      console.log('loginCheck error: ');
+    });
   }
 
   login() {
     this.restservice.post('login', this.credentials).then(res => {
-
-      if (res.json().user) {
-        this.router.navigateByUrl('/');
-      }
+      // if (res.json().user) {
+      //   this.router.navigateByUrl('/');
+      // }
 
       this.globalservice.user = res.json().user;
-
-      console.log('you\'re in2:', res.json());
+      console.log('login1: ', res.json());
     }, err => {
-      console.log('you\'re out2');
+      console.log('login error: ');
     });
   }
 
