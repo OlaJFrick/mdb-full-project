@@ -16,8 +16,8 @@ export class PersonPageComponent implements OnInit {
   personData: any = {};
   personId: any;
 
-  directorData: any;
-  actorData: any;
+  directorData: any = [];
+  actorData: any = [];
 
   constructor(private restservice: RestService, private location: Location) {
     this.personData.imagePath = 'default.png';
@@ -29,23 +29,20 @@ export class PersonPageComponent implements OnInit {
     /* PERSON */
     this.restservice.get('persons', this.personId).then(data => {
       this.personData = data.json();
-      // console.log('persons', this.personData);
     }, err => {
       console.log('persons error');
     });
 
     /* DIRECTOR */
-    this.restservice.get('person_as_director', this.personId).then(data => {
+    this.restservice.get(`person_as_director?personId=${this.personId}`).then(data => {
       this.directorData = data.json();
-      // console.log(this.directorData);
     }, err => {
       console.log('director error');
     });
 
     /* ACTOR */
-    this.restservice.get('person_as_actor', this.personId).then(data => {
+    this.restservice.get(`person_as_actor?personId=${this.personId}`).then(data => {
       this.actorData = data.json();
-      // console.log(this.actorData);
     }, err => {
       console.log('actor error');
     });

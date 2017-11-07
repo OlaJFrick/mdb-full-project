@@ -19,23 +19,23 @@ export class RestService {
   }
 
   get(tableName: string, id?: number) {
-    return this.http.get(this.buildUrl(tableName, id)).toPromise();
+    return this.http.get(this.buildUrl(tableName, id), { withCredentials: true }).toPromise();
   }
 
   post(tableName: string, body: object, id?: number) {
-    return this.http.post(this.buildUrl(tableName, id), body).toPromise();
+    return this.http.post(this.buildUrl(tableName, id), body, { withCredentials: true }).toPromise();
   }
 
   postVid(tableName: string, body: object, id?: number) {
-    return this.http.post(this.buildUrlVid(tableName, id), body).toPromise();
+    return this.http.post(this.buildUrlVid(tableName, id), body, { withCredentials: true }).toPromise();
   }
 
   put(tableName: string, body: object, id?: number) {
-    return this.http.put(this.buildUrl(tableName, id), body).toPromise();
+    return this.http.put(this.buildUrl(tableName, id), body, { withCredentials: true }).toPromise();
   }
 
   delete(tableName: string, id: number) {
-    return this.http.delete(this.buildUrl(tableName, id)).toPromise();
+    return this.http.delete(this.buildUrl(tableName, id), { withCredentials: true }).toPromise();
   }
 
 }

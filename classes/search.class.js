@@ -7,7 +7,7 @@ module.exports = class Search {
   }
 
   async searchFilms(searchWord){
-    let q = 'SELECT id, title, year, genre FROM current_films WHERE ';
+    let q = 'SELECT id, title, year, genre, imagePath FROM current_films WHERE ';
     q += 'title LIKE ?';
     q += ' OR year LIKE ?';
     q += ' OR genre LIKE ?';
@@ -17,7 +17,7 @@ module.exports = class Search {
   }
 
   async searchActors(searchWord){
-    let q = 'SELECT id, firstName, lastName FROM current_actors WHERE ';
+    let q = 'SELECT id, firstName, lastName, birth, imagePath FROM current_actors WHERE ';
     q += 'firstName LIKE ?';
     q += ' OR lastName LIKE ?';
 
@@ -25,7 +25,7 @@ module.exports = class Search {
   }
 
   async searchDirectors(searchWord){
-    let q = 'SELECT id, firstName, lastName FROM current_directors WHERE ';
+    let q = 'SELECT id, firstName, lastName, birth, imagePath FROM current_directors WHERE ';
     q += 'firstName LIKE ?';
     q += ' OR lastName LIKE ?';
 

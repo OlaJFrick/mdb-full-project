@@ -1,15 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Router } from '@angular/router';
+import { RestService } from '../../services/rest.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [
+    RestService,
+    Location, { provide: LocationStrategy, useClass: PathLocationStrategy }
+  ]
 })
-export class LoginComponent implements OnInit {
 
-  constructor() { }
+export class LoginComponent {
 
-  ngOnInit() {
+  credentials = {
+    email: 'admin@mdb.com',
+    password: 'amy123'
+  }
+
+  constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) {
+    this.loginCheck();
+  }
+
+  loginCheck() {
+    this.restservice.get('login').then(res => {
+      this.globalservice.user = res.json().user;
+      console.log('loginCheck1: ', res.json().user);
+      console.log('loginCheck2: ', res.json());
+    }, err => {
+      console.log('loginCheck error: ');
+    });
+  }
+
+  login() {
+    this.restservice.post('login', this.credentials).then(res => {
+      // if (res.json().user) {
+      //   this.router.navigateByUrl('/');
+      // }
+
+      this.globalservice.user = res.json().user;
+      console.log('login1: ', res.json());
+    }, err => {
+      console.log('login error: ');
+    });
   }
 
 }

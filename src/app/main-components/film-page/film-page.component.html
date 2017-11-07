@@ -26,15 +26,22 @@
       </div>
       </div>
 
-
       <img class="img-fluid img-thumbnail mb-2" src="/assets/images/films/{{film.imagePath}}">
 
       <h6>Relase Year:
        <inline-editor type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event, 'films', 'year')"></inline-editor>
       </h6>
       <h6>Genre:
-        <inline-editor type="text" [(ngModel)]="film.genre" (onSave)="saveEditable($event, 'films', 'genre')"></inline-editor>
+        <inline-editor type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'films', 'genre')" [options]="genreSelectOptions"
+        value="valor"></inline-editor>
       </h6>
+
+
+
+      <div *ngFor="let g of filmgenres">
+        <p>{{g}}</p>
+
+      </div>
 
     </div>
 
