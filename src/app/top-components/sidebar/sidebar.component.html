@@ -1,65 +1,59 @@
-<ul>
-  <li>
-  	<div class="row">
-  		<div class="offset-9 col-1">
-	  		<a id="sidebar-toggle" (click)="toggleMenu()">
-					<i class="fa fa-times"></i>
-				</a>
-  		</div>
-  	</div>
-  	<div class="row">
-	  	<div class="col-12">
-	  		<div class="user-screen">
-	        <ul>
-	          <li>
-	            <a class="navbar-brand">
-	              <img class="img-fluid" src="https://www.communitylandtrust.ca/wp-content/uploads/2015/10/placeholder.png"/>
-	            </a>
-	          </li>
-	          <li>
-	            <a class="nav-link" routerLink="/person-page">Username</a>
-	          </li>
-	        </ul>
-	    	</div>
+<div class="left side">
+	<ul>
+		<li>
+			<div class="row">
+				<div class="offset-9 col-1">
+			  	<a id="sidebar-toggle" (click)="toggleMenu()">
+						<i class="fa fa-times"></i>
+					</a>
+	  		</div>
+	  	</div>
+	  	<div class="row">
+		  	<div class="col-12">
+		  		<div class="user-screen">
+		        <ul>
+		          <li>
+		            <a class="navbar-brand">
+		              <img class="img-fluid" src="https://www.communitylandtrust.ca/wp-content/uploads/2015/10/placeholder.png"/>
+		            </a>
+		          </li>
+		          <li>
+		            <a class="nav-link" routerLink="/person-page">Username</a>
+		          </li>
+		        </ul>
+		    	</div>
+		    </div>
 	    </div>
-    </div>
-  </li>
-  <!--<li>
-            <a class="nav-link" routerLink="register" *ngIf="!globalservice.user">REGISTER</a>
-            <a class="nav-link" routerLink="person-page" *ngIf="globalservice.user">Username</a>
-          </li>
-          <li *ngIf="globalservice.user">
-            <a class="nav-link" routerLink="person-page">Edit settings</a>
-          </li>
-          <li>
-            <a class="nav-link" (click)="header.logout()" *ngIf="globalservice.user">LOG OUT</a>
-            <a class="nav-link" routerLink="login" *ngIf="!globalservice.user">LOG IN</a>
-          </li>-->
-  <li (click)="toggleMenu()">
-  	<a routerLink="lists/list-all-films">All films</a>
-  </li>
-  <li (click)="toggleMenu()">
-  	<a routerLink="lists/list-all-actors">All Actors</a>
-  </li>
-  <li (click)="toggleMenu()">
-  	<a routerLink="lists/list-all-directors">All Directors</a>
-  </li>
-  <li (click)="toggleMenu()">
-  	<a routerLink="lists/list-top-10">Top 10</a>
-  </li>
-  <li (click)="toggleMenu()">
-  	<a routerLink="lists/list-latest-reviews">Latest Reviews</a>
-  </li>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-all-films">All films</a>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-all-actors">All Actors</a>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-all-directors">All Directors</a>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-top-10">Top 10</a>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-latest-reviews">Latest Reviews</a>
+	  </li>
 
-  <div class="navLine"></div>
+	  <div class="navLine"></div>
 
-  <li *ngIf="globalservice.user" (click)="toggleMenu()">
-  	<a routerLink="person/person-page">Edit Settings</a>
-	</li>
-	<li *ngIf="!globalservice.user" (click)="toggleMenu()">
-  	<a routerLink="login">Login</a>
-	</li>
-	<li *ngIf="!globalservice.user" (click)="toggleMenu()">
-  	<a routerLink="register">Register</a>
-	</li>
-</ul>
+	  <li *ngIf="globalservice.user" (click)="toggleMenu()">
+	  	<a routerLink="person/person-page">Edit Settings</a>
+		</li>
+		<li *ngIf="!globalservice.user" (click)="toggleMenu()">
+	  	<a routerLink="login">Login</a>
+		</li>
+		<li *ngIf="!globalservice.user" (click)="toggleMenu()">
+	  	<a routerLink="register">Register</a>
+		</li>
+	</ul>
+</div>
+
+<div (click)="toggleMenu()" class="right side">
+</div>
