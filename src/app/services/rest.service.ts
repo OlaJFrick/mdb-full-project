@@ -22,6 +22,10 @@ export class RestService {
     return this.http.get(this.buildUrl(tableName, id), { withCredentials: true }).toPromise();
   }
 
+  getVid(tableName: string, id?: number) {
+    return this.http.get(this.buildUrlVid(tableName, id), { withCredentials: true }).toPromise();
+  }
+
   post(tableName: string, body: object, id?: number) {
     return this.http.post(this.buildUrl(tableName, id), body, { withCredentials: true }).toPromise();
   }

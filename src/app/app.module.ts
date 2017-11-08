@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
@@ -25,13 +25,14 @@ import { ListTop10Component } from './lists-components/list-top-10/list-top-10.c
 import { ListLatestReviewsComponent } from './lists-components/list-latest-reviews/list-latest-reviews.component';
 
 // main-components
+import { AddPersonComponent } from './main-components/add-person/add-person.component';
 import { FilmPageComponent } from './main-components/film-page/film-page.component';
 import { FrontPageComponent } from './main-components/front-page/front-page.component';
 import { LoginComponent } from './main-components/login/login.component';
 import { PersonPageComponent } from './main-components/person-page/person-page.component';
 import { RegisterComponent } from './main-components/register/register.component';
 import { UserPanelComponent } from './main-components/user-panel/user-panel.component';
-import { ReturnToTop }        from './main-components/return-to-top/return-to-top.component';
+import { ReturnToTop } from './main-components/return-to-top/return-to-top.component';
 
 // reusable-components
 import { StarRatingComponent } from './reusable-components/star-rating/star-rating.component';
@@ -45,6 +46,7 @@ import { StatusbarComponent } from './top-components/statusbar/statusbar.compone
 
 // pipes
 import { SafeurlPipe } from './pipes/safeurl.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 // services
 import { GlobalService } from './services/global.service';
@@ -66,6 +68,7 @@ import { GlobalService } from './services/global.service';
     ListAllDirectorsComponent,
     ListTop10Component,
     ListLatestReviewsComponent,
+    AddPersonComponent,
     RegisterComponent,
     LoginComponent,
     UserPanelComponent,
@@ -75,11 +78,13 @@ import { GlobalService } from './services/global.service';
     AdminAddFilmComponent,
     AdminAllActivityComponent,
     AdminListUsersComponent,
-    SafeurlPipe
+    SafeurlPipe,
+    TruncatePipe
   ],
   imports: [
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpModule,
     BrowserAnimationsModule,

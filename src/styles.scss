@@ -43,6 +43,10 @@ body {
   color: $color-black;
 }
 
+a {
+  cursor: pointer;
+}
+
 // == Since I can't get bootstraps bg-secondary to work:
 
 .bg-secondary {

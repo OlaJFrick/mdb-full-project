@@ -89,7 +89,7 @@ ORDER BY name;
 CREATE OR REPLACE VIEW all_directors_list AS
 SELECT
 d.id,
-CONCAT(d.firstName, ' ', d.lastName) AS name,
+CONCAT(a.firstName, ' ', a.lastName) AS name,
 d.nationality,
 d.gender,
 group_concat(`f`.`title` separator ', ') AS films,
@@ -129,9 +129,11 @@ CREATE OR REPLACE VIEW person_as_director AS
 SELECT
 f.id AS filmId,
 d.id AS personId,
+CONCAT(d.firstName, ' ', d.lastName) AS directorName,
 f.title,
 f.year,
-f.imagePath
+f.imagePath,
+d.imagePath AS directorImage
 FROM current_directors AS d, current_films AS f, films_directors AS fd
 WHERE f.id = fd.filmId && d.id = fd.directorId
 ORDER BY f.year;

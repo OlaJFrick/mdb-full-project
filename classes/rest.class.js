@@ -233,10 +233,44 @@ module.exports = class Rest {
   }
 
   async delete() {
-    let result = await this.query(
-      'DELETE FROM ' + this.table + ' WHERE `' + this.idColName + '` = ?',
-      [this.id]
-    );
+
+    let sql = 'DELETE FROM ' + this.selectVidify(this.table);
+    let params = [];
+    let limitparams = [];
+
+    if(this.id){
+      sql += ' WHERE ' + this.idColName + ' = ?';
+      params.push(this.id);
+    }
+    else {
+      sql += '[wherecondition]';
+    }
+
+    let where = '';
+
+    for (let columnName in this.urlQuery) {
+      let columnVal = decodeURIComponent(this.urlQuery[columnName]);
+
+      columnVal = columnVal.split('*').join('%');
+
+      if (where != '') {
+        where += ' && ';
+      }
+
+      where += '`' + columnName + '` LIKE ?';
+
+      params.push(isNaN(columnVal / 1) ? columnVal : columnVal / 1);
+    }
+
+    if (where != '') {
+      sql = sql.split('[wherecondition]').join(' WHERE ' + where + ' ');
+    } else {
+      sql = sql.split('[wherecondition]').join('');
+    }
+
+    params = params.concat(limitparams);
+
+    let result = await this.query(sql,params);
 
     /* ERROR HANDLING */
     // IF WE  GET AN ERROR FROM MYSQL
@@ -244,17 +278,39 @@ module.exports = class Rest {
       this.res.status(500);
     }
 
-    // RETURN RESULT
+    // IF POST CANNOT BE FOUND
+    else if (this.id && result.length === 0) {
+      this.res.status(500);
+      this.res.json({ Error: 'No post could be located' });
+      return;
+    }
+
+    // CONVERT QUERY FROM ARRAY TO OBJECT
+    else if (this.id) {
+      result = result[0];
+    }
+
+    // // RETURN RESULT
     this.res.json(result);
   }
 
   async post() {
+
+    if (this.tableWithoutBackticks == 'users') {
+      if (await this.checkDuplicateUser()) { return; }
+    }
 
     if (this.handleVids) {
       // SPLIT UP 'REQ.BODY'
       // BY EXTRACTING KEYS AND VALUES
       let keys = Object.keys(this.req.body);
       let values = Object.values(this.req.body);
+
+      if (!this.id){
+        this.id = await this.query(`SELECT MAX(${this.idColName}) + 1 as id FROM ${this.table}`);
+        this.id = this.id[0].id;
+        console.log(this.id);
+      }
 
       // INSERT INTO TABLE. GIVE VERSION ID = 1 IF IT IS A NEW INSERT
       let query = `INSERT INTO ${this.table} SET
@@ -285,7 +341,6 @@ module.exports = class Rest {
   }
 
   async put() {
-
     if (this.handleVids) {
       // FIRST GET OLD INFO FROM TABLE
       // IN CASE WE DON'T WANT TO CHANGE ALL COLUMNS
@@ -367,6 +422,19 @@ module.exports = class Rest {
     }
 
     // RETURN RESULT
+
+    if (this.tableWithoutBackticks == 'users') {
+      let userFromDb = await this.query('SELECT * FROM users WHERE id = ?', [this.id]);
+      userFromDb = userFromDb[0];
+      delete userFromDb.password;
+
+      this.req.session.user = userFromDb;
+      result = {
+        user: userFromDb,
+        result: result
+      };
+    }
+
     this.res.json(result);
   }
 
@@ -400,6 +468,21 @@ module.exports = class Rest {
     }
     console.log('Found 3 warnings on ', foundUser);
     console.log('All Posts by User: ', userId, 'has successfully been deleted and user role is now "banned"');
+  }
+
+  async checkDuplicateUser(){
+    let s = await this.query('SELECT email FROM users WHERE email = ?',
+      [this.req.body.email]
+    );
+
+    if (s.length) {
+      this.res.json({
+        user: false,
+        Error: 'User already exists in the database'
+      });
+    }
+
+    return s.length;
   }
 
   /* QUERY HELPER FUNCTION */

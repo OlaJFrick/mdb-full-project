@@ -43,6 +43,14 @@ app.get('/genre', async (req, res) => {
   res.json(s);
 });
 
+app.get('/countries', async (req, res) => {
+  let s = await Rest.query('DESCRIBE persons nationality');
+  s = s[0].Type;
+  s = s.split('enum(')[1].split(')')[0];
+  s = eval('Array('+s+')');
+  res.json(s);
+});
+
 app.use(Rest.start({
   dbCredentials: {
     host: '127.0.0.1',
