@@ -1,13 +1,11 @@
 <div class="container">
   <div class="row">
-
     <div class="col-md-8 offset-md-2 mb-5">
       <h3>ADD NEW PERSON</h3>
       <hr>
 
       <div class="row">
         <div class="col">
-
           <form #np="ngForm" (ngSubmit)="addPerson(np.value)">
 
             <div class="form-group">
@@ -49,12 +47,16 @@
               </select>
             </div>
 
-            <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
+            <button type="submit" class="submit-review btn btn-secondary btn-sm">
+                <span>
+                Submit
+              </span>
+            </button>
             <button type="button" class="cancel-review btn btn-danger btn-sm" routerLink="/film-page/{{filmid}}">Cancel</button>
+
           </form>
         </div>
       </div>
-
 
     </div>
   </div>

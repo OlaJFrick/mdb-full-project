@@ -23,6 +23,7 @@ export class AddPersonComponent implements OnInit {
 
   constructor(private http: Http,
     private restservice: RestService,
+    private router: Router,
     private location: Location,
     private globalservice: GlobalService) { }
 
@@ -53,6 +54,7 @@ export class AddPersonComponent implements OnInit {
   addPerson(form: any) {
     const personForm = form,
       relationForm = {};
+
     relationForm['filmId'] = this.filmid;
     relationForm['character'] = form.character;
     relationForm['changerId'] = this.globalservice.user.id;
@@ -95,6 +97,7 @@ export class AddPersonComponent implements OnInit {
     console.log(table, relationForm);
 
     this.restservice.post(table, relationForm).then(res => {
+      this.router.navigateByUrl('/film-page/' + this.filmid);
     }, err => {
       console.log('Error occured.');
     });
