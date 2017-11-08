@@ -17,6 +17,9 @@
           <li>
             <a class="nav-link" routerLink="register" *ngIf="!globalservice.user">REGISTER</a>
           </li>
+          <li>
+            <a class="nav-link" routerLink="admin/admin-panel" *ngIf="globalservice.user.role === 'admin'">ADMIN PAGE</a>
+          </li>
         </ul>
       </div>
 
