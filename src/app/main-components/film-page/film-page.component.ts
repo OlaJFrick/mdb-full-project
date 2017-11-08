@@ -161,11 +161,14 @@ export class FilmPageComponent implements OnInit {
 
   saveEditable(value: any, table: string, colName: string) {
 
+
     const body = this.film;
     body[colName] = value;
     if (colName === 'genre') {
       body['genre'] = this.genreSelectOptions[value].text;
     }
+
+
     body['changerId'] = this.globalservice.user.id;
 
     delete body.id;
@@ -176,8 +179,25 @@ export class FilmPageComponent implements OnInit {
     delete body.versionId;
     delete body.timeCreated;
 
+
     // call to http service
     this.restservice.postVid(table, body, this.filmid).then(res => {
+    }, err => {
+      console.log('Error occured.');
+    });
+  }
+
+  updateCharacter(value: any, id: number, isMain: number) {
+    const body = {}
+      body['changerId'] = this.globalservice.user.id;
+      body['character'] = value;
+      body['filmId'] = this.filmid;
+      body['actorId'] = id;
+      body['isMainCharacter'] = isMain;
+
+    console.log(body);
+    this.restservice.post('films_actors', body).then(res => {
+      console.log('posted');
     }, err => {
       console.log('Error occured.');
     });

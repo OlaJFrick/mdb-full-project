@@ -58,7 +58,7 @@
               <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{director.directorImage}}" routerLink="/person-page/{{director.personId}}">
             </div>
             <div class="col">
-              <inline-editor empty="Add a Director" type="text" [(ngModel)]="director.directorName" (onSave)="saveEditable($event)"></inline-editor>
+              <p class="list-inline-item" routerLink="/person-page/{{director.personId}}">{{director.directorName}}</p>
               <fa class="ml-2" name="trash" (click)="removePerson(director.personId, 'directorId', 'films_directors')"></fa>
             </div>
           </div>
@@ -94,12 +94,11 @@
               <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}">
             </div>
             <div class="col-4">
-              <inline-editor empty="Add an Actor" type="text" [ngClass]="actor.isMainCharacter ? 'font-weight-bold' : ''" [(ngModel)]="actor.name" (onSave)="saveEditable($event)">
-              </inline-editor>
+              <p [ngClass]="actor.isMainCharacter ? 'font-weight-bold' : ''" routerLink="/person-page/{{actor.actorId}}">{{actor.name}}</p>
             </div>
             <div class="col">
               as
-              <inline-editor type="text" [(ngModel)]="actor.character" (onSave)="saveEditable($event)"></inline-editor>
+              <inline-editor class="list-inline-item" type="text" [(ngModel)]="actor.character" (onSave)="updateCharacter($event, actor.actorId, actor.isMainCharacter)"></inline-editor>
               <fa class="ml-2" name="trash" (click)="removePerson(actor.actorId, 'actorId', 'films_actors')">
               </fa>
             </div>
