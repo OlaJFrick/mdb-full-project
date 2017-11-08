@@ -89,6 +89,7 @@ ORDER BY name;
 CREATE OR REPLACE VIEW all_directors_list AS
 SELECT
 d.id,
+CONCAT(a.firstName, ' ', a.lastName) AS name,
 d.nationality,
 d.gender,
 group_concat(`f`.`title` separator ', ') AS films,
