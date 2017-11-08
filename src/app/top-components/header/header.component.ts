@@ -1,5 +1,8 @@
 import { Component, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { RestService } from '../../services/rest.service';
+import { GlobalService } from '../../services/global.service';
+import { Router } from '@angular/router';
+import { LoginComponent } from '../../main-components/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -21,12 +24,19 @@ import { RestService } from '../../services/rest.service';
     RestService
   ]
 })
+
 export class HeaderComponent implements OnInit {
 	mySqlData: any;
+	isNavbarCollapsed = true;
+  menuState:string = 'out';
 
-	menuState:string = 'out';
+  header: LoginComponent;
 
-  constructor(/*private restservice: RestService*/) { }
+  constructor(private restservice: RestService, private globalservice: GlobalService, private router: Router) {
+    this.header = new LoginComponent(restservice, router, globalservice);
+
+    // 22b5cebec7427dfa0b179af0641190e17693c1a2
+  }
 
   ngOnInit() {
   	/*this.restservice.get('').then(data => {

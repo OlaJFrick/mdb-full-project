@@ -19,7 +19,11 @@
             <a class="nav-link" routerLink="/person-page">Edit settings</a>
           </li>
           <li>
-            <a class="nav-link" routerLink="login">Login</a>
+            <a class="nav-link" (click)="header.logout()" *ngIf="globalservice.user">LOG OUT</a>
+            <a class="nav-link" routerLink="login" *ngIf="!globalservice.user">LOG IN</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="register">REGISTER</a>
           </li>
         </ul>
       </div>

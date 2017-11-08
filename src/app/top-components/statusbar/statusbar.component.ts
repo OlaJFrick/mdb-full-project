@@ -21,11 +21,8 @@ export class StatusbarComponent implements OnInit {
   }
 
   loginCheck() {
-    console.log('loginCheck12355');
     this.restservice.get('login').then(res => {
       this.globalservice.user = res.json().user;
-      console.log('loginCheck1: ', res.json().user);
-      console.log('loginCheck2: ', res.json());
     }, err => {
       console.log('loginCheck error: ');
     });

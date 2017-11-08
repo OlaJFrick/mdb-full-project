@@ -26,17 +26,17 @@ module.exports = class Login {
 
   /* LOG OUT */
   delete() {
-    this.app.delete('/rest/logout', (req, res) => {
+    this.app.delete('/rest/login', (req, res) => {
 
       /* IF A USER SESSION EXISTS, THEN LOG OUT */
       if (req.session.user) {
         res.json({
-          user: req.session.user,
+          user: false,
           status: 'logging out'
         });
+
         /* LOG USER OUT BY DELETING THE SESSION */
         delete req.session.user;
-        return;
       }
 
       /* IF A USER SESSION DOES NOT EXIST, THEN USER CAN NOT LOG OUT! */

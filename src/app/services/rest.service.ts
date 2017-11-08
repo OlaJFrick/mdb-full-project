@@ -34,7 +34,7 @@ export class RestService {
     return this.http.put(this.buildUrl(tableName, id), body, { withCredentials: true }).toPromise();
   }
 
-  delete(tableName: string, id: number) {
+  delete(tableName: string, id?: number) {
     return this.http.delete(this.buildUrl(tableName, id), { withCredentials: true }).toPromise();
   }
 

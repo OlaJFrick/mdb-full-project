@@ -44,6 +44,7 @@ import { StatusbarComponent } from './top-components/statusbar/statusbar.compone
 
 // pipes
 import { SafeurlPipe } from './pipes/safeurl.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 // services
 import { GlobalService } from './services/global.service';
@@ -73,7 +74,8 @@ import { GlobalService } from './services/global.service';
     AdminAddFilmComponent,
     AdminAllActivityComponent,
     AdminListUsersComponent,
-    SafeurlPipe
+    SafeurlPipe,
+    TruncatePipe
   ],
   imports: [
     AppRoutingModule,
