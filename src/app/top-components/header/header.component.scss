@@ -1,8 +1,9 @@
 .main-logo {
-  width: 160px;
+  width: 150px;
   position: relative;
   padding-right: 10px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .main-logo:focus {
@@ -48,6 +49,8 @@
 	border: solid 1px 	#D3D3D3;
 	border-radius: 20px;
 	padding: 3px;
+	display: relative;
+	float: right;
 }
 
 .user-screen img {
@@ -104,7 +107,7 @@
 
 	.hamburger-center-button {
 		right: 0px;
-		top: 15%;
+		top: 0px;
 	}
 }
 
@@ -209,76 +212,32 @@
     background-color: #F8F8FF;
     margin-left: 40px;
 }
+
+.navbar-brand {
+    width: 150px;
+}
 #mdbMySidenav>:last-child {
     color: white;
     font-size: 15px;
 }
 
-
-
 .hamburger {
   display: block;
-  position: relative;
-  overflow: hidden;
   margin: 0;
   padding: 0;
   width: 96px;
   height: 96px;
-  font-size: 0;
-  text-indent: -9999px;
   cursor: pointer;
-  outline: none;
-  background: none;
-  border: 0;
   z-index: 999999;
 }
 
-
-.hamburger span {
-  display: block;
-  position: absolute;
-  top: 44px;
-  left: 18px;
-  right: 18px;
-  height: 8px;
-  background: #FF1493;
+.hamburger i {
+  cursor: pointer;
+  font-size: 40px;
 }
 
-.hamburger span::before,
-.hamburger span::after {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background-color: #FF1493;
-  content: "";
+.admin-button {
+		display: relative;
+		float: right;
+
 }
-
-.hamburger span::before {
-  top: -20px;
-}
-
-.hamburger span::after {
-  bottom: -20px;
-}
-
-
-@media screen and (max-width: 1200px) {
-    .user-screen {
-		display: none;
-	}
-}
-
-@media screen and (min-width: 1200px) {
-    .hamburger {
-		display: none;
-	}
-}
-
-@media screen and (max-width: 1200px) {
-    .header-link button {
-		display: none;
-	}
-}
-

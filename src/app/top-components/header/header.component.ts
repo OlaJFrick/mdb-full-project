@@ -23,7 +23,6 @@ import { RestService } from '../../services/rest.service';
 })
 export class HeaderComponent implements OnInit {
 	mySqlData: any;
-	isNavbarCollapsed = true;
 
 	menuState:string = 'out';
 
@@ -38,7 +37,8 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMenu() {
-    // 1-line if statement that toggles the value:
+  	console.log('in parent');
+  	    // 1-line if statement that toggles the value:
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
   }
 

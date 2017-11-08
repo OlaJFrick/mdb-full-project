@@ -2,7 +2,7 @@
   <li>
   	<div class="row">
   		<div class="offset-9 col-1">
-	  		<a id="sidebar-toggle">
+	  		<a id="sidebar-toggle" (click)="toggleMenu()">
 					<i class="fa fa-times"></i>
 				</a>
   		</div>
@@ -24,14 +24,16 @@
 	    </div>
     </div>
   </li>
-  <li routerLink="lists/list-all-films">All Movies</li>
-  <li routerLink="lists/list-all-actors">All Actors</li>
-  <li routerLink="lists/list-all-directors">All Directors</li>
-  <li routerLink="lists/list-top-10">Top 10</li>
-  <li routerLink="lists/list-latest-reviews">Latest Reviews</li>
-  <li routerLink="lists/list-all-directors">All Directors</li>
+  <li (click)="toggleMenu()" routerLink="lists/list-all-films">All Movies</li>
+  <li (click)="toggleMenu()" routerLink="lists/list-all-actors">All Actors</li>
+  <li (click)="toggleMenu()" routerLink="lists/list-all-directors">All Directors</li>
+  <li (click)="toggleMenu()" routerLink="lists/list-top-10">Top 10</li>
+  <li (click)="toggleMenu()" routerLink="lists/list-latest-reviews">Latest Reviews</li>
+  <li (click)="toggleMenu()" routerLink="lists/list-all-directors">All Directors</li>
 
   <div class="navLine"></div>
 
-  <li routerLink="">Edit settings</li>
+  <li (click)="toggleMenu()" routerLink="">Edit settings</li>
+
+  <li (click)="toggleMenu()" routerLink="admin/admin-panel">Admin Page</li>
 </ul>

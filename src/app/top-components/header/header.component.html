@@ -1,14 +1,14 @@
 <div class="container">
-  <div class="row">
-    <div class="col-8">
+  <div class="row d-none d-lg-flex">
+    <div class="offset-2 col-4">
       <app-search class="search"></app-search>
     </div>
     <!--<div class="col-4" *ngFor="let item of mySqlData">-->
-    <div class="col-4">
+    <div class="col-5">
       <div class="user-screen">
         <ul>
           <li>
-            <a class="navbar-brand">
+            <a>
               <img class="img-fluid" src="/assets/images/users/default.png"/>
             </a>
           </li>
@@ -22,7 +22,6 @@
             <a class="nav-link" routerLink="login">Login</a>
           </li>
         </ul>
-
       </div>
 
 
@@ -48,42 +47,51 @@
       </div>-->
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm">
+  <div class="row d-none d-lg-flex">
+    <div class="col-9">
       <nav class="navbar navbar-toggleable navbar-light header-styling">
-        <div class="hamburger-center">
-          <button class="navbar-toggler navbar-toggler-right hamburger-center-button" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
-                  aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a class="navbar-brand" routerLink="/"><img class="main-logo img-fluid" routerLink="/" src="../../../assets/images/mdb-logo.png"></a>
-        </div>
-        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="exCollapsingNavbar2">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item header-link">
-              <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-films">All Movies</button>
-            </li>
-            <li class="nav-item header-link">
-              <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-actors">All Actors</button>
-            </li>
-            <li class="nav-item header-link">
-              <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-directors">All Directors</button>
-            </li>
-            <li class="nav-item header-link">
-              <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-top-10">Top 10</button>
-            </li>
-            <li class="nav-item header-link">
-              <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-latest-reviews">Latest Reviews</button>
-            </li>
-          </ul>
-        </div>
+        <a class="navbar-brand" routerLink="/"><img class="main-logo" routerLink="/" src="../../../assets/images/mdb-logo.png"></a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item header-link">
+            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-films">All Movies</button>
+          </li>
+          <li class="nav-item header-link">
+            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-actors">All Actors</button>
+          </li>
+          <li class="nav-item header-link">
+            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-directors">All Directors</button>
+          </li>
+          <li class="nav-item header-link">
+            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-top-10">Top 10</button>
+          </li>
+          <li class="nav-item header-link">
+            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-latest-reviews">Latest Reviews</button>
+          </li>
+        </ul>
       </nav>
+    </div>
+    <div class="col-3">
+      <button type="button" class="btn btn-primary nav-link admin-button" routerLink="admin/admin-panel">Admin page</button>
+    </div>
+  </div>
+
+  <div class="row d-lg-none d-xl-none d-flex">
+    <div class="col-1">
+      <a class="hamburger" (click)="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div class="col-5">
+      <a class="navbar-brand" routerLink="/"><img class="main-logo" routerLink="/" src="../../../assets/images/mdb-logo.png"></a>
+    </div>
+    <div class="col-5">
+      <app-search class="search"></app-search>
     </div>
   </div>
 </div>
 
-<button (click)="toggleMenu()" class="hamburger">
+<!--<button (click)="toggleMenu()" class="hamburger">
   <span>toggle menu</span>
-</button>
+</button>-->
 
-<app-sidebar [@slideInOut]="menuState"></app-sidebar>
+<app-sidebar [@slideInOut]="menuState" (close)="toggleMenu($event)"></app-sidebar>
