@@ -142,25 +142,6 @@ li {
   background: #1a2580;
 }
 
-.hamburger span::before,
-.hamburger span::after {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background-color: #1a2580;
-  content: "";
-}
-
-.hamburger span::before {
-  top: -20px;
-}
-
-.hamburger span::after {
-  bottom: -20px;
-}
-
 .user-screen {
     border: solid 1px   #D3D3D3;
     border-radius: 20px;
