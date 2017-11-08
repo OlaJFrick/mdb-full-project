@@ -7,6 +7,7 @@ const express = require('express'),
       Cookiesession = require('./classes/cookie-session.class'),
       Login = require('./classes/login.class'),
       Search = require('./classes/search.class'),
+      UploadPicture = require('./classes/upload-picture.class'),
       devPassword = require('./dev-password');
 
 
@@ -19,6 +20,8 @@ const cookieSession = new Cookiesession();
 app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
 /* MIDDLEWARE */
+app.use(bodyParser.json({ limit: '5mb' }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(new Cookiesession().middleware());
@@ -26,8 +29,9 @@ app.use(new Cookiesession().middleware());
 /* NOT MIDDLEWARE */
 new Login(app);
 new Search(app);
+new UploadPicture(app);
 
-/ * Create URL for Genre */
+/* Create URL for Genre */
 
 app.get('/genre', async (req, res) => {
   let s = await Rest.query('DESCRIBE films genre');
