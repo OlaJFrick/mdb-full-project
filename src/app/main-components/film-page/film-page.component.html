@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row">
-
     <div class="col-12 col-md-3">
       <h1>
-       <inline-editor type="text" [(ngModel)]="film.title" (onSave)="saveEditable($event, 'films', 'title')"></inline-editor>
+       <inline-editor type="text" empty="Add a title" [(ngModel)]="film.title" (onSave)="saveEditable($event, 'films', 'title')"></inline-editor>
       </h1>
       <div class="mb-2">
         <div class="d-inline-block mr-2">
@@ -13,88 +12,135 @@
           <app-star-rating [rating]="film.avgRating"></app-star-rating>
         </div>
         <br>
-       <span>({{film.avgRating | number: '1.2-2'}}
+        <span>({{film.avgRating | number: '1.2-2'}}
         <span *ngIf="film.ratingCount">
         / by <strong>{{film.ratingCount}}</strong> Users)
         </span>
         <span *ngIf="!film.ratingCount">
         No ratings yet)
         </span>
-      </span>
-
-      <div class="mr-2">
+        </span>
+        <div class="mr-2">
+        </div>
       </div>
-      </div>
-
       <img class="img-fluid img-thumbnail mb-2" src="/assets/images/films/{{film.imagePath}}">
-
       <h6>Relase Year:
-       <inline-editor type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event, 'films', 'year')"></inline-editor>
+       <inline-editor empty="Add a release Year" type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event, 'films', 'year')"></inline-editor>
       </h6>
       <h6>Genre:
-        <inline-editor type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'films', 'genre')" [options]="genreSelectOptions"
+        <inline-editor empty="Add a genre" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'films', 'genre')" [options]="genreSelectOptions"
         value="valor"></inline-editor>
       </h6>
-
-
-
       <div *ngFor="let g of filmgenres">
         <p>{{g}}</p>
-
       </div>
-
     </div>
-
     <div class="col-12 col-md-5">
-
       <h6>PLOT SUMMERY:</h6>
       <hr>
       <p>
-        <inline-editor type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event, 'films', 'plot')"></inline-editor>
+        <inline-editor empty="Add a plot text" type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event, 'films', 'plot')"></inline-editor>
       </p>
 
+      <div *ngIf="directorData" class="mb-2">
+        <h6>DIRECTED BY</h6>
+        <hr>
+        <div *ngFor="let director of directorData" class="mb-2">
+          <div class="row align-items-center mb-1">
+            <div class="col-3">
+              <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{director.directorImage}}" routerLink="/person-page/{{director.personId}}">
+            </div>
+            <div class="col">
+              <inline-editor empty="Add a Director" type="text" [(ngModel)]="director.directorName" (onSave)="saveEditable($event)"></inline-editor>
+              <fa class="ml-2" name="trash" (click)="removePerson(director.personId, 'directorId', 'films_directors')"></fa>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="add-director btn btn-secondary btn my-2" (click)="addDirectorForm = !addDirectorForm">Add a Director</button>
+      </div>
+
+
+      <form *ngIf="addDirectorForm" #d="ngForm"
+        (ngSubmit)="submitPerson(d.value, 'directorId', 'films_directors')"
+        class="bg-secondary p-2 mb-2">
+        <div class="form-group">
+          <label class="mr-2" for="directorId">Select a person from the database</label>
+          <select class="form-control" id="directorId" name="directorId" ngModel>
+            <option *ngFor="let person of allPersons" value="{{person.id}}">{{person.firstName}} {{person.lastName}}
+            </option>
+          </select>
+          <button type="button" class="btn btn-primary mt-2" routerLink="/add-person/d/{{filmid}}">
+            Or add new person
+          </button>
+        </div>
+        <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
+        <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="addDirectorForm= !addDirectorForm">Cancel</button>
+      </form>
+
+
+      <div *ngIf="actorData" class="mb-2">
+        <h6>STARRING</h6>
+        <hr>
+        <div *ngFor="let actor of actorData" class="mb-2">
+          <div [ngClass]="actor.isMainCharacter ? highlight : 'row align-items-center mb-1'">
+            <div class="col-3">
+              <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}">
+            </div>
+            <div class="col-4">
+              <inline-editor empty="Add an Actor" type="text" [ngClass]="actor.isMainCharacter ? 'font-weight-bold' : ''" [(ngModel)]="actor.name" (onSave)="saveEditable($event)">
+              </inline-editor>
+            </div>
+            <div class="col">
+              as
+              <inline-editor type="text" [(ngModel)]="actor.character" (onSave)="saveEditable($event)"></inline-editor>
+              <fa class="ml-2" name="trash" (click)="removePerson(actor.actorId, 'actorId', 'films_actors')">
+              </fa>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="add-actor btn btn-secondary btn" (click)="addActorForm = !addActorForm">
+          Add an Actor/Role
+        </button>
+      </div>
+
+
+      <form *ngIf="addActorForm" #a="ngForm" (ngSubmit)="submitPerson(a.value, 'actorId', 'films_actors')" class="bg-secondary p-2 mb-2">
+        <div class="form-group">
+          <label for="character">Character Name in this movie</label>
+          <input type="text" id="character" name="character" class="form-control" placeholder="Character Name" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="isMainCharacter">Is a Main Character</label>
+          <select type="select" class="form-control" name="isMainCharacter" id="isMainCharacter" ngModel>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="mr-2" for="actorId">Select a person from the database</label>
+          <select class="form-control" id="actorId" name="actorId" ngModel>
+            <option *ngFor="let person of allPersons" value="{{person.id}}">{{person.firstName}} {{person.lastName}}
+            </option>
+          </select>
+          <button type="button" class="btn btn-primary mt-2" routerLink="/add-person/a/{{filmid}}">
+            Or add new person
+          </button>
+        </div>
+        <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
+        <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="addActorForm= !addActorForm">Cancel</button>
+      </form>
+    </div>
+
+
+    <div class="col-12 col-md-4">
       <h6>OFFICIAL TRAILER:</h6>
       <hr>
       <div *ngIf="film.youtubeUrl" class="embed-responsive embed-responsive-4by3 mb-2">
         <iframe width="560" height="315" [src]="film.youtubeUrl | safeurl" frameborder="0" allowfullscreen></iframe>
       </div>
       <p>
-        <inline-editor type="text" [(ngModel)]="film.youtubeUrl" (onSave)="saveEditable($event, 'films', 'youtubeUrl')"></inline-editor>
+        <inline-editor type="text" empty="Add a Youtube URL" [(ngModel)]="film.youtubeUrl" (onSave)="saveEditable($event, 'films', 'youtubeUrl')"></inline-editor>
       </p>
-
-      <div *ngIf="directorData">
-        <h6>DIRECTED BY</h6>
-        <hr>
-        <div class="row align-items-center">
-          <div class="col-3">
-            <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{directorData.imagePath}}" routerLink="/person-page/{{directorData.directorId}}">
-          </div>
-          <div class="col">
-            <inline-editor type="text" [(ngModel)]="directorData.director" (onSave)="saveEditable($event)"></inline-editor>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div *ngIf="actorData">
-        <h6>STARRING</h6>
-        <hr>
-        <div *ngFor="let actor of actorData">
-          <div [ngClass]="actor.isMainCharacter ? highlight : 'row align-items-center mb-3'">
-            <div class="col-3">
-              <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}">
-            </div>
-            <div class="col">
-              <inline-editor type="text" [ngClass]="actor.isMainCharacter ? 'font-weight-bold' : ''" [(ngModel)]="actor.name" (onSave)="saveEditable($event)"></inline-editor>
-            </div>
-            <div class="col">
-              as
-              <inline-editor type="text" [(ngModel)]="actor.character" (onSave)="saveEditable($event)"></inline-editor>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-4">
       <h6>REVIEWS:</h6>
       <hr>
       <p>{{reviewstatus}}</p>
@@ -117,7 +163,7 @@
       <div class="row">
         <div class="col">
           <button type="button" class="add-review btn btn-secondary btn" (click)="reviewForm = !reviewForm">Add your review</button>
-          <form *ngIf="reviewForm" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+          <form *ngIf="reviewForm" #r="ngForm" (ngSubmit)="submitReview(r.value)">
             <div class="form-group">
               <br>
               <label for="textbody">Review of '{{film.title}}'</label>
