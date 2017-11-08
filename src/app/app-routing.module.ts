@@ -20,6 +20,7 @@ import { FrontPageComponent } from './main-components/front-page/front-page.comp
 import { LoginComponent } from './main-components/login/login.component';
 import { PersonPageComponent } from './main-components/person-page/person-page.component';
 import { RegisterComponent } from './main-components/register/register.component';
+import { AddPersonComponent } from './main-components/add-person/add-person.component';
 import { UserPanelComponent } from './main-components/user-panel/user-panel.component';
 
 const routes: Routes = [
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'add-person/:occupationType/:filmId',
+    component: AddPersonComponent
   },
   {
     path: 'login',

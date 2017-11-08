@@ -233,10 +233,44 @@ module.exports = class Rest {
   }
 
   async delete() {
-    let result = await this.query(
-      'DELETE FROM ' + this.table + ' WHERE `' + this.idColName + '` = ?',
-      [this.id]
-    );
+
+    let sql = 'DELETE FROM ' + this.selectVidify(this.table);
+    let params = [];
+    let limitparams = [];
+
+    if(this.id){
+      sql += ' WHERE ' + this.idColName + ' = ?';
+      params.push(this.id);
+    }
+    else {
+      sql += '[wherecondition]';
+    }
+
+    let where = '';
+
+    for (let columnName in this.urlQuery) {
+      let columnVal = decodeURIComponent(this.urlQuery[columnName]);
+
+      columnVal = columnVal.split('*').join('%');
+
+      if (where != '') {
+        where += ' && ';
+      }
+
+      where += '`' + columnName + '` LIKE ?';
+
+      params.push(isNaN(columnVal / 1) ? columnVal : columnVal / 1);
+    }
+
+    if (where != '') {
+      sql = sql.split('[wherecondition]').join(' WHERE ' + where + ' ');
+    } else {
+      sql = sql.split('[wherecondition]').join('');
+    }
+
+    params = params.concat(limitparams);
+
+    let result = await this.query(sql,params);
 
     /* ERROR HANDLING */
     // IF WE  GET AN ERROR FROM MYSQL
@@ -244,7 +278,19 @@ module.exports = class Rest {
       this.res.status(500);
     }
 
-    // RETURN RESULT
+    // IF POST CANNOT BE FOUND
+    else if (this.id && result.length === 0) {
+      this.res.status(500);
+      this.res.json({ Error: 'No post could be located' });
+      return;
+    }
+
+    // CONVERT QUERY FROM ARRAY TO OBJECT
+    else if (this.id) {
+      result = result[0];
+    }
+
+    // // RETURN RESULT
     this.res.json(result);
   }
 
@@ -259,6 +305,12 @@ module.exports = class Rest {
       // BY EXTRACTING KEYS AND VALUES
       let keys = Object.keys(this.req.body);
       let values = Object.values(this.req.body);
+
+      if (!this.id){
+        this.id = await this.query(`SELECT MAX(${this.idColName}) + 1 as id FROM ${this.table}`);
+        this.id = this.id[0].id;
+        console.log(this.id);
+      }
 
       // INSERT INTO TABLE. GIVE VERSION ID = 1 IF IT IS A NEW INSERT
       let query = `INSERT INTO ${this.table} SET

@@ -3,46 +3,57 @@
 		<li>
 			<div class="row">
 				<div class="offset-9 col-1">
-		  		<a id="sidebar-toggle" (click)="toggleMenu()">
-					<i class="fa fa-times"></i>
-				</a>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-12">
-					<div class="user-screen">
-			        <ul>
-			          <li>
-			            <a class="navbar-brand">
-			              <img class="img-fluid" src="https://www.communitylandtrust.ca/wp-content/uploads/2015/10/placeholder.png"/>
-			            </a>
-			          </li>
-			          <li>
-			            <a class="nav-link" routerLink="/person-page">Username</a>
-			          </li>
-			        </ul>
-				</div>
-			</div>
-		</div>
-		</li>
-
-
-	  <li (click)="toggleMenu()" routerLink="lists/list-all-films">All Movies</li>
-	  <li (click)="toggleMenu()" routerLink="lists/list-all-actors">All Actors</li>
-	  <li (click)="toggleMenu()" routerLink="lists/list-all-directors">All Directors</li>
-	  <li (click)="toggleMenu()" routerLink="lists/list-top-10">Top 10</li>
-	  <li (click)="toggleMenu()" routerLink="lists/list-latest-reviews">Latest Reviews</li>
-	  <li (click)="toggleMenu()" routerLink="lists/list-all-directors">All Directors</li>
+			  	<a id="sidebar-toggle" (click)="toggleMenu()">
+						<i class="fa fa-times"></i>
+					</a>
+	  		</div>
+	  	</div>
+	  	<div class="row">
+		  	<div class="col-12">
+		  		<div class="user-screen">
+		        <ul>
+		          <li>
+		            <a class="navbar-brand">
+		              <img class="img-fluid" src="https://www.communitylandtrust.ca/wp-content/uploads/2015/10/placeholder.png"/>
+		            </a>
+		          </li>
+		          <li>
+		            <a class="nav-link" routerLink="/person-page">Username</a>
+		          </li>
+		        </ul>
+		    	</div>
+		    </div>
+	    </div>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-all-films">All films</a>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-all-actors">All Actors</a>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-all-directors">All Directors</a>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-top-10">Top 10</a>
+	  </li>
+	  <li (click)="toggleMenu()">
+	  	<a routerLink="lists/list-latest-reviews">Latest Reviews</a>
+	  </li>
 
 	  <div class="navLine"></div>
 
-	  <li (click)="toggleMenu()" routerLink="">Edit settings</li>
-
-	  <li (click)="toggleMenu()" routerLink="admin/admin-panel">Admin Page</li>
+	  <li *ngIf="globalservice.user" (click)="toggleMenu()">
+	  	<a routerLink="person/person-page">Edit Settings</a>
+		</li>
+		<li *ngIf="!globalservice.user" (click)="toggleMenu()">
+	  	<a routerLink="login">Login</a>
+		</li>
+		<li *ngIf="!globalservice.user" (click)="toggleMenu()">
+	  	<a routerLink="register">Register</a>
+		</li>
 	</ul>
 </div>
 
 <div (click)="toggleMenu()" class="right side">
 </div>
-
