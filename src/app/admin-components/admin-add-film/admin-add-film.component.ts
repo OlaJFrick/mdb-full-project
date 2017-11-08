@@ -22,6 +22,7 @@ export class AdminAddFilmComponent implements OnInit {
 
   constructor(
     private restservice: RestService,
+    private router: Router,
     private globalservice: GlobalService) { }
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class AdminAddFilmComponent implements OnInit {
     form['changerId'] = this.globalservice.user.id;
 
     this.restservice.postVid('films', form).then(res => {
+      this.router.navigateByUrl('/admin/admin-panel');
       console.log('posted', form);
     }, err => {
       console.log('Error occured.');
