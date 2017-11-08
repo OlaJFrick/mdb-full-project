@@ -36,6 +36,22 @@ export class PersonPageComponent implements OnInit {
     /* PERSON */
     this.restservice.getVid('persons', this.personId).then(data => {
       this.personData = data.json();
+
+      let bb = this.personData.birth,
+      bd = this.personData.death;
+
+      if (bb) {
+        this.personData.birth = bb.slice(0, 4) + '-' + bb.slice(5, 7) + '-' + bb.slice(8, 10);
+      } else {
+        bb = null;
+      }
+
+      if (bd) {
+        this.personData.death = bd.slice(0, 4) + '-' + bd.slice(5, 7) + '-' + bd.slice(8, 10);
+      } else {
+        bd = null;
+      }
+
     }, err => {
       console.log('persons error');
     });
@@ -43,7 +59,6 @@ export class PersonPageComponent implements OnInit {
     /* DIRECTOR */
     this.restservice.get(`person_as_director?personId=${this.personId}`).then(data => {
       this.directorData = data.json();
-      console.log('dir', this.directorData);
     }, err => {
       console.log('director error');
     });
@@ -51,13 +66,11 @@ export class PersonPageComponent implements OnInit {
     /* ACTOR */
     this.restservice.get(`person_as_actor?personId=${this.personId}`).then(data => {
       this.actorData = data.json();
-      console.log('act', this.actorData);
     }, err => {
       console.log('actor error');
     });
 
     this.loadCountries();
-
   }
 
   loadCountries() {
@@ -76,12 +89,9 @@ export class PersonPageComponent implements OnInit {
     }, err => {
       console.log('Error occured.');
     });
-
-    console.log(this.countrySelectOptions);
   }
 
   saveEditable(value: any, table: string, colName: string) {
-
     const body = this.personData;
     body[colName] = value;
     if (colName === 'nationality') {
@@ -91,14 +101,12 @@ export class PersonPageComponent implements OnInit {
     body['changerId'] = this.globalservice.user.id;
 
     delete body.id;
-    delete body.birth;
-    delete body.death;
     delete body.versionId;
     delete body.timeCreated;
 
-    // // call to http service
-
     console.log(body);
+
+    // // call to http service
 
     this.restservice.postVid(table, body, this.personId).then(res => {
     }, err => {

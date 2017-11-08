@@ -41,7 +41,6 @@ export class FilmPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.globalservice.user);
     this.filmid = Number(this.location.path().slice(11));
 
     this.restservice.get('all_films_list', this.filmid).then(data => {
@@ -63,7 +62,6 @@ export class FilmPageComponent implements OnInit {
       this.directorData = data.json().filter((res) => {
         return res.filmId === this.filmid;
       });
-      console.log(this.directorData);
     }, err => {
       console.log('director error');
     });
@@ -145,7 +143,6 @@ export class FilmPageComponent implements OnInit {
     form.filmId = this.filmid;
     form.actorId = form.actorId * 1;
     form.isMainCharacter = form.isMainCharacter * 1;
-    // form.personId = form.personId * 1;
 
     if (occupation === 'directorId') {
       delete form.actorId;
@@ -153,7 +150,6 @@ export class FilmPageComponent implements OnInit {
       form.directorId = form.directorId * 1;
     }
 
-    console.log(table, form);
     this.restservice.post(table, form).then(res => {
       this.loadActors();
       this.loadDirectors();
@@ -182,8 +178,6 @@ export class FilmPageComponent implements OnInit {
 
     // call to http service
     this.restservice.postVid(table, body, this.filmid).then(res => {
-      console.log('posted', table, body, this.filmid);
-      res.json();
     }, err => {
       console.log('Error occured.');
     });
@@ -191,7 +185,6 @@ export class FilmPageComponent implements OnInit {
 
   removePerson(personId: number, occupation: string, table: string) {
     const query = table + '?' + occupation + '=' + personId + '&filmId' + '=' + this.filmid;
-    console.log(query)
 
     this.restservice.delete(query).then(res => {
       this.loadActors();
