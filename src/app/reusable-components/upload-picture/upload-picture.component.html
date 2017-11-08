@@ -1,0 +1,7 @@
+<div class="{{classes || ''}}">
+  <button (click)="showImageBrowseDlg()" type="button" class="btn btn-info btn-file">Change profile image</button>
+  <input
+  #uploadFile
+  (change)="loadSelectedFile(uploadFile)"
+  type="file" accept="image/*" style="display: none;" />
+</div>

@@ -35,6 +35,7 @@ import { ReturnToTop }        from './main-components/return-to-top/return-to-to
 
 // reusable-components
 import { StarRatingComponent } from './reusable-components/star-rating/star-rating.component';
+import { UploadPictureComponent } from './reusable-components/upload-picture/upload-picture.component';
 
 // top-components
 import { HeaderComponent } from './top-components/header/header.component';
@@ -56,6 +57,7 @@ import { GlobalService } from './services/global.service';
     FrontPageComponent,
     SidebarComponent,
     StarRatingComponent,
+    UploadPictureComponent,
     FilmPageComponent,
     PersonPageComponent,
     SearchComponent,

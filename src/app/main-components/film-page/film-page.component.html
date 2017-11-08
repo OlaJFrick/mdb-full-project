@@ -2,6 +2,7 @@
   <div class="row">
 
     <div class="col-12 col-md-3">
+      <app-upload-picture [film]="film"></app-upload-picture>
       <h1>
        <inline-editor type="text" [(ngModel)]="film.title" (onSave)="saveEditable($event, 'films', 'title')"></inline-editor>
       </h1>
