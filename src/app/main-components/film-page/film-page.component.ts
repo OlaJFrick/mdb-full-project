@@ -164,6 +164,7 @@ export class FilmPageComponent implements OnInit {
   }
 
   saveEditable(value: any, table: string, colName: string) {
+
     const body = this.film;
     body[colName] = value;
     if (colName === 'genre') {
