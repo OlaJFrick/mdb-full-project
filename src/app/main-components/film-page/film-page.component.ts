@@ -31,14 +31,6 @@ export class FilmPageComponent implements OnInit {
 
   constructor(private http: Http, private restservice: RestService, private location: Location, private globalservice: GlobalService) {
     this.film.imagePath = 'default.png';
-
-    this.restservice.post('login', {
-      email: 'admin@mdb.com',
-      password: 'amy123'
-    }).then(res => {
-      this.globalservice.user = res.json().user;
-    });
-
   }
 
   ngOnInit() {
@@ -62,9 +54,9 @@ export class FilmPageComponent implements OnInit {
     });
 
     this.restservice.get('film_roles').then(data => {
-     this.actorData = data.json().filter((res) => {
-           return res.filmId === this.filmid;
-         });
+      this.actorData = data.json().filter((res) => {
+        return res.filmId === this.filmid;
+      });
     }, err => {
       console.log('actor error');
     });

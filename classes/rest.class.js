@@ -289,7 +289,6 @@ module.exports = class Rest {
   }
 
   async put() {
-
     if (this.handleVids) {
       // FIRST GET OLD INFO FROM TABLE
       // IN CASE WE DON'T WANT TO CHANGE ALL COLUMNS
@@ -371,6 +370,19 @@ module.exports = class Rest {
     }
 
     // RETURN RESULT
+
+    if (this.tableWithoutBackticks == 'users') {
+      let userFromDb = await this.query('SELECT * FROM users WHERE id = ?', [this.id]);
+      userFromDb = userFromDb[0];
+      delete userFromDb.password;
+
+      this.req.session.user = userFromDb;
+      result = {
+        user: userFromDb,
+        result: result
+      };
+    }
+
     this.res.json(result);
   }
 

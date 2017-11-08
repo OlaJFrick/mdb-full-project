@@ -17,8 +17,8 @@ import { GlobalService } from '../../services/global.service';
 export class LoginComponent {
 
   credentials = {
-    email: 'admin@mdb.com',
-    password: 'amy123'
+    email: 'andy.murray@tennis.com',
+    password: '123'
   }
 
   constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) {
@@ -47,8 +47,9 @@ export class LoginComponent {
 
   logout() {
     this.globalservice.user = false;
+
     this.restservice.delete('login').then(res => {
-      console.log(res.json());
+      this.router.navigateByUrl('/');
     });
   }
 

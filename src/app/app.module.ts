@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
@@ -80,6 +80,7 @@ import { GlobalService } from './services/global.service';
   imports: [
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpModule,
     BrowserAnimationsModule,

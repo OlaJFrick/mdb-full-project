@@ -16,12 +16,9 @@ import { GlobalService } from '../../services/global.service';
 
 export class RegisterComponent implements OnInit {
 
-  registerCredentials = {
-    firstName: 'Dandy',
-    lastName: 'Candy',
-    email: 'dandy@candy.com',
-    phone: '222333444',
-    password: 'dandy123'
+  credentials = {
+    email: 'andy.murray@tennis.com',
+    password: '123'
   };
 
   constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) { }
@@ -30,7 +27,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.restservice.post('users', this.registerCredentials).then(res => {
+    this.restservice.post('users', this.credentials).then(res => {
       this.globalservice.user = res.json().user;
       console.log('Hello from the REGISTER FUNCTION!: ', this.globalservice.user);
     });
