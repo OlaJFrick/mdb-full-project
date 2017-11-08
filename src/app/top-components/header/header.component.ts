@@ -24,10 +24,10 @@ import { LoginComponent } from '../../main-components/login/login.component';
     RestService
   ]
 })
+
 export class HeaderComponent implements OnInit {
 	mySqlData: any;
 
-	isNavbarCollapsed = true;
   menuState:string = 'out';
 
   header: LoginComponent;
@@ -47,15 +47,9 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMenu() {
-    // 1-line if statement that toggles the value:
+  	//console.log('in parent');
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
   }
-
-  /*onDbLoad(data) {
-    this.mySqlData = data.json();
-     console.log(this.mySqlData, 'this.mySqlData');
-  }*/
-
 }
 
 
