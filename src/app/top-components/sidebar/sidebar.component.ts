@@ -16,7 +16,7 @@ export class SidebarComponent {
   constructor() { }
 
   toggleMenu() {
-  	console.log('in child');
+  	//console.log('in child');
     this.close.emit('');
 
     // 1-line if statement that toggles the value:
