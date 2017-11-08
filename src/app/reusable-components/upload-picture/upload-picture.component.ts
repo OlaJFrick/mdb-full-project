@@ -21,13 +21,13 @@ export class UploadPictureComponent {
 
   @Input() set film(v: any) {
     if (v !== undefined) {
-      this.setFilm(v);
+      this._film = v;
     }
   }
 
   @Input() set person(v: any) {
     if (v !== undefined) {
-      this.setPerson(v);
+      this._person = v;
     }
   }
 
@@ -36,14 +36,6 @@ export class UploadPictureComponent {
   showImageBrowseDlg() {
     const ev = new MouseEvent('click', {bubbles: true});
     this.fileInput.nativeElement.dispatchEvent(ev);
-  }
-
-  setFilm(film: any) {
-    this._film = film;
-    console.log('setting film', film)
-  }
-
-  setPerson(person: any) {
   }
 
   loadSelectedFile(fileUpload) {
@@ -56,55 +48,62 @@ export class UploadPictureComponent {
 
   async sendToServer(ev) {
     const imgData = ev.target.result;
-    const fileExtension = this.filename.substr(this.filename.lastIndexOf('.') + 1);
     let table = 'persons';
     let id = 0;
-    let vId = 1;
     let postBody: any = {};
 
-    if (this._film) {
-      id = this._film.id;
-      vId += this._film.versionId;
+    if (this._person) {
+      id = this._person.id;
+
+      postBody = Object.assign({}, this._person);
+
+    } else if (this._film) {
       table = 'films';
+      id = this._film.id;
+
       postBody = Object.assign({}, this._film);
-      delete postBody.id;
       delete postBody.avgRating;
       delete postBody.ratingCount;
       delete postBody.starring;
       delete postBody.directed;
-      delete postBody.versionId;
-      delete postBody.timeCreated;
-    } else if (this._person) {
-      id = this._person.id;
-      vId += this._person.versionId;
+
     } else {
       console.log('error: no film or person given to upload-picture');
+      return;
     }
+
+    delete postBody.id;
+    delete postBody.versionId;
+    delete postBody.timeCreated;
 
     postBody.changerId = this.globalService.user.id;
 
 
-    console.log('POST film', postBody);
-    let postResult: any = await this.restService.postVid(table, postBody, id)
-      .catch(e => console.log(e));
-
-    postResult = postResult.json();
-    console.log(postResult);
+    // Get current versionId
+    let getResult: any = await this.restService.getVid(table, id);
+    getResult = getResult.json();
+    const vId = getResult.versionId + 1
 
 
-    // const msgBody = {
-    //   id: id,
-    //   versionId: vId,
-    //   changerId: this.globalService.user.id,
-    //   folder: table,
-    //   imgExtension: fileExtension,
-    //   imgData: imgData
-    // };
+    // Prepare the image filename
+    const fileExtension = this.filename.substr(this.filename.lastIndexOf('.') + 1);
+    postBody.imagePath = id + '_' + vId + '.' + fileExtension;
+    const filename = table + '/' + postBody.imagePath;
 
-    // this.http.post('http://localhost:3000/upload-picture', msgBody).toPromise().then(data => {
-    //   console.log('upload DONE', data.json());
-    // }, err => {
-    //     console.log('Error occured.', err);
-    // });
+    // POST the new imagePath
+    await this.restService.postVid(table, postBody, id)
+      .catch(e => console.log(e) );
+
+    // Upload the picture
+    const msgBody = {
+      filename: filename,
+      imgData: imgData
+    };
+
+    this.http.post('http://localhost:3000/upload-picture', { filename, imgData }).toPromise().then(data => {
+      location.reload();
+    }, err => {
+        console.log('Error occured.', err);
+    });
   }
 }

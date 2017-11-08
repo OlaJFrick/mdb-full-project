@@ -4,12 +4,8 @@ module.exports = class UploadPicture {
 
   constructor(app){
     app.post('/upload-picture', (req, res) => {
-      const id = req.body.id;
-      const vid = req.body.versionId;
-      const ext = req.body.imgExtension;
-      const foldername = req.body.folder + '/';
-      const filename = id + '_' + vid + '.' + ext;
-      const filePath = __dirname + '/../src/assets/images/' + foldername + filename;
+      const filename = req.body.filename
+      const filePath = __dirname + '/../src/assets/images/' + filename;
 
       const imageBuffer = this.decodeBase64Image(req.body.imgData);
       if (imageBuffer.constructor == Error){

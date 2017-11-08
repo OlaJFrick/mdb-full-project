@@ -6,6 +6,7 @@
       <h1>{{personData.lastName}}</h1>
 
       <img class="img-fluid img-thumbnail mb-2" src="../../assets/images/persons/{{personData.imagePath}}">
+      <app-upload-picture [person]="personData"></app-upload-picture>
 
       <h6>Nationality:
        <inline-editor class="mt-2" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
