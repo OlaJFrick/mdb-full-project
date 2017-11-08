@@ -1,28 +1,30 @@
 <div class="container">
   <div class="row">
-
     <div class="col col-md-3">
-      <h1>{{personData.firstName}}</h1>
-      <h1>{{personData.lastName}}</h1>
+      <h1>
+        <inline-editor type="text" empty="Add firstName" [(ngModel)]="personData.firstName" (onSave)="saveEditable($event, 'persons', 'firstName')"></inline-editor>
+        <inline-editor type="text" empty="Add lastname" [(ngModel)]="personData.lastName" (onSave)="saveEditable($event, 'persons', 'firstName')"></inline-editor>
+      </h1>
 
       <img class="img-fluid img-thumbnail mb-2" src="../../assets/images/persons/{{personData.imagePath}}">
       <app-upload-picture [person]="personData"></app-upload-picture>
 
-      <h6>Nationality:
+      <h6 class="mt-2" >Nationality:
        <inline-editor class="mt-2" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
               value="valor"></inline-editor>
       </h6>
-<!--
-      <h6 class="text-left">Born:
-        <inline-editor type="text"
-        [ngModel]="personData.birth | date" (ngModelChange)="personData.birth=$event"
-                                    (onSave)="saveEditable($event)"></inline-editor>
+
+      <h6>Born:
+       <inline-editor class="mt-2" empty="{{personData.birth}}" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')"
+              value="valor"></inline-editor>
       </h6>
-      <h6 class="text-left" *ngIf="personData.death">Deceased:
-        <inline-editor type="text" [ngModel]="personData.death | date" (ngModelChange)="personData.death=$event"
-                                    (onSave)="saveEditable($event)"></inline-editor>
-      </h6> -->
+
+      <h6 *ngIf="personData.death">Deceased:
+       <inline-editor class="mt-2" empty="{{personData.death}}" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')"
+              value="valor"></inline-editor>
+      </h6>
     </div>
+
     <div class="col-12 col-md-7">
       <div class="row">
         <div class="col-12 col-md-12 mb-4">
@@ -72,9 +74,7 @@
         </div>
       </div>
 
-
     </div>
-
 
   </div>
 </div>
