@@ -2,8 +2,9 @@
   <div class="row">
     <div class="col col-md-3">
       <h1>
-        <inline-editor type="text" empty="Add firstName" [(ngModel)]="personData.firstName" (onSave)="saveEditable($event, 'persons', 'firstName')"></inline-editor>
-        <inline-editor type="text" empty="Add lastname" [(ngModel)]="personData.lastName" (onSave)="saveEditable($event, 'persons', 'lastName')"></inline-editor>
+        <span *ngIf="!globalservice.user">{{personData.firstName}} {{personData.lastName}}</span>
+        <inline-editor *ngIf="globalservice.user" type="text" empty="Add firstName" [(ngModel)]="personData.firstName" (onSave)="saveEditable($event, 'persons', 'firstName')"></inline-editor>
+        <inline-editor *ngIf="globalservice.user" type="text" empty="Add lastname" [(ngModel)]="personData.lastName" (onSave)="saveEditable($event, 'persons', 'lastName')"></inline-editor>
       </h1>
 
       <img class="img-fluid img-thumbnail mb-2" src="../../assets/images/persons/{{personData.imagePath}}">
@@ -12,17 +13,20 @@
       <h6 class="my-2" >Nationality:
 
       </h6>
-      <inline-editor class="mt-2" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
+      <span *ngIf="!globalservice.user">{{personData.nationality}}</span>
+      <inline-editor *ngIf="globalservice.user" class="mt-2" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
              value="valor"></inline-editor>
 
       <h6 class="mt-2">Born:
       </h6>
-       <inline-editor class="mt-2" empty="{{personData.birth}}" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')"
+      <span *ngIf="!globalservice.user">{{personData.birth}}</span>
+       <inline-editor *ngIf="globalservice.user" class="mt-2" empty="{{personData.birth}}" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')"
               value="valor"></inline-editor>
 
       <h6 *ngIf="personData.death" class="mt-2">Deceased:
       </h6>
-       <inline-editor class="mt-2" empty="{{personData.death}}" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')"
+      <span *ngIf="!globalservice.user">{{personData.death}}</span>
+       <inline-editor *ngIf="globalservice.user" class="mt-2" empty="{{personData.death}}" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')"
               value="valor"></inline-editor>
     </div>
 
@@ -32,7 +36,8 @@
           <h6>MINI BIO</h6>
           <hr>
           <p class="text-left">
-            <inline-editor empty="Add a shotrt Bio" type="textarea" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event, 'persons', 'miniBio')"></inline-editor>
+            <span *ngIf="!globalservice.user">{{personData.miniBio}}</span>
+            <inline-editor *ngIf="globalservice.user" empty="Add a short Bio" type="textarea" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event, 'persons', 'miniBio')"></inline-editor>
           </p>
         </div>
 
