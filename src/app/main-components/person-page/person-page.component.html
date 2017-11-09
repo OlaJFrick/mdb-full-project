@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row">
     <div class="col col-md-3">
       <h1>
@@ -9,26 +9,27 @@
       <img class="img-fluid img-thumbnail mb-2" src="../../assets/images/persons/{{personData.imagePath}}">
       <app-upload-picture [person]="personData"></app-upload-picture>
 
-      <h6 class="mt-2" >Nationality:
-       <inline-editor class="mt-2" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
-              value="valor"></inline-editor>
-      </h6>
+      <h6 class="my-2" >Nationality:
 
-      <h6>Born:
+      </h6>
+      <inline-editor class="mt-2" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
+             value="valor"></inline-editor>
+
+      <h6 class="mt-2">Born:
+      </h6>
        <inline-editor class="mt-2" empty="{{personData.birth}}" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')"
               value="valor"></inline-editor>
-      </h6>
 
-      <h6 *ngIf="personData.death">Deceased:
+      <h6 *ngIf="personData.death" class="mt-2">Deceased:
+      </h6>
        <inline-editor class="mt-2" empty="{{personData.death}}" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')"
               value="valor"></inline-editor>
-      </h6>
     </div>
 
     <div class="col-12 col-md-7">
       <div class="row">
         <div class="col-12 col-md-12 mb-4">
-          <h5>MINI BIO</h5>
+          <h6>MINI BIO</h6>
           <hr>
           <p class="text-left">
             <inline-editor empty="Add a shotrt Bio" type="textarea" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event, 'persons', 'miniBio')"></inline-editor>
@@ -36,7 +37,7 @@
         </div>
 
         <div class="col-md-12 mb-4" *ngIf="directorData.length">
-          <h5>HAS DIRECTED</h5>
+          <h6>HAS DIRECTED</h6>
           <hr>
           <div class="row align-items-center" *ngFor="let director of directorData">
             <div class="col-2">
@@ -55,7 +56,7 @@
         </div>
 
         <div class="col-md-12 mb-4" *ngIf="actorData.length">
-          <h5>HAS ACTED IN</h5>
+          <h6>HAS ACTED IN</h6>
           <hr>
           <div class="row align-items-center" *ngFor="let actor of actorData">
             <div class="col-2">

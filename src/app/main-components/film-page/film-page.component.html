@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-3">
-      <h1>
+      <h1 class="app-headline">
        <inline-editor type="text" empty="Add a title" [(ngModel)]="film.title" (onSave)="saveEditable($event, 'films', 'title')"></inline-editor>
       </h1>
       <div class="mb-2">
@@ -28,16 +28,21 @@
         <div class="mr-2">
         </div>
       </div>
-      <img class="img-fluid img-thumbnail mb-2" src="/assets/images/films/{{film.imagePath}}">
+      <div class="mb-2">
+        <img class="img-fluid img-thumbnail" src="/assets/images/films/{{film.imagePath}}">
+      </div>
       <app-upload-picture [film]="film"></app-upload-picture>
-      <h6>Relase Year:
-       <inline-editor empty="Add a release Year" type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event, 'films', 'year')"></inline-editor>
-      </h6>
+      <div class="my-2">
+        <h6 >Relase Year:</h6>
+        <inline-editor empty="Add a release Year" type="text" [(ngModel)]="film.year" (onSave)="saveEditable($event, 'films', 'year')"></inline-editor>
+      </div>
+      <div class="mb-2">
+        <h6>Genre:</h6>
+          <inline-editor empty="Add a genre" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'films', 'genre')" [options]="genreSelectOptions"
+          value="valor"></inline-editor>
+      </div>
 
-      <h6>Genre:
-        <inline-editor empty="Add a genre" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'films', 'genre')" [options]="genreSelectOptions"
-        value="valor"></inline-editor>
-      </h6>
+
       <div *ngFor="let g of filmgenres">
         <p>{{g}}</p>
       </div>
