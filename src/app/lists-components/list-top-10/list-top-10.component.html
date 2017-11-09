@@ -27,7 +27,7 @@
   <div class="col-12 list-all-actors-container" *ngFor="let item of highestData, let i = index">
     <div class="row hidden-sm-down align-items-center mb-3">
       <div class="col-2">
-        <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';"
+        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';"
                 routerLink="/film-page/{{item.id}}">
       </div>
       <div class="col-2">
@@ -52,7 +52,7 @@
 
     <div class="row hidden-md-up align-items-center">
       <div class="col-6">
-        <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
+        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
       </div>
       <div class="col-6">
         <p>{{item.name}}</p>
@@ -90,7 +90,7 @@
   <div class="col-12 list-all-actors-container" *ngFor="let item of lowestData, let i = index">
     <div class="row hidden-sm-down align-items-center mb-3">
       <div class="col-2">
-        <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';"
+        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';"
                 routerLink="/film-page/{{item.id}}">
       </div>
       <div class="col-2">
@@ -115,7 +115,7 @@
 
     <div class="row hidden-md-up align-items-center">
       <div class="col-6">
-        <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
+        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
       </div>
       <div class="col-6">
         <p>{{item.name}}</p>
