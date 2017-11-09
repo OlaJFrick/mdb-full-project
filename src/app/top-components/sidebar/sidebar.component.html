@@ -18,39 +18,46 @@
 		            </a>
 		          </li>
 		          <li>
-		            <a class="nav-link" routerLink="/person-page">Username</a>
+		            <a (click)="toggleMenu()" class="nav-link" routerLink="/user-panel">Username</a>
 		          </li>
 		        </ul>
 		    	</div>
 		    </div>
 	    </div>
 	  </li>
-	  <li (click)="toggleMenu()">
-	  	<a routerLink="lists/list-all-films">All films</a>
+	  <li>
+	  	<a (click)="toggleMenu()" routerLink="lists/list-all-films">All films</a>
 	  </li>
-	  <li (click)="toggleMenu()">
-	  	<a routerLink="lists/list-all-actors">All Actors</a>
+	  <li>
+	  	<a (click)="toggleMenu()" routerLink="lists/list-all-actors">All Actors</a>
 	  </li>
-	  <li (click)="toggleMenu()">
-	  	<a routerLink="lists/list-all-directors">All Directors</a>
+	  <li>
+	  	<a (click)="toggleMenu()" routerLink="lists/list-all-directors">All Directors</a>
 	  </li>
-	  <li (click)="toggleMenu()">
-	  	<a routerLink="lists/list-top-10">Top 10</a>
+	  <li>
+	  	<a (click)="toggleMenu()" routerLink="lists/list-top-10">Top 10</a>
 	  </li>
-	  <li (click)="toggleMenu()">
-	  	<a routerLink="lists/list-latest-reviews">Latest Reviews</a>
+	  <li>
+	  	<a (click)="toggleMenu()" routerLink="lists/list-latest-reviews">Latest Reviews</a>
 	  </li>
 
 	  <div class="navLine"></div>
 
-	  <li *ngIf="globalservice.user" (click)="toggleMenu()">
-	  	<a routerLink="person/person-page">Edit Settings</a>
+	  <li>
+      <a (click)="toggleMenu()" *ngIf="globalservice.user && globalservice.user.role === 'admin'" routerLink="admin/admin-panel">ADMIN PAGE</a>
+    </li>
+
+	  <li>
+	  	<a *ngIf="globalservice.user" (click)="toggleMenu()" routerLink="/user-panel">EDIT SETTINGS</a>
 		</li>
-		<li *ngIf="!globalservice.user" (click)="toggleMenu()">
-	  	<a routerLink="login">Login</a>
+		<li>
+      <a (click)="toggleMenu()" (click)="sidebar.logout()" *ngIf="globalservice.user">LOG OUT</a>
+    </li>
+		<li>
+	  	<a *ngIf="!globalservice.user" (click)="toggleMenu()" routerLink="login">LOGIN</a>
 		</li>
-		<li *ngIf="!globalservice.user" (click)="toggleMenu()">
-	  	<a routerLink="register">Register</a>
+		<li>
+	  	<a *ngIf="!globalservice.user" (click)="toggleMenu()" routerLink="register">REGISTER</a>
 		</li>
 	</ul>
 </div>

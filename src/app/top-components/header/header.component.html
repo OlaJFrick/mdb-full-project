@@ -7,43 +7,21 @@
     <div class="col-5">
       <div class="user-screen">
         <ul>
-          <li>
-            <a class="nav-link" routerLink="/user-panel" *ngIf="globalservice.user">USERNAME</a>
+          <li *ngIf="globalservice.user">
+            <a class="nav-link" routerLink="/user-panel" placeholder="USERNAME" >{{globalservice.user.firstName}}</a>
           </li>
-          <li>
-            <a class="nav-link" (click)="header.logout()" *ngIf="globalservice.user">LOG OUT</a>
+          <li *ngIf="globalservice.user">
+            <a class="nav-link" (click)="header.logout()">LOG OUT</a>
             <a class="nav-link" routerLink="login" *ngIf="!globalservice.user">LOG IN</a>
           </li>
-          <li>
-            <a class="nav-link" routerLink="register" *ngIf="!globalservice.user">REGISTER</a>
+          <li *ngIf="!globalservice.user">
+            <a class="nav-link" routerLink="register" >REGISTER</a>
           </li>
-          <li>
-            <a class="nav-link" routerLink="admin/admin-panel" *ngIf="globalservice.user.role === 'admin'">ADMIN PAGE</a>
+          <li *ngIf="globalservice.user && globalservice.user.role === 'admin'">
+            <a class="nav-link" routerLink="admin/admin-panel">ADMIN PAGE</a>
           </li>
         </ul>
       </div>
-
-
-      <!-- <div>
-        <app-statusbar></app-statusbar>
-      </div> -->
-
-      <!-- hide if logged in-->
-      <!--<div class="user-screen">
-        <ul>
-          <li>
-            <a class="navbar-brand">
-              <img src="http://www.centerforgreatapes.org/themes/CGA/img/slider-4.jpg" width="30" height="30" alt="">
-            </a>
-          </li>
-          <li>
-            <a class="nav-link" routerLink="login">Login</a>
-          </li>
-          <li>
-            <a class="nav-link" routerLink="register">Register</a>
-          </li>
-        </ul>
-      </div>-->
     </div>
   </div>
   <div class="row d-none d-lg-flex">
@@ -69,9 +47,6 @@
         </ul>
       </nav>
     </div>
-    <!--<div class="col-3">
-      <button type="button" class="btn btn-primary nav-link admin-button" routerLink="admin/admin-panel">Admin page</button>
-    </div>-->
   </div>
 
   <div class="row d-lg-none d-xl-none d-flex">
