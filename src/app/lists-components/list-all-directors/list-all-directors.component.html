@@ -24,7 +24,7 @@
   <div class="col-12 list-all-actors-container" *ngFor="let item of mySqlData">
     <div class="row hidden-sm-down align-items-center mb-3">
       <div class="col-2">
-        <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
+        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/persons/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
       </div>
       <div class="col-3">
         <p>{{item.name}}</p>

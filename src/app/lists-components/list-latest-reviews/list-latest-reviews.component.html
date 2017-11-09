@@ -11,7 +11,7 @@
     <div class="col mb-3">
       <div class="row item py-4" *ngFor="let item of mySqlData">
         <div class="col-12 col-md-4">
-          <img class="mdb-default-image img-fluid" src="../../assets/images/films/{{item.imagePath}}"
+          <img class="mdb-default-image img-fluid clickable" src="../../assets/images/films/{{item.imagePath}}"
                 routerLink="/film-page/{{item.id}}">
         </div>
 
