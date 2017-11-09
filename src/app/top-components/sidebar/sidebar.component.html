@@ -44,7 +44,7 @@
 	  <div class="navLine"></div>
 
 	  <li>
-      <a (click)="toggleMenu()" *ngIf="globalservice.user.role === 'admin'" routerLink="admin/admin-panel">ADMIN PAGE</a>
+      <a (click)="toggleMenu()" *ngIf="globalservice.user && globalservice.user.role === 'admin'" routerLink="admin/admin-panel">ADMIN PAGE</a>
     </li>
 
 	  <li>
