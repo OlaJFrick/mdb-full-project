@@ -65,11 +65,11 @@
         <div *ngFor="let director of directorData" class="mb-2">
           <div class="row align-items-center mb-1">
             <div class="col-3">
-              <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{director.directorImage}}" routerLink="/person-page/{{director.personId}}">
+              <img class="img-fluid img-thumbnail clickable" src="../../assets/images/persons/{{director.directorImage}}" routerLink="/person-page/{{director.personId}}">
             </div>
             <div class="col">
               <p class="list-inline-item" routerLink="/person-page/{{director.personId}}">{{director.directorName}}</p>
-              <fa *ngIf="globalservice.user" class="ml-2" name="trash" (click)="removePerson(director.personId, 'directorId', 'films_directors')"></fa>
+              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removePerson(director.personId, 'directorId', 'films_directors')"></fa>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
         <div *ngFor="let actor of actorData" class="mb-2">
           <div [ngClass]="actor.isMainCharacter ? highlight : 'row align-items-center mb-1'">
             <div class="col-3">
-              <img class="img-fluid img-thumbnail" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}">
+              <img class="img-fluid img-thumbnail clickable" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}">
             </div>
             <div class="col-4">
               <p [ngClass]="actor.isMainCharacter ? 'font-weight-bold' : ''" routerLink="/person-page/{{actor.actorId}}">{{actor.name}}</p>
@@ -110,7 +110,7 @@
               as
               <span *ngIf="!globalservice.user">{{actor.character}}</span>
               <inline-editor *ngIf="globalservice.user" class="list-inline-item" type="text" [(ngModel)]="actor.character" (onSave)="updateCharacter($event, actor.actorId, actor.isMainCharacter)"></inline-editor>
-              <fa *ngIf="globalservice.user" class="ml-2" name="trash" (click)="removePerson(actor.actorId, 'actorId', 'films_actors')">
+              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removePerson(actor.actorId, 'actorId', 'films_actors')">
               </fa>
             </div>
           </div>

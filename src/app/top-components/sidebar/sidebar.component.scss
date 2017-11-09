@@ -73,6 +73,7 @@
   background: #000;
   left: 0;
   width: 80%;
+  -webkit-box-shadow: 7px 0 6px -2px #888;
 }
 .right {
   opacity: 0;
@@ -178,15 +179,17 @@ a:active {
 }
 
 @media screen and (max-width: 450px) {
-    .user-screen {
-        font-size: 10px;
-        width: 200px;
-    }
+  .nav-link{
+    padding: 0;
+  }
 
-    li {
-        font-size: 14px;
-        padding-left: 30px;
-    }
+  .user-screen {
+      font-size: 16px;
+      width: 200px;
+  }
 
-
+  li {
+      font-size: 14px;
+      padding-left: 30px;
+  }
 }

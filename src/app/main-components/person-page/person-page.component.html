@@ -46,7 +46,7 @@
           <hr>
           <div class="row align-items-center" *ngFor="let director of directorData">
             <div class="col-2">
-              <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{director.imagePath}}" routerLink="/film-page/{{director.filmId}}">
+              <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{director.imagePath}}" routerLink="/film-page/{{director.filmId}}">
             </div>
             <div class="col">
               <p>{{director.title}}</p>
@@ -65,7 +65,7 @@
           <hr>
           <div class="row align-items-center" *ngFor="let actor of actorData">
             <div class="col-2">
-              <img class="img-fluid img-thumbnail" src="../../assets/images/films/{{actor.imagePath}}" routerLink="/film-page/{{actor.filmId}}">
+              <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{actor.imagePath}}" routerLink="/film-page/{{actor.filmId}}">
             </div>
             <div class="col-3">
               <p>{{actor.title}}</p>

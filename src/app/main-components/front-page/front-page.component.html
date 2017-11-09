@@ -18,7 +18,7 @@
       <div class="row">
         <div *ngFor="let item of latestfilms" class="col-12 col-md">
           <figure class="figure">
-            <img class="img-fluid" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
+            <img class="img-fluid clickable" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
             <figcaption class="figure-caption">{{item.title}} ({{item.year}})</figcaption>
           </figure>
         </div>
