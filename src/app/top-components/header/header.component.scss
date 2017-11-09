@@ -3,7 +3,7 @@
   position: relative;
   padding-right: 10px;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .main-logo:focus {
@@ -97,17 +97,6 @@
 @media screen and (max-width: 400px) {
 	.main-logo {
 		width: 40%;
-	}
-}
-
-@media (min-width: 400px) and (max-width: 576px) {
-	.hamburger-center {
-		position: relative;
-	}
-
-	.hamburger-center-button {
-		right: 0px;
-		top: 0px;
 	}
 }
 

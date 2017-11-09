@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-3">
   <div class="row d-none d-lg-flex">
     <div class="offset-2 col-4">
       <app-search class="search"></app-search>
@@ -27,7 +27,7 @@
     </div>
   </div>
   <div class="row d-none d-lg-flex">
-    <div class="col-9">
+    <div class="offset-1 col-9">
       <nav class="navbar navbar-toggleable navbar-light header-styling">
         <a class="navbar-brand" routerLink="/"><img class="main-logo" routerLink="/" src="../../../assets/images/mdb-logo.png"></a>
         <ul class="navbar-nav mr-auto">
@@ -52,9 +52,9 @@
   </div>
 
   <div class="row d-lg-none d-xl-none d-flex">
-    <div class="col-1">
-      <a class="hamburger" (click)="toggleMenu()">
-        <i class="fa fa-bars"></i>
+    <div class="col-2">
+      <a class="hamburger">
+        <i (click)="toggleMenu()" class="fa fa-bars"></i>
       </a>
     </div>
     <div class="col-5">

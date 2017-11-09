@@ -40,6 +40,7 @@ export class StarRatingComponent {
   }
 
   setRating(rating: number) {
+
     const maxStars = 5;
     rating = Math.round(Math.min(maxStars, rating));
 

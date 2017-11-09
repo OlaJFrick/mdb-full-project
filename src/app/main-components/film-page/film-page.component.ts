@@ -78,12 +78,21 @@ export class FilmPageComponent implements OnInit {
   }
 
   loadPersons() {
+<<<<<<< HEAD
     this.restservice.get('persons?order_by=firstName').then(data => {
       this.allPersons = data.json();
     }, err => {
       console.log('actor error');
     });
+=======
+    this.restservice.getVid('persons?order_by=firstName').then(data => {
+          this.allPersons = data.json();
+        }, err => {
+          console.log('actor error');
+        });
+>>>>>>> master
   }
+
 
   loadReviews() {
     this.restservice.get('all_reviews_list?order_by=timeCreated&desc=1&id=' + this.filmid).then(data => {
