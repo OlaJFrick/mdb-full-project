@@ -1,3 +1,62 @@
-<p>
-  admin-list-users works!
-</p>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-5 offset-md-3">
+      <h1>ALL USERS & ADMINS</h1>
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-1">
+      <p><strong>ID</strong></p>
+    </div>
+    <div class="col-3">
+      <p><strong>NAME</strong></p>
+    </div>
+    <div class="col-3">
+      <p><strong>EMAIL</strong></p>
+    </div>
+    <div class="col-2">
+      <p><strong>PHONE</strong></p>
+    </div>
+    <div class="col-1">
+      <p><strong>ROLE</strong></p>
+    </div>
+    <div class="col-2">
+      <p><strong>WARNINGS</strong></p>
+    </div>
+  </div>
+
+  <div class="row align-items-center mb-3" *ngFor="let user of userData">
+    <div class="col-md-1">
+      <p>{{user.id}}</p>
+    </div>
+
+    <div class="col-md-3">
+      <p>{{user.firstName}} {{user.lastName}}</p>
+    </div>
+
+    <div class="col-md-3">
+      <p>{{user.email}}</p>
+    </div>
+
+    <div class="col-md-2">
+      <p>{{user.phone}}</p>
+    </div>
+
+    <div class="col-md-1">
+      <p>{{user.role}}</p>
+    </div>
+
+    <div class="col-md-1 text-center">
+      <p>{{user.warnings}}</p>
+    </div>
+
+    <div class="col-md-1">
+      <button type="button" class="btn btn-danger" *ngIf="user.role !== 'admin'"
+                (click)="warnUser(user.id, user.warnings)">WARN USER</button>
+    </div>
+  </div>
+
+</div>

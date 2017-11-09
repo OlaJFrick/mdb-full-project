@@ -79,10 +79,10 @@ export class FilmPageComponent implements OnInit {
 
   loadPersons() {
     this.restservice.getVid('persons?order_by=firstName').then(data => {
-          this.allPersons = data.json();
-        }, err => {
-          console.log('actor error');
-        });
+      this.allPersons = data.json();
+    }, err => {
+      console.log('actor error');
+    });
   }
 
 
