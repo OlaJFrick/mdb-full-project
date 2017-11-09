@@ -1,4 +1,4 @@
 <div *ngIf="globalService.user">
-  <button (click)="showImageBrowseDlg()" type="button" class="btn btn-info btn-file">Upload image</button>
+  <button (click)="showImageBrowseDlg()" type="button" class="btn btn-secondary btn-file">Upload image</button>
   <input #uploadFile (change)="loadSelectedFile(uploadFile)" type="file" accept="image/*" class="d-none" />
 </div>
