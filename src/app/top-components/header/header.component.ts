@@ -26,7 +26,6 @@ import { LoginComponent } from '../../main-components/login/login.component';
 })
 
 export class HeaderComponent implements OnInit {
-
 	mySqlData: any;
 
   menuState:string = 'out';
@@ -35,11 +34,16 @@ export class HeaderComponent implements OnInit {
 
   constructor(private restservice: RestService, private globalservice: GlobalService, private router: Router) {
     this.header = new LoginComponent(restservice, router, globalservice);
+
     // 22b5cebec7427dfa0b179af0641190e17693c1a2
-    console.log("globalservice",globalservice);
   }
 
   ngOnInit() {
+  	/*this.restservice.get('').then(data => {
+      this.onDbLoad(data);
+    }, err => {
+        console.log('Error occured.');
+    });*/
   }
 
   toggleMenu() {
