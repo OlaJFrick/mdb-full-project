@@ -20,7 +20,7 @@
       <h6 class="mt-2">Born:
       </h6>
       <span *ngIf="!globalservice.user">{{personData.birth}}</span>
-       <inline-editor *ngIf="globalservice.user" class="mt-2" empty="{{personData.birth}}" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')"
+       <inline-editor *ngIf="globalservice.user" class="mt-2" empty="{{personData.birth}} 2000-01-01" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')"
               value="valor"></inline-editor>
 
       <h6 *ngIf="personData.death" class="mt-2">Deceased:
