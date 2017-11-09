@@ -10,15 +10,17 @@
           <li *ngIf="globalservice.user">
             <a class="nav-link" routerLink="/user-panel" placeholder="USERNAME" >{{globalservice.user.firstName}}</a>
           </li>
-          <li *ngIf="globalservice.user">
-            <a class="nav-link" (click)="header.logout()">LOG OUT</a>
-            <a class="nav-link" routerLink="login" *ngIf="!globalservice.user">LOG IN</a>
+          <li *ngIf="!globalservice.user">
+            <a class="nav-link" routerLink="login">LOG IN</a>
           </li>
           <li *ngIf="!globalservice.user">
             <a class="nav-link" routerLink="register" >REGISTER</a>
           </li>
           <li *ngIf="globalservice.user && globalservice.user.role === 'admin'">
             <a class="nav-link" routerLink="admin/admin-panel">ADMIN PAGE</a>
+          </li>
+          <li *ngIf="globalservice.user">
+            <a class="nav-link" (click)="header.logout()">LOG OUT</a>
           </li>
         </ul>
       </div>
