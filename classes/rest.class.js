@@ -463,7 +463,7 @@ module.exports = class Rest {
 
     for (let i = 0; i < tables.length; i++) {
       let result = await this.query(
-        'DELETE FROM ' + tables[i] + ' WHERE `' + idColName + '` = ?', [userId]
+        'SET foreign_key_checks = 0; DELETE FROM ' + tables[i] + ' WHERE `' + idColName + '` = ?', [userId]
       );
     }
     console.log('Found 3 warnings on ', foundUser);

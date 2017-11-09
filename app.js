@@ -56,7 +56,8 @@ app.use(Rest.start({
     host: '127.0.0.1',
     user: 'root',
     password: devPassword.unique(), // edit to YOUR password in the file dev-password.js. Otherwise it will not work.
-    database: 'mdb'
+    database: 'mdb',
+    multipleStatements: true
   },
   baseUrl: '/rest',
   baseUrlForVidTables: '/vid',
