@@ -16,11 +16,12 @@
         </div>
 
         <div class="col-12 col-md-8 mt-2">
-          <span>Created: {{item.timeCreated | date}}</span>
+          <p class="d-inline">Created: {{item.timeCreated | date}}</p>
+          <p><strong>Reviewer: {{item.username}}</strong></p>
           <h4 class="mb-2">{{item.title}}</h4>
           <div class="d-inline-block mr-3"><app-star-rating [rating]="item.rating"></app-star-rating></div>
+          <p>user rating: {{item.rating | number}}</p>
           <p>{{item.textbody}}</p>
-          <p>Reviewer: {{item.username}}</p>
         </div>
 
       </div>

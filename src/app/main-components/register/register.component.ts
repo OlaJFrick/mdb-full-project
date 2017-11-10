@@ -27,6 +27,9 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+
+    setTimeout(() => { this.router.navigateByUrl('/login')}, 200);
+
     this.restservice.post('users', this.credentials).then(res => {
       this.globalservice.user = res.json().user;
       console.log('Hello from the REGISTER FUNCTION!: ', this.globalservice.user);
