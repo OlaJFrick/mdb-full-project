@@ -11,16 +11,16 @@
     <div class="col-2">
     </div>
     <div class="col-3">
-      <p><strong>Title</strong></p>
+      <p (click)="this.getListData('title')"><strong>Title</strong></p>
     </div>
     <div class="col-2">
-      <p><strong>Rating</strong></p>
+      <p (click)="this.getListData('avgRating')"><strong>Rating</strong></p>
     </div>
     <div class="col-2">
-      <p><strong>Staring</strong></p>
+      <p (click)="this.getListData('starring')"><strong>Starring</strong></p>
     </div>
     <div class="col-3">
-      <p><strong>Directed By</strong></p>
+      <p (click)="this.getListData('directed')"><strong>Directed By</strong></p>
     </div>
   </div>
 
@@ -29,21 +29,27 @@
     <div class="row hidden-sm-down align-items-center mb-3">
       <div class="col-2">
         <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
+
+        <img *ngIf="!item.imagePath" class="img-fluid img-thumbnail clickable" src="../../assets/images/films/default.png" routerLink="/film-page/{{item.id}}">
       </div>
       <div class="col-3">
         <p class="align-middle">{{item.title}}</p>
+        <p *ngIf="!item.title">* No Title Added</p>
       </div>
       <div class="col-2">
         <div>
           <app-star-rating [rating]="item.avgRating"></app-star-rating>
-          <p class="rating-text">Rating: {{item.avgRating | number: '1.2-2' || 'not rated'}}</p>
+          <p *ngIf="item.avgRating" class="rating-text">Rating: {{item.avgRating | number: '1.2-2' || 'not rated'}}</p>
+          <p *ngIf="!item.avgRating">* Unrated</p>
         </div>
       </div>
       <div class="col-2">
         <p>{{item.starring | truncate: 3}}</p>
+        <p *ngIf="!item.starring">* No Actor added</p>
       </div>
       <div class="col-3">
         <p>{{item.directed}}</p>
+        <p *ngIf="!item.directed">* No Director added</p>
       </div>
     </div>
 

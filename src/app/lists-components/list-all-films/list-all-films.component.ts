@@ -12,20 +12,20 @@ import { RestService } from '../../services/rest.service';
 
 export class ListAllFilmsComponent implements OnInit {
   mySqlData: any;
-
+  state = false;
   constructor(private restservice: RestService) { }
 
   ngOnInit() {
-    this.restservice.get('all_films_list').then(data => {
-      this.onDbLoad(data);
-    }, err => {
-        console.log('Error occured.');
-    });
+   this.getListData('title');
   }
 
-  onDbLoad(data) {
-    this.mySqlData = data.json();
-    // console.log(this.mySqlData, 'this.mySqlData');
+  getListData(order: string) {
+    this.state = !this.state;
+    this.state ? order : order += '&desc=1';
+    this.restservice.get('all_films_list?order_by=' + order).then(data => {
+         this.mySqlData = data.json();
+       }, err => {
+         console.log('Error occured.');
+       });
   }
-
 }

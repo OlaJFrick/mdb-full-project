@@ -9,16 +9,16 @@
     <div class="col-2">
     </div>
     <div class="col-3">
-      <p> <strong>Name</strong></p>
+      <a (click)="getListData('name')"> <strong>Name</strong></a>
     </div>
     <div class="col-2">
-      <p> <strong>Nationality</strong></p>
+      <a (click)="getListData('nationality')"> <strong>Nationality</strong></a>
     </div>
     <div class="col-2">
-      <p> <strong>Gender</strong></p>
+      <a (click)="getListData('gender')"> <strong>Gender</strong></a>
     </div>
     <div class="col-3">
-      <p> <strong>Known for roles in</strong></p>
+      <a (click)="getListData('films')"> <strong>Known for roles in</strong></a>
     </div>
   </div>
   <div class="col-12 list-all-actors-container" *ngFor="let item of mySqlData">
