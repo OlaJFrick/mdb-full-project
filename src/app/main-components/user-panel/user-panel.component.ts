@@ -17,24 +17,34 @@ import { GlobalService } from '../../services/global.service';
 
 export class UserPanelComponent implements OnInit {
 
-  userData = {
-    firstName: this.globalservice.user.firstName,
-    lastName: this.globalservice.user.lastName,
-    phone: this.globalservice.user.phone,
-    email: this.globalservice.user.email,
-    password: this.globalservice.user.password,
-  };
+  profileUpdated = false;
+
+  userData = {};
 
   constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) {
     setTimeout(() => {
       console.log(this.globalservice.user);
-    }, '300');
+
+      this.userData = {
+        firstName: this.globalservice.user.firstName,
+        lastName: this.globalservice.user.lastName,
+        phone: this.globalservice.user.phone,
+        email: this.globalservice.user.email,
+        password: this.globalservice.user.password,
+      };
+
+
+    }, '10');
   }
 
   ngOnInit() {
   }
 
   updateProfile() {
+
+    this.profileUpdated = true;
+    console.log('submitted: ', this.profileUpdated);
+
     this.restservice.put('users', this.userData, this.globalservice.user.id).then(res => {
       this.globalservice.user = res.json().user;
       console.log(res.json());

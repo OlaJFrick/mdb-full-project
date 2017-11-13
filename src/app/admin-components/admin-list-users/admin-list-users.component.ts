@@ -33,9 +33,7 @@ export class AdminListUsersComponent implements OnInit {
     body['warnings'] = warnings + 1;
 
     this.restservice.put('users', body, id).then(res => {
-
       this.loadUsers();
-
     }, err => {
       console.log('hey');
     });

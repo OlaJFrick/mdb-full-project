@@ -5,11 +5,12 @@
       <h3>EDIT YOUR PROFILE</h3>
       <hr>
 
+      <h3 *ngIf="globalservice.user && profileUpdated === true" class="profile-updated-message">PROFILE UPDATED!</h3>
+
       <div class="row">
         <div class="col-md-12">
 
           <form (ngSubmit)="updateProfile()" *ngIf="globalservice.user">
-
 
             <div class="form-group">
               <input type="text" placeholder="FIRST NAME" class="form-control" name="firstName"
