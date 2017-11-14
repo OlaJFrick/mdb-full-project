@@ -7,14 +7,17 @@
     <div class="col-5">
       <div class="user-screen">
         <ul>
-          <li *ngIf="globalservice.user">
-            <a class="nav-link" routerLink="/user-panel" placeholder="USERNAME" >{{globalservice.user.firstName}}</a>
+          <li *ngIf="globalservice.user && globalservice.user.firstName">
+            <a class="nav-link" routerLink="/user-panel">{{globalservice.user.firstName}}</a>
+          </li>
+          <li *ngIf="globalservice.user && !globalservice.user.firstName">
+            <a class="nav-link" routerLink="/user-panel">USERNAME</a>
           </li>
           <li *ngIf="!globalservice.user">
             <a class="nav-link" routerLink="login">LOG IN</a>
           </li>
           <li *ngIf="!globalservice.user">
-            <a class="nav-link" routerLink="register" >REGISTER</a>
+            <a class="nav-link" routerLink="register">REGISTER</a>
           </li>
           <li *ngIf="globalservice.user && globalservice.user.role === 'admin'">
             <a class="nav-link" routerLink="admin/admin-panel">ADMIN PAGE</a>
