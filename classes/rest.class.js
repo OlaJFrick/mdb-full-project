@@ -63,11 +63,11 @@ module.exports = class Rest {
     }
 
     // CHECK USER RIGHTS
-    // if (!this.checkUserRights()) {
-    //   this.res.status(403);
-    //   this.res.json({ Error: 'Not allowed!' });
-    //   return;
-    // }
+    if (!this.checkUserRights()) {
+      this.res.status(403);
+      this.res.json({ Error: 'Not allowed!' });
+      return;
+    }
 
     // CALL THE CORRECT METHOD.
     // 'METHOD' COMES FROM 'ANALYZEURL'
@@ -102,31 +102,31 @@ module.exports = class Rest {
     this.urlQuery = this.req.query;
   }
 
-  // checkUserRights() {
-  //   let ok = false;
-  //   let role = this.req.session.user && this.req.session.user.role;
-  //   if (!role) { role = 'visitor'; }
+  checkUserRights() {
+    let ok = false;
+    let role = this.req.session.user && this.req.session.user.role;
+    if (!role) { role = 'visitor'; }
 
-  //   let rights = userRights[role];
+    let rights = userRights[role];
 
-  //   if (rights[this.tableWithoutBackticks]) {
-  //     let okMethods = rights[this.tableWithoutBackticks];
+    if (rights[this.tableWithoutBackticks]) {
+      let okMethods = rights[this.tableWithoutBackticks];
 
-  //     if (okMethods.constructor !== Array) {
-  //       // CONVERT TO ARRAY
-  //       okMethods = [okMethods];
-  //     }
+      if (okMethods.constructor !== Array) {
+        // CONVERT TO ARRAY
+        okMethods = [okMethods];
+      }
 
-  //     for (let okMethod of okMethods) {
-  //       if (okMethod == this.method) {
-  //         ok = true;
-  //       }
-  //     }
+      for (let okMethod of okMethods) {
+        if (okMethod == this.method) {
+          ok = true;
+        }
+      }
 
-  //   }
+    }
 
-  //   return ok;
-  // }
+    return ok;
+  }
 
   /* AUTOMATICALLY RETURNS THE NEWEST VERSION OF EVERYTHING */
   selectVidify() {
@@ -423,7 +423,7 @@ module.exports = class Rest {
 
     // RETURN RESULT
 
-    if (this.tableWithoutBackticks == 'users') {
+    if (this.tableWithoutBackticks == 'users' && this.id == this.req.session.user.id) {
       let userFromDb = await this.query('SELECT * FROM users WHERE id = ?', [this.id]);
       userFromDb = userFromDb[0];
       delete userFromDb.password;
@@ -443,13 +443,6 @@ module.exports = class Rest {
     let checkUsers = await this.query('SELECT * FROM users WHERE warnings = 3 && role != "banned"');
 
     checkUsers.length != 0 ? this.deleteUserPosts(checkUsers) : console.log('Currently no users to ban');
-
-    if (checkUsers.constructor === Error) {
-      return;
-    }
-
-    this.next();
-    return;
   }
 
   async deleteUserPosts(foundUser) {
