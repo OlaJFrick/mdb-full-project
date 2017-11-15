@@ -1,9 +1,10 @@
 <div class="container mb-3">
+
+  <!-- Computer view -->
   <div class="row d-none d-lg-flex">
     <div class="offset-2 col-4">
       <app-search class="search"></app-search>
     </div>
-    <!--<div class="col-4" *ngFor="let item of mySqlData">-->
     <div class="col-5">
       <div class="user-screen">
         <ul>
@@ -54,23 +55,21 @@
     </div>
   </div>
 
+  <!-- Tablet view -->
   <div class="row d-lg-none d-xl-none d-flex">
     <div class="col-2">
       <a class="hamburger">
         <i (click)="toggleMenu()" class="fa fa-bars"></i>
       </a>
     </div>
-    <div class="col-5">
+    <div class="col-4">
       <a class="navbar-brand" routerLink="/"><img class="main-logo" routerLink="/" src="../../../assets/images/mdb-logo.png"></a>
     </div>
-    <div class="col-5">
+    <div class="col-6">
       <app-search class="search"></app-search>
     </div>
   </div>
 </div>
 
-<!--<button (click)="toggleMenu()" class="hamburger">
-  <span>toggle menu</span>
-</button>-->
-
+<!-- Selector for the sidebar toggle -->
 <app-sidebar [@slideInOut]="menuState" (close)="toggleMenu($event)"></app-sidebar>
