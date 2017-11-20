@@ -19,10 +19,10 @@
             <p>Image path: {{activity.imagePath}}</p>
 
 
-            <button *ngIf="user.warnings < 3 && user.role !== 'admin'" type="button" class="btn btn-danger"
-                    (click)="warnUser(user.id, user.warnings)">WARN USER</button>
+            <button *ngIf="activity.user.warnings < 3 && activity.user.role !== 'admin'" type="button" class="btn btn-danger"
+                    (click)="warnUser(activity.changerId, activity.user.warnings)">WARN USER</button>
 
-            <button *ngIf="user.warnings == 3 || user.role == 'admin'" type="button"
+            <button *ngIf="activity.user.warnings == 3 || activity.user.role == 'admin'" type="button"
                     class="btn btn-danger" disabled>WARN USER</button>
 
             <hr>

@@ -18,8 +18,8 @@ export class LoginComponent {
   statusMsg;
 
   credentials = {
-    email: 'andy.murray@tennis.com',
-    password: '123'
+    email: 'admin@mdb.com',
+    password: 'amy123'
   }
 
   constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) {
