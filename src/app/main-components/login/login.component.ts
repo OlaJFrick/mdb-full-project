@@ -15,10 +15,11 @@ import { GlobalService } from '../../services/global.service';
 })
 
 export class LoginComponent {
+  statusMsg;
 
   credentials = {
-    email: 'admin@mdb.com',
-    password: 'amy123'
+    email: 'andy.murray@tennis.com',
+    password: '123'
   }
 
   constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) {
@@ -40,6 +41,8 @@ export class LoginComponent {
       }
 
       this.globalservice.user = res.json().user;
+      this.statusMsg = res.json().status;
+
     }, err => {
       console.log('login error: ');
     });
