@@ -67,8 +67,27 @@
               <img class="img-fluid img-thumbnail clickable" src="../../assets/images/persons/{{director.directorImage}}" routerLink="/person-page/{{director.personId}}">
             </div>
             <div class="col">
-              <p class="list-inline-item" routerLink="/person-page/{{director.personId}}">{{director.directorName}}</p>
-              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removePerson(director.personId, 'directorId', 'films_directors')"></fa>
+              <p class="list-inline-item" routerLink="/person-page/{{director.personId}}"><strong>{{director.directorName}}</strong></p>
+              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(d)"></fa>
+
+              <!-- Modal for removing directors -->
+              <ng-template #d let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to remove <strong>{{director.directorName}}</strong> from <strong>{{film.title}}</strong>?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" (click)="removePerson(director.personId, 'directorId', 'films_directors')" (click)="c('Close click')">Remove</button>
+                  <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+                </div>
+              </ng-template>
+              <!-- /Modal for removing directors -->
+
             </div>
           </div>
         </div>
@@ -109,8 +128,27 @@
               as
               <span *ngIf="!globalservice.user">{{actor.character}}</span>
               <inline-editor *ngIf="globalservice.user" class="list-inline-item" type="text" [(ngModel)]="actor.character" (onSave)="updateCharacter($event, actor.actorId, actor.isMainCharacter)"></inline-editor>
-              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removePerson(actor.actorId, 'actorId', 'films_actors')">
+              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(a)">
               </fa>
+
+              <!-- Modal for removing actors -->
+              <ng-template #a let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                  <h4 class="modal-title"></h4>
+                  <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to remove <strong>{{actor.name}}({{actor.character}})</strong> from <strong>{{film.title}}</strong>?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" (click)="removePerson(actor.actorId, 'actorId', 'films_actors')" (click)="c('Close click')">Remove</button>
+                  <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+                </div>
+              </ng-template>
+              <!-- /Modal for removing actors -->
+
             </div>
           </div>
         </div>

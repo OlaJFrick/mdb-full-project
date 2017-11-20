@@ -5,6 +5,7 @@ import { GlobalService } from '../../services/global.service';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { StarRatingComponent } from '../../reusable-components/star-rating/star-rating.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-film-page',
@@ -17,6 +18,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 
 export class FilmPageComponent implements OnInit {
+  closeResult: string;
+
   film: any = {};
   reviews: any;
   filmid: any;
@@ -36,7 +39,8 @@ export class FilmPageComponent implements OnInit {
   constructor(private http: Http,
     private restservice: RestService,
     private location: Location,
-    private globalservice: GlobalService) {
+    private globalservice: GlobalService,
+    private modalService: NgbModal) {
     this.film.imagePath = 'default.png';
   }
 
@@ -213,5 +217,31 @@ export class FilmPageComponent implements OnInit {
     }, err => {
       console.log('Error occured.');
     });
+  }
+
+  /*removeDirectorModal(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }*/
+
+  removeModal(d,a) {
+    this.modalService.open(d,a).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 }
