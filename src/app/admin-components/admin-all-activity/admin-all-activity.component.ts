@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RestService } from '../../services/rest.service';
 import { GlobalService } from '../../services/global.service';
+
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-admin-all-activity',
@@ -13,30 +16,77 @@ import { GlobalService } from '../../services/global.service';
 
 export class AdminAllActivityComponent implements OnInit {
   userData: any;
-  userActivity: any;
+  userActivity = [];
+
+  desc = true;
+  order = '';
+  limit = 10;
+  offset = 0;
+  interval;
 
   constructor(private restservice: RestService, private globalservice: GlobalService) { }
 
-  ngOnInit() {
-    this.loadUserActivity();
-    this.loadUsers();
+  async ngOnInit() {
+    await this.loadUsers();
+
+    this.setOrder('timeCreated');
+
+    this.interval = setInterval(this.onScroll.bind(this), 500);
   }
 
-  loadUsers() {
-    this.restservice.get('users').then(res => {
+  ngOnDestroy() {
+    clearInterval(this.interval);
+  }
+
+  onScroll() {
+    let doc = $(document);
+
+    let docHeight = doc.height();
+    let scroll = Math.round(doc.scrollTop());
+    let winHeight = $(window).height();
+
+    if (docHeight - scroll <= winHeight * 1.5) {
+      this.offset += this.limit;
+      this.loadUserActivity();
+    }
+  }
+
+  async loadUsers() {
+    return this.restservice.get('users').then(res => {
       this.userData = res.json();
     }, err => {
       console.log('Error occured');
     });
   }
 
-  loadUserActivity() {
-    this.restservice.get('admin_all_activity').then(res => {
-      this.userActivity = res.json();
+  async loadUserActivity() {
+    let order = this.order;
+    if (this.desc) {
+      order += '&desc=1';
+    }
+
+    return this.restservice.get('admin_all_activity?limit=' + this.limit + '&offset=' + this.offset + '&order_by=' + order).then(res => {
+      this.userActivity = this.userActivity.concat(res.json());
+      this.userActivity.forEach(a=>{
+        a.user = this.userData.find(u=>a.changerId == u.id);
+      });
     }, err => {
       console.log('loadUserActivity error!');
     });
   }
+
+  // getListData() {
+  //   let order = this.order;
+  //   if (this.desc) {
+  //     order += '&desc=1';
+  //   }
+
+  //   this.restservice.get('all_directors_list?limit=' + this.limit + '&offset=' + this.offset + '&order_by=' + order).then(data => {
+  //     this.mySqlData = this.mySqlData.concat(data.json());
+  //   }, err => {
+  //     console.log('Error occured.');
+  //   });
+  // }
 
   warnUser(changerId: number) {
     let body = {};
@@ -58,6 +108,17 @@ export class AdminAllActivityComponent implements OnInit {
     }, err => {
       console.log('hey');
     });
+  }
+
+  setOrder(order: string) {
+    if (this.order == order) {
+      this.desc = !this.desc;
+    }
+    this.order = order;
+    this.offset = 0;
+    this.userActivity = [];
+    console.log('setting order:', this.order, 'is desc:', this.desc)
+    this.loadUserActivity();
   }
 
 }

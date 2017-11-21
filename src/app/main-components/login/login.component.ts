@@ -15,6 +15,7 @@ import { GlobalService } from '../../services/global.service';
 })
 
 export class LoginComponent {
+  statusMsg;
 
   credentials = {
     email: 'admin@mdb.com',
@@ -40,6 +41,8 @@ export class LoginComponent {
       }
 
       this.globalservice.user = res.json().user;
+      this.statusMsg = res.json().status;
+
     }, err => {
       console.log('login error: ');
     });

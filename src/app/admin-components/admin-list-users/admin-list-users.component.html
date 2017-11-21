@@ -54,8 +54,15 @@
     </div>
 
     <div class="col-md-1">
-      <button type="button" class="btn btn-danger" *ngIf="user.role !== 'admin'"
+
+        <button *ngIf="user.warnings < 3 && user.role !== 'admin'" type="button" class="btn btn-danger"
                 (click)="warnUser(user.id, user.warnings)">WARN USER</button>
+
+        <button *ngIf="user.warnings == 3 || user.role == 'admin'" type="button"
+                class="btn btn-danger" disabled>WARN USER</button>
+
+
+
     </div>
   </div>
 

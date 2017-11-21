@@ -79,8 +79,15 @@ module.exports = class Login {
           let user = Object.assign({}, userFromDb);
           delete user.password;
 
+          if (user.role === 'banned') {
+            res.json({ user: false, status: 'You are banished for misbehaviour. Sorry! '});
+            user = false;
+          } else {
+            res.json({ user: user, status: 'logged in' });
+          }
+
           req.session.user = user;
-          res.json({ user: user, status: 'logged in' });
+
           return;
         }
       }
