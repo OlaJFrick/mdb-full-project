@@ -192,7 +192,7 @@
       <div *ngIf="film.youtubeUrl" class="embed-responsive embed-responsive-16by9 mb-2">
         <iframe width="560" height="315" [src]="film.youtubeUrl | safeurl" frameborder="0" allowfullscreen></iframe>
       </div>
-      <p>
+      <p class="linkBox">
         <inline-editor *ngIf="globalservice.user" type="text" empty="Add a Youtube URL" [(ngModel)]="film.youtubeUrl" (onSave)="saveEditable($event, 'films', 'youtubeUrl')"></inline-editor>
       </p>
       <h6>REVIEWS:</h6>
