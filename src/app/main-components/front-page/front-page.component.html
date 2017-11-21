@@ -8,17 +8,18 @@
     </div>
     <div class="offset-1 col-10 offset-md-1 col-md-4 col-lg-3 d-flex align-items-center">
       <div>
-        <img class="img-fluid pb-4" src="/assets/images/whole-logo.svg">
+        <img class="img-fluid pb-5" src="/assets/images/whole-logo.svg">
         <p class="text-center text-sm-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ipsum ex natus itaque adipisci esse quidem veritatis recusandae ea ut quos cumque, maxime in alias perspiciatis cupiditate repellendus suscipit ad quas assumenda accusamus animi numquam delectus. </p>
       </div>
     </div>
   </div>
 
 </div>
-<div class="container-fluid activity my-5">
+
+<div class="container-fluid activity my-5 py-5">
   <div class="row">
     <div class="offset-md-1 offset-lg-2 col-md-10 d-inline-flex align-items-baseline pt-5">
-      <h6 class="headliner pr-4"><span class="underliner">Latest Additions</span></h6>
+      <h6 class="headliner pr-5"><span class="underliner">Latest Additions</span></h6>
       <p class="sub-linker" routerLink="lists/list-all-films">View All Movies > </p>
     </div>
   </div>
@@ -37,44 +38,39 @@
     </div>
   </div>
 </div>
-<!--   <div class="row">
-    <div class="col-10 col-md-6 mx-auto">
-      <img class="img-fluid" src="/assets/images/mdb-big-logo.png">
-    </div>
-  </div>
 
+<div class="container-fluid my-5">
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-      <div class="row">
-        <div class="col">
-          <h5>LATEST ADDITIONS</h5>
-          <hr>
-        </div>
-      </div>
-      <div class="row">
-        <div *ngFor="let item of latestfilms" class="col-12 col-md">
-          <figure class="figure">
-            <img class="img-fluid clickable" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
-            <figcaption class="figure-caption">{{item.title}} ({{item.year}})</figcaption>
-          </figure>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <p class="h5">TOP 5 RATED FILMS</p>
-          <hr>
-        </div>
-      </div>
-      <div class="row">
-        <div *ngFor="let item of topfilms" class="col-12 col-md">
-          <figure class="figure">
-            <img class="img-fluid mdb-image" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
-            <figcaption class="figure-caption">{{item.title}} ({{item.year}})</figcaption>
-            <app-star-rating [rating]="item.avgRating"></app-star-rating>
-            <figcaption class="figure-caption">Rating: {{item.avgRating}}</figcaption>
-          </figure>
-        </div>
-      </div>
+    <div class="offset-md-4 col-md-6 d-inline-flex align-items-baseline pt-5">
+      <h6 class="headliner pr-5"><span class="underliner">Popular Movies</span></h6>
+      <p class="sub-linker" routerLink="lists/list-top-10">View all Top 10 Lists > </p>
     </div>
-  </div> -->
+
+  </div>
+  <div class="row">
+    <table  class="offset-md-4 col-md-6">
+      <tbody *ngFor="let item of topfilms, let i = index" class="table my-4">
+        <tr>
+          <td class="popular-table">
+            <div class="circular-portrait">
+              <img src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"/>
+            </div>
+          </td>
+          <td class="list-inline-item popular-table">
+            <div class=" title-p" routerLink="/film-page/{{item.id}}"><strong>{{i + 1}}. </strong>{{item.title}}</div>
+            <div class="d-inline-flex align-items-center mini-p">
+              <span>Avg Rating:</span>
+            <app-star-rating [rating]="item.avgRating">
+            </app-star-rating>
+            <span class="pl-2">({{item.avgRating | number: '1.2-2'}})</span>
+            </div>
+            <div class="inline mini-p">
+              <span>Year: {{item.year}}</span>
+            </div>
+          </td>
+          <td>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>

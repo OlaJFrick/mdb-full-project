@@ -2,13 +2,14 @@
 <div class="container-fluid pt-2 pt-sm-5">
   <div class="row">
 
-    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4">
+    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4 flex-last flex-md-first">
       <img class="img-fluid hidden-sm-down" src="/assets/images/films/{{film.imagePath}}">
+      <app-upload-picture [film]="film"></app-upload-picture>
 
       <!-- review content -->
       <div class="review-area my-4 p-4">
         <div class="pt-2 mb-3">
-          <h6 class="headliner pr-4"><span class="underliner">User Reviews</span></h6>
+          <h6 class="headliner pr-5"><span class="underliner">User Reviews</span></h6>
         </div>
         <p>{{reviewstatus}}</p>
         <div class="inside-reviews p-3 mt-4" *ngFor="let review of reviews">
@@ -19,7 +20,7 @@
           <p class="r-text mt-3" *ngIf="review.textbody">
             {{review.textbody}}
           </p>
-          <p *ngIf="review.textbody" class="mb-2 r-author" title="Source Title">Reviewed by <span class="font-weight-bold">{{review.username}}
+          <p *ngIf="review.textbody" class="r-author" title="Source Title">Reviewed by <span class="font-weight-bold">{{review.username}}
             </span></p>
           <p class="mt-2 r-author" *ngIf="!review.textbody"><small>Rating Only</small> by {{review.username}}
           </p>
@@ -54,7 +55,7 @@
 
 
 
-    <div class="offset-xs-1 col-xs-10 offset-xl-1 col-md-5 col-lg-4 col-xl-3">
+    <div class="offset-xs-1 col-xs-10 offset-xl-1 col-md-5 col-lg-4 col-xl-3 mt-4 mt-sm-0">
       <h1 class="app-headline">
         <span *ngIf="!globalservice.user">{{film.title}}</span>
           <inline-editor *ngIf="globalservice.user" type="text" empty="Add a title" [(ngModel)]="film.title" (onSave)="saveEditable($event, 'films', 'title')"></inline-editor>
@@ -112,15 +113,17 @@
         <h6 class="headliner pr-4"><span class="underliner-colored">DIRECTED BY</span></h6>
         <p *ngIf="globalservice.user" class="sub-linker" (click)="addDirectorForm = !addDirectorForm">Add a Director > </p>
       </div>
+
       <form *ngIf="addDirectorForm" #d="ngForm" (ngSubmit)="submitPerson(d.value, 'directorId', 'films_directors')" class="bg-secondary p-2 mb-2">
         <div class="add-content-form">
           <div class="form-group">
-            <p>Select a person from the database</p>
+            <span>Select a person from the database</span>
+
             <select class="form-control" id="directorId" name="directorId" ngModel>
               <option *ngFor="let person of allPersons" value="{{person.id}}">{{person.firstName}} {{person.lastName}}
               </option>
             </select>
-            <button type="button" class="btn btn-primary mt-2" routerLink="/add-person/d/{{filmid}}">
+            <button type="button" class="btn-primary btn my-2" routerLink="/add-person/d/{{filmid}}">
               Or add new person
             </button>
           </div>
@@ -128,6 +131,7 @@
           <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="addDirectorForm= !addDirectorForm">Cancel</button>
         </div>
       </form>
+
       <table class="col">
         <tbody *ngFor="let director of directorData" class="table my-4">
           <tr>
@@ -162,7 +166,7 @@
       </table>
       <!--  Actor area -->
       <div class="d-inline-flex align-items-baseline pt-5 mb-3">
-        <h6 class="headliner pr-4"><span class="underliner-colored">Starring</span></h6>
+        <h6 class="headliner pr-5"><span class="underliner-colored">Starring</span></h6>
         <p *ngIf="globalservice.user" class="sub-linker" (click)="addActorForm = !addActorForm">Add an Actor > </p>
       </div>
       <form *ngIf="addActorForm" #a="ngForm" (ngSubmit)="submitPerson(a.value, 'actorId', 'films_actors')" class="bg-secondary p-2 mb-2">
@@ -229,7 +233,7 @@
       </table>
       <!-- Trailer -->
       <div class="pt-5 mb-3">
-        <h6 class="headliner pr-4"><span class="underliner-colored">Official Trailer</span></h6>
+        <h6 class="headliner pr-5"><span class="underliner-colored">Official Trailer</span></h6>
       </div>
       <div *ngIf="film.youtubeUrl" class="embed-responsive embed-responsive-16by9 mb-2">
         <iframe width="560" height="315" [src]="film.youtubeUrl | safeurl" frameborder="0" allowfullscreen></iframe>
