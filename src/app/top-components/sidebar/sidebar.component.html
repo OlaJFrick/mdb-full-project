@@ -3,20 +3,15 @@
 		<li>
 			<div class="row">
 				<div (click)="toggleMenu()" class="offset-9 col-1">
-			  	<a id="sidebar-toggle">
+			  	<h6 id="sidebar-toggle">
 						<i class="fa fa-times"></i>
-					</a>
+					</h6>
 	  		</div>
 	  	</div>
 	  	<div *ngIf="globalservice.user" class="row">
 		  	<div class="col-12">
 		  		<div class="user-screen">
 		        <ul>
-		          <li>
-		            <a class="navbar-brand">
-		              <img class="img-fluid" src="https://www.communitylandtrust.ca/wp-content/uploads/2015/10/placeholder.png"/>
-		            </a>
-		          </li>
 		          <li>
 		            <a (click)="toggleMenu()" class="nav-link" routerLink="/user-panel"><strong>{{globalservice.user.firstName}}</strong></a>
 		          </li>
@@ -26,38 +21,38 @@
 	    </div>
 	  </li>
 	  <li>
-	  	<a (click)="toggleMenu()" routerLink="lists/list-all-films">All films</a>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-all-films">All films</h6>
 	  </li>
 	  <li>
-	  	<a (click)="toggleMenu()" routerLink="lists/list-all-actors">All Actors</a>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-all-actors">All Actors</h6>
 	  </li>
 	  <li>
-	  	<a (click)="toggleMenu()" routerLink="lists/list-all-directors">All Directors</a>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-all-directors">All Directors</h6>
 	  </li>
 	  <li>
-	  	<a (click)="toggleMenu()" routerLink="lists/list-top-10">Top 10</a>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-top-10">Top 10</h6>
 	  </li>
 	  <li>
-	  	<a (click)="toggleMenu()" routerLink="lists/list-latest-reviews">Latest Reviews</a>
+	  	<h6 (click)="toggleMenu()" routerLink="lists/list-latest-reviews">Latest Reviews</h6>
 	  </li>
 
-	  <div class="navLine"></div>
+	 <div class="line-break"></div>
 
 	  <li *ngIf="globalservice.user && globalservice.user.role === 'admin'">
-      <a (click)="toggleMenu()" routerLink="admin/admin-panel">ADMIN PAGE</a>
+      <h6 (click)="toggleMenu()" routerLink="admin/admin-panel">Admin Page</h6>
     </li>
 
 	  <!--<li *ngIf="globalservice.user">
 	  	<a (click)="toggleMenu()" routerLink="/user-panel">EDIT SETTINGS</a>
 		</li>-->
 		<li *ngIf="globalservice.user">
-      <a (click)="toggleMenu()" (click)="sidebar.logout()">LOG OUT</a>
+      <h6 (click)="toggleMenu()" (click)="sidebar.logout()">Log Out</h6>
     </li>
 		<li *ngIf="!globalservice.user">
-	  	<a (click)="toggleMenu()" routerLink="login">LOGIN</a>
+	  	<a (click)="toggleMenu()" routerLink="login">Log In</a>
 		</li>
 		<li *ngIf="!globalservice.user">
-	  	<a (click)="toggleMenu()" routerLink="register">REGISTER</a>
+	  	<a (click)="toggleMenu()" routerLink="register">Register</a>
 		</li>
 	</ul>
 </div>

@@ -1,3 +1,10 @@
-// .big-logo-content {
-//   margin: 0 auto;
-// }
+@import '../../../styles.scss';
+
+.activity {
+  background: $cloud;
+
+  .film-img {
+    border: 10px solid $white;
+    max-height: 270px;
+  }
+}

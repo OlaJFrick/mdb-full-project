@@ -1,9 +1,9 @@
 <div class="searchArea">
-    <input type="text" class="form-control" placeholder="Search" (input)="onKey($event)" (blur)="onBlur()" (focus)="onFocus()">
+    <input type="text" class="form-control" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" (input)="onKey($event)" (blur)="onBlur()" (focus)="onFocus()">
     <div class="searchDropdown" [ngClass]="{'d-none': hidden}" (blur)="onBlur()" (mousedown)="onFocus()">
       <div *ngIf="hasResults" class="container-fluid py-2">
         <section *ngIf="actors.length">
-          <h4>Actors</h4>
+          <h6>Actors</h6>
           <a *ngFor="let item of actors" class="row align-items-center" href="/person-page/{{item.id}}">
             <div class="col-2">
               <div class="img-wrapper">
@@ -16,7 +16,7 @@
           </a>
         </section>
         <section *ngIf="directors.length">
-          <h4>Directors</h4>
+          <h6>Directors</h6>
           <a *ngFor="let item of directors" class="row align-items-center" href="/person-page/{{item.id}}">
             <div class="col-2">
               <div class="img-wrapper">

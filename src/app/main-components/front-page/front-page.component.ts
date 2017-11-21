@@ -25,7 +25,7 @@ export class FrontPageComponent implements OnInit {
       console.log('Error occured.');
     });
 
-    this.restservice.get('current_films?limit=5&order_by=timeCreated&desc=1').then(data => {
+    this.restservice.get('current_films?limit=4&order_by=timeCreated&desc=1').then(data => {
       this.latestfilms = data.json();
     }, err => {
       console.log('Error occured.');

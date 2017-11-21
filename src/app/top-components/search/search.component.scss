@@ -1,7 +1,23 @@
-.searchArea{
-  position: relative;
+@import '../../../styles.scss';
 
-  .searchDropdown{
+.searchArea {
+  position: relative;
+  color: $soft-grey;
+
+  input {
+    background-color: $cloud;
+    border: none;
+    font-size: 13px;
+    padding: 16px;
+  }
+
+  input,
+  select,
+  textarea {
+    color: $soft-grey;
+  }
+
+  .searchDropdown {
     position: absolute;
     top: 100%;
     left: 0;
@@ -20,17 +36,32 @@
     section {
       margin-bottom: 1rem;
 
-      &:last-child { margin-bottom: 0; }
+      &:last-child {
+        margin-bottom: 0;
+      }
 
-      p { margin-bottom: 0; }
+      p {
+        margin-bottom: 0;
+      }
 
       .img-wrapper {
         height: 60px;
         text-align: center;
         margin: 5px 0;
 
-        img { height: 100%; }
+        img {
+          height: 100%;
+        }
       }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .searchArea {
+    input {
+      font-size: 15px;
+      padding: 16px 34px;
     }
   }
 }

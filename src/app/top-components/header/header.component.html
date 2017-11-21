@@ -1,73 +1,65 @@
-<div class="container mb-3">
+<div class="container-fluid">
 
-  <!-- Computer view -->
-  <div class="row d-none d-lg-flex">
-    <div class="offset-2 col-4">
+  <div class="row hidden-sm-down mt-5 mb-3 desktop-navigation">
+    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-5 d-flex justify-content-start align-items-center">
+      <img class="img-fluid logo-sm pr-3" routerLink="/" src="/assets/images/mdb-logo.png">
       <app-search class="search"></app-search>
     </div>
-    <div class="col-5">
-      <div class="user-screen">
-        <ul>
-          <li *ngIf="globalservice.user && globalservice.user.firstName">
-            <a class="nav-link" routerLink="/user-panel">{{globalservice.user.firstName}}</a>
-          </li>
-          <li *ngIf="globalservice.user && !globalservice.user.firstName">
-            <a class="nav-link" routerLink="/user-panel">USERNAME</a>
-          </li>
-          <li *ngIf="!globalservice.user">
-            <a class="nav-link" routerLink="login">LOG IN</a>
-          </li>
-          <li *ngIf="!globalservice.user">
-            <a class="nav-link" routerLink="register">REGISTER</a>
-          </li>
-          <li *ngIf="globalservice.user && globalservice.user.role === 'admin'">
-            <a class="nav-link" routerLink="admin/admin-panel">ADMIN PAGE</a>
-          </li>
-          <li *ngIf="globalservice.user">
-            <a class="nav-link" (click)="header.logout()">LOG OUT</a>
-          </li>
-        </ul>
+
+    <div class="col-md-5 col-lg-4 col-xl-3">
+      <div class="user-screen d-flex justify-content-center">
+        <div *ngIf="globalservice.user && globalservice.user.firstName">
+          <span class="user"><a class="nav-link" routerLink="/user-panel">{{globalservice.user.firstName}}</a></span>
+        </div>
+        <div *ngIf="globalservice.user && !globalservice.user.firstName">
+          <a class="nav-link" routerLink="/user-panel">Username</a>
+        </div>
+        <div *ngIf="!globalservice.user">
+          <a class="nav-link" routerLink="login">Log In</a>
+        </div>
+        <div *ngIf="!globalservice.user">
+          <a class="nav-link" routerLink="register">Register</a>
+        </div>
+        <div *ngIf="globalservice.user && globalservice.user.role === 'admin'">
+          <a class="nav-link" routerLink="admin/admin-panel">Admin Page</a>
+        </div>
+        <div *ngIf="globalservice.user">
+          <a class="nav-link" (click)="header.logout()">Log Out</a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row d-none d-lg-flex">
-    <div class="offset-1 col-9">
-      <nav class="navbar navbar-toggleable navbar-light header-styling">
-        <a class="navbar-brand" routerLink="/"><img class="main-logo" routerLink="/" src="../../../assets/images/mdb-logo.png"></a>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item header-link">
-            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-films">All Movies</button>
-          </li>
-          <li class="nav-item header-link">
-            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-actors">All Actors</button>
-          </li>
-          <li class="nav-item header-link">
-            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-all-directors">All Directors</button>
-          </li>
-          <li class="nav-item header-link">
-            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-top-10">Top 10</button>
-          </li>
-          <li class="nav-item header-link">
-            <button type="button" class="btn btn-primary nav-link" routerLink="lists/list-latest-reviews">Latest Reviews</button>
-          </li>
-        </ul>
-      </nav>
+
+  <div class="row hidden-sm-down mt-5">
+    <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8 d-flex justify-content-between">
+      <h4 class="navigation-sub" routerLink="lists/list-all-films">All Movies</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-all-directors">All Directors</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-all-actors">All Actors</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-latest-reviews">Latest Reviews</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-top-10">Top 10s</h4>
     </div>
   </div>
 
-  <!-- Tablet view -->
-  <div class="row d-lg-none d-xl-none d-flex">
-    <div class="col-2">
-      <a class="hamburger">
-        <i (click)="toggleMenu()" class="fa fa-bars"></i>
-      </a>
+  <div class="row hidden-sm-down mt-3">
+    <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8 d-flex justify-content-between">
+      <div class="line-break">
+      </div>
     </div>
-    <div class="col-4">
-      <a class="navbar-brand" routerLink="/"><img class="main-logo" routerLink="/" src="../../../assets/images/mdb-logo.png"></a>
+  </div>
+
+  <div class="row hidden-md-up mt-3 mb-3">
+    <div class="col-12 mobile-navigation d-flex justify-content-between align-items-center">
+      <img class="img-fluid logo-mini pl-3" routerLink="/" src="/assets/images/mdb-logo.svg">
+      <img class="img-fluid title-mini pr-3" routerLink="/" src="/assets/images/mdb-title.svg">
+      <img class="img-fluid hamburger pr-3"
+        (click)="toggleMenu()"
+        routerLink="/"
+        src="/assets/images/hamburger.svg">
     </div>
-    <div class="col-6">
-      <app-search class="search"></app-search>
-    </div>
+  </div>
+
+  <div class="row hidden-md-up">
+        <app-search class="search"></app-search>
   </div>
 </div>
 
