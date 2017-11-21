@@ -28,7 +28,7 @@ export class FilmPageComponent implements OnInit {
   reviewForm = false;
   directorData: any;
   actorData: any;
-  highlight = 'row align-items-center mb-3 bg-secondary py-3 rounded';
+  highlight = 'row align-items-center bg-secondary rounded';
   editableSelect: number;
   genreSelectOptions = [];
   allPersons: any;

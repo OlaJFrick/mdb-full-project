@@ -1,8 +1,9 @@
-$default-font: 'Open Sans', sans-serif;
-$headline-font: 'Source Sans Pro', sans-serif;
+$default-font: 'Open Sans',
+sans-serif;
+$headline-font: 'Source Sans Pro',
+sans-serif;
 
 //==  Colors
-
 $black: #000000;
 $dark-grey: #606060;
 $mid-grey: #E6E4E4;
@@ -14,8 +15,29 @@ $beige: #EEEFE1;
 $cloud: #EDEBEB;
 $white: #FAFAFA;
 
-// //== Mixins
 
+.btn-primary {
+  background: $blue;
+  border: none;
+}
+
+
+.btn-secondary {
+  background: $dark-grey;
+  color: $white;
+  border: none;
+}
+
+.btn-danger {
+  background: $red;
+  border: none;
+}
+
+.bg-secondary {
+  background: $light-grey;
+}
+
+// //== Mixins
 @mixin ease-transition() {
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
@@ -32,13 +54,18 @@ body {
   margin: 0;
 }
 
-a, img, .sub-linker {
-    border: 0;
-    outline: none;
+a,
+img,
+.sub-linker,
+.title-p {
+  border: 0;
+  outline: none;
 }
 
 
-h1, .display-4, h6  {
+h1,
+.display-4,
+h6 {
   outline: none;
   color: $black;
   font-size: 30px;
@@ -52,7 +79,6 @@ h4 {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 17px;
-
 }
 
 h6 {
@@ -64,13 +90,18 @@ p {
   line-height: 22px;
 }
 
+.title-p {
+  font-size: 15px;
+  line-height: 24px;
+}
+
 a {
   color: $dark-grey;
 }
 
 .line-break {
   width: 100%;
-  height:2px;
+  height: 2px;
   background: $black;
 }
 
@@ -95,6 +126,12 @@ a {
   display: inline-block;
 }
 
+.underliner-colored {
+  border-bottom: 2px solid $blue;
+  padding-bottom: 6px;
+  display: inline-block;
+}
+
 .fat-title {
   outline: none;
   color: $black;
@@ -104,27 +141,66 @@ a {
   padding: 4px;
 
   span {
-    background: $white;
-    // margin-top: -40px;
+    background: $white; // margin-top: -40px;
     padding: 0 6px;
     font-size: 16px;
   }
 }
 
-.sub-linker {
+.sub-linker,
+.title-p,
+.clickable {
   cursor: pointer;
 }
 
+.sub-linker:hover {
+  text-decoration: underline;
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 2px solid $soft-grey;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.add-content-form {
+  padding: 0.5em;
+  padding: 4em 1em;
+}
+
+.crop-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background: #eee no-repeat center;
+    background-size: 80px 80px;
+
+    .image {
+      background-size: 80px 80px;
+    }
+}
+
+.circular-portrait {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.circular-portrait img {
+  width: 100%;
+  height: auto;
+}
+
+
+
 
 // //==  Fonts
-
 // // $fancy-font: 'Raleway', sans-serif;
-
 // $headline-font: 'Cabin', sans-serif;
 // $default-font: 'Source Sans Pro', sans-serif;
-
-
-
 // .centered-background {
 //   background-position: center;
 //   -webkit-background-size: cover;
@@ -132,15 +208,12 @@ a {
 //   -o-background-size: cover;
 //   background-size: cover;
 // }
-
 // .box-shadow {
-// 	--webkit-box-shadow: 4px 0px 20px -7px rgba(115,15,15,1);
-// 	-moz-box-shadow: 4px 0px 20px -7px rgba(115,15,15,1);
-// 	box-shadow: 4px 0px 20px -7px rgba(115,15,15,1);
+//  --webkit-box-shadow: 4px 0px 20px -7px rgba(115,15,15,1);
+//  -moz-box-shadow: 4px 0px 20px -7px rgba(115,15,15,1);
+//  box-shadow: 4px 0px 20px -7px rgba(115,15,15,1);
 // }
-
 // //== Global
-
 // body {
 //   margin-top: 10px;
 //   font-family: $default-font;
@@ -149,7 +222,6 @@ a {
 //   background: $color-white;
 //   color: $color-black;
 // }
-
 // // h6 {
 // //   font-family: $headline-font;
 // //   text-transform: uppercase;
@@ -159,19 +231,15 @@ a {
 // //   background-color: $color-black;
 // //   padding: 4px 10px;
 // // }
-
 // // h1 {
 // //   font-family: $headline-font;
 // //   text-transform: uppercase;
 // //   font-weight: 700;
 // //   font-size: 34px;
 // // }
-
 // // .app-headline {
 // //   font-size: 34px;
-
 // // }
-
 // // hr {
 // //   clear:both;
 // //   display:block;
@@ -179,12 +247,9 @@ a {
 // //   // border: 1px solid black;
 // //   border-top: 4px solid $color-black;
 // // }
-
 // p, em {
 //   font-size: 15px;
 // }
-
-
 // // a.c-inline-editor {
 // //   // font-family: $headline-font;
 // //   // text-transform: uppercase;
@@ -196,8 +261,6 @@ a {
 // //   // background: #f1f1f1;
 // //   // font-size: 15px;
 // // }
-
-
 // // .c-inline-editor.editable-empty,
 // // .c-inline-editor.editable-empty:hover,
 // // .c-inline-editor.editable-empty:focus,
@@ -208,98 +271,69 @@ a {
 // //   color: #DD1144;
 // //   text-decoration: none;
 // // }
-
 // // .c-inline-editor.inlineEditForm {
 // //   display: inline-block;
 // //   white-space: nowrap;
 // //   margin: 0;
 // // }
-
 // // #inlineEditWrapper {
 // //   display: inline-block;
 // // }
-
 // // .c-inline-editor.inlineEditForm input,
 // // .c-inline-editor.select {
 // //   width: auto;
 // //   display: inline;
 // // }
-
 // // .c-inline-editor.inline-editor-button-group {
 // //   display: inline-block;
 // // }
-
 // // .c-inline-editor.editInvalid {
 // //   color: #a94442;
 // //   margin-bottom: 0;
 // // }
-
 // // .c-inline-editor.error {
 // //   border-color: #a94442;
 // // }
-
 // // [hidden].c-inline-editor {
 // //   display: none;
 // // }
-
 // // .form-inline .form-control {
 // //     display: inline-block;
 // //     width: 500px;
 // //     vertical-align: middle;
 // // }
-
-
-
 // a {
 //   cursor: pointer;
 // }
-
 // button {
 //   cursor: pointer;
 // }
-
 // .clickable {
 //   cursor: pointer;
 // }
-
 // // == Since I can't get bootstraps bg-secondary to work:
-
 // .bg-secondary {
 //   background: #eceeef;
 // }
-
-
-
 // .display-4 {
 //     font-size: 3.5rem;
 //     font-weight: 700;
 //     line-height: 1.1;
 //     text-transform: uppercase;
 // }
-
 // h6 {
 //   font-size: 1.1rem;
 //   font-weight: 700;
 //   line-height: 1.1;
 //   text-transform: uppercase;
 // }
-
 // .btn {
-
 //   font-weight: 700;
 //   text-transform: uppercase;
 //   line-height: 1.25;
 //   font-size: 0.8rem;
 // }
-
-
-
-
-
-
-
 // //== Editable Content (inline-editor)
-
 // a.c-inline-editor {
 //   text-decoration: none;
 //   color: #428bca;
@@ -308,8 +342,6 @@ a {
 //   line-height: 1.6;
 //   background: #f1f1f1;
 // }
-
-
 // .c-inline-editor.editable-empty,
 // .c-inline-editor.editable-empty:hover,
 // .c-inline-editor.editable-empty:focus,
@@ -320,46 +352,37 @@ a {
 //   color: #DD1144;
 //   text-decoration: none;
 // }
-
 // .c-inline-editor.inlineEditForm {
 //   display: inline-block;
 //   white-space: nowrap;
 //   margin: 0;
 // }
-
 // #inlineEditWrapper {
 //   display: inline-block;
 // }
-
 // .c-inline-editor.inlineEditForm input,
 // .c-inline-editor.select {
 //   width: auto;
 //   display: inline;
 // }
-
 // .c-inline-editor.inline-editor-button-group {
 //   display: inline-block;
 // }
-
 // .c-inline-editor.editInvalid {
 //   color: #a94442;
 //   margin-bottom: 0;
 // }
-
 // .c-inline-editor.error {
 //   border-color: #a94442;
 // }
-
 // [hidden].c-inline-editor {
 //   display: none;
 // }
-
 // .form-inline .form-control {
 //     display: inline-block;
 //     width: 500px;
 //     vertical-align: middle;
 // }
-
 // /* HR */
 // hr {
 //   clear:both;

@@ -1,3 +1,27 @@
+@import '../../../styles.scss';
+
+.review-area {
+  background: $light-grey;
+  .inside-reviews {
+    background: $white;
+    .date-format {
+      color: $blue;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .r-text {
+      font-size: 12px;
+    }
+
+    .r-author {
+      color: $black;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
+}
+
+
 .linkBox {
     -o-text-overflow: ellipsis;   /* Opera */
     text-overflow:    ellipsis;   /* IE, Safari (WebKit) */
