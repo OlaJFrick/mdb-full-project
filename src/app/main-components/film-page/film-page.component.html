@@ -15,7 +15,7 @@
       </span>
 
       <!-- review content -->
-      <div class="review-area mt-2 mb-4 p-4">
+      <div class="review-area mt-3 mb-4 p-4">
         <div class="pt-2 mb-3">
           <h6 class="headliner pr-5"><span class="underliner">User Reviews</span></h6>
         </div>
@@ -117,7 +117,7 @@
         <inline-editor *ngIf="globalservice.user" empty="Add a plot text" type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event, 'films', 'plot')"></inline-editor>
       </p>
       <!--  director area -->
-      <div class="d-inline-flex align-items-baseline pt-5 mb-3">
+      <div class="d-inline-flex align-items-baseline pt-4 mb-3">
         <h6 class="headliner pr-4"><span class="underliner-colored">DIRECTED BY</span></h6>
         <p *ngIf="globalservice.user" class="sub-linker" (click)="addDirectorForm = !addDirectorForm">Add a Director > </p>
       </div>
@@ -145,10 +145,10 @@
           <tr>
             <td>
               <div class="circular-portrait">
-                <img src="../../assets/images/persons/{{director.directorImage}}" />
+                <img src="../../assets/images/persons/{{director.directorImage}}" routerLink="/person-page/{{director.personId}}" />
               </div>
             </td>
-            <td class="text-left">
+            <td class="text-left align-middle">
               <div class="list-inline-item title-p pl-3" routerLink="/person-page/{{director.personId}}">{{director.directorName}}</div>
             </td>
             <td>
@@ -173,7 +173,7 @@
         </tbody>
       </table>
       <!--  Actor area -->
-      <div class="d-inline-flex align-items-baseline pt-5 mb-3">
+      <div class="d-inline-flex align-items-baseline pt-4 mb-3">
         <h6 class="headliner pr-5"><span class="underliner-colored">Starring</span></h6>
         <p *ngIf="globalservice.user" class="sub-linker" (click)="addActorForm = !addActorForm">Add an Actor > </p>
       </div>
@@ -206,21 +206,24 @@
       </form>
       <table class="col">
         <tbody *ngFor="let actor of actorData" class="table my-4">
-          <tr [ngClass]="actor.isMainCharacter ? 'bg-secondary' : ''">
-            <td>
-              <div class="circular-portrait">
-                <img class="clickable" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}" />
-              </div>
-            </td>
-            <td class="text-left">
-              <div class="list-inline-item title-p" [ngClass]="actor.isMainCharacter ? 'font-weight-bold' : ''" routerLink="/person-page/{{actor.actorId}}">{{actor.name}}</div>
-              <p>as <span *ngIf="!globalservice.user">{{actor.character}}</span>
-                <inline-editor *ngIf="globalservice.user" class="list-inline-item" type="text" [(ngModel)]="actor.character" (onSave)="updateCharacter($event, actor.actorId, actor.isMainCharacter)"></inline-editor>
-              </p>
-            </td>
-            <td>
-              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(a)"></fa>
-            </td>
+          <tr>
+              <td>
+                <div>
+                  <div [ngClass]="actor.isMainCharacter ? 'highlight-character' : 'circular-portrait'">
+                    <img class="clickable" src="../../assets/images/persons/{{actor.imagePath}}" routerLink="/person-page/{{actor.actorId}}" />
+                  </div>
+
+                </div>
+              </td>
+              <td class="text-left align-middle">
+                <div class="list-inline-item title-p" [ngClass]="actor.isMainCharacter ? 'font-weight-bold' : ''" routerLink="/person-page/{{actor.actorId}}">{{actor.name}}</div>
+                <p>as <span *ngIf="!globalservice.user">{{actor.character}}</span>
+                  <inline-editor *ngIf="globalservice.user" class="list-inline-item" type="text" [(ngModel)]="actor.character" (onSave)="updateCharacter($event, actor.actorId, actor.isMainCharacter)"></inline-editor>
+                </p>
+              </td>
+              <td class="align-middle">
+                <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(a)"></fa>
+              </td>
           </tr>
           <ng-template #a let-c="close" let-d="dismiss">
             <div class="modal-header">

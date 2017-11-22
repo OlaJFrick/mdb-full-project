@@ -151,6 +151,11 @@ a {
   text-decoration: underline;
 }
 
+.table td{
+  border-top: 0;
+  border-bottom: 2px solid #eceeef;
+}
+
 .table-bordered td, .table-bordered th {
   border: 2px solid $soft-grey;
   font-size: 12px;
@@ -162,27 +167,25 @@ a {
   padding: 1em 1em;
 }
 
-.crop-circle {
-  width: 80px;
-  height: 80px;
-  border-radius: 100%;
-  background: #eee no-repeat center;
-  background-size: 80px 80px;
-
-  .image {
-    background-size: 80px 80px;
-  }
-}
-
 .circular-portrait {
   position: relative;
   width: 80px;
   height: 80px;
   overflow: hidden;
   border-radius: 50%;
+
 }
 
-.circular-portrait img {
+.highlight-character {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid #CB2;
+}
+
+.circular-portrait img,  .highlight-character img {
   width: 100%;
   height: auto;
 }
