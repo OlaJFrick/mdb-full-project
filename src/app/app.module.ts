@@ -33,6 +33,7 @@ import { PersonPageComponent } from './main-components/person-page/person-page.c
 import { RegisterComponent } from './main-components/register/register.component';
 import { UserPanelComponent } from './main-components/user-panel/user-panel.component';
 import { ReturnToTop } from './main-components/return-to-top/return-to-top.component';
+import { FooterComponent } from './main-components/footer/footer.component';
 
 // reusable-components
 import { StarRatingComponent } from './reusable-components/star-rating/star-rating.component';
@@ -55,6 +56,7 @@ import { GlobalService } from './services/global.service';
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     TestComponent,
     FrontPageComponent,
     SidebarComponent,

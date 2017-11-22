@@ -24,6 +24,7 @@ export class ListAllFilmsComponent implements OnInit, OnDestroy {
   constructor(private restservice: RestService) { }
 
   ngOnInit() {
+   this.scrollToTop();
    this.setOrder('title');
 
    this.interval = setInterval(this.onScroll.bind(this), 500);
@@ -32,6 +33,11 @@ export class ListAllFilmsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     clearInterval(this.interval);
   }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
+
 
   onScroll() {
     let doc = $(document);

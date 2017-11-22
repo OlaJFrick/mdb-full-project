@@ -198,13 +198,6 @@
       <h6>REVIEWS:</h6>
       <hr>
 
-      <p *ngFor="let alert of alerts">
-        <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">bob is here</ngb-alert>
-      </p>
-      <p>
-        <button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
-      </p>
-
       <p>{{reviewstatus}}</p>
       <div *ngFor="let review of reviews">
         <em *ngIf="review.textbody">

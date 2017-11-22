@@ -24,13 +24,17 @@ export class ListAllActorsComponent implements OnInit, OnDestroy {
   constructor(private restservice: RestService) { }
 
   ngOnInit() {
+   this.scrollToTop();
    this.setOrder('name');
-
    this.interval = setInterval(this.onScroll.bind(this), 500);
   }
 
   ngOnDestroy() {
     clearInterval(this.interval);
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 
   onScroll() {

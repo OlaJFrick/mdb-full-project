@@ -28,7 +28,7 @@ export class FilmPageComponent implements OnInit {
   reviewForm = false;
   directorData: any;
   actorData: any;
-  highlight = 'row align-items-center mb-3 bg-secondary py-3 rounded';
+  highlight = 'row align-items-center bg-secondary rounded';
   editableSelect: number;
   genreSelectOptions = [];
   allPersons: any;
@@ -45,6 +45,7 @@ export class FilmPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.scrollToTop();
     this.filmid = Number(this.location.path().slice(11));
 
     this.restservice.get('all_films_list', this.filmid).then(data => {
@@ -59,6 +60,10 @@ export class FilmPageComponent implements OnInit {
     this.loadActors();
     this.loadPersons();
     this.loadReviews();
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 
   loadDirectors() {
@@ -140,6 +145,8 @@ export class FilmPageComponent implements OnInit {
         console.log('Error occured.');
       });
     }
+
+    this.scrollToTop();
   }
 
   submitPerson(form: any, occupation: string, table: string): void {
