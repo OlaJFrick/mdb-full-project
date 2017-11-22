@@ -71,6 +71,12 @@ export class PersonPageComponent implements OnInit {
     });
 
     this.loadCountries();
+
+    this.scrollToTop();
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 
   loadCountries() {

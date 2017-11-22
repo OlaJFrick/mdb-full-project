@@ -45,6 +45,7 @@ export class FilmPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.scrollToTop();
     this.filmid = Number(this.location.path().slice(11));
 
     this.restservice.get('all_films_list', this.filmid).then(data => {
@@ -59,6 +60,10 @@ export class FilmPageComponent implements OnInit {
     this.loadActors();
     this.loadPersons();
     this.loadReviews();
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 
   loadDirectors() {
@@ -140,6 +145,8 @@ export class FilmPageComponent implements OnInit {
         console.log('Error occured.');
       });
     }
+
+    this.scrollToTop();
   }
 
   submitPerson(form: any, occupation: string, table: string): void {
@@ -218,14 +225,6 @@ export class FilmPageComponent implements OnInit {
       console.log('Error occured.');
     });
   }
-
-  /*removeDirectorModal(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }*/
 
   removeModal(d,a) {
     this.modalService.open(d,a).result.then((result) => {

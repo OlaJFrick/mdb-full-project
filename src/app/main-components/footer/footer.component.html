@@ -14,14 +14,13 @@
   </div>
 </div>
 <div class="container-fluid main-footer pt-5 pb-4">
-  <div class="row">
-    <div class="col offset-sm-1 col-sm-6">
-      <p routerLink="lists/list-all-films">All Movies</p>
-      <p routerLink="lists/list-all-directors">All Directors</p>
-      <p routerLink="lists/list-all-actors">All Actors</p>
-      <p routerLink="lists/list-latest-reviews">Latest Reviews</p>
-      <p routerLink="lists/list-top-10">Top 10s</p>
-
+<div class="row">
+  <div class="col offset-sm-1 col-sm-6">
+    <p class="sub-linker" (click)="scrollToTop()" routerLink="lists/list-all-films">All Movies</p>
+    <p class="sub-linker" (click)="scrollToTop()" routerLink="lists/list-all-directors">All Directors</p>
+    <p class="sub-linker" (click)="scrollToTop()" routerLink="lists/list-all-actors">All Actors</p>
+    <p class="sub-linker" (click)="scrollToTop()" routerLink="lists/list-latest-reviews">Latest Reviews</p>
+    <p class="sub-linker" (click)="scrollToTop()" routerLink="lists/list-top-10">Top 10s</p>
     </div>
     <div class="col text-right col-sm-4">
       <img class="logo" src="/assets/images/whole-logo.svg">

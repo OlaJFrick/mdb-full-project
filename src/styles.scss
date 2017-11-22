@@ -36,10 +36,10 @@ $white: #FAFAFA;
 
 // //== Mixins
 @mixin ease-transition() {
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
+  -webkit-transition: .7s ease;
+  -moz-transition: .7s ease;
+  -o-transition: .7s ease;
+  transition: .7s ease;
 }
 
 body {

@@ -19,6 +19,8 @@ export class ListTop10Component implements OnInit {
 
   ngOnInit() {
 
+    this.scrollToTop();
+
     this.restservice.get('top10_highest?limit=10&order_by=avgRating&desc=1').then(highestData => {
       this.highestData = highestData.json();
     }, err => {
@@ -31,5 +33,9 @@ export class ListTop10Component implements OnInit {
         console.log('Error occured.');
     });
 
+  }
+
+  scrollToTop() {
+    window.scrollTo(0, 0);
   }
 }
