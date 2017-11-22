@@ -24,23 +24,25 @@
 .main-footer {
   background: $blue;
 
-  p {
+  .white-links {
+    display: block;
     color: $white;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
+    margin-bottom: 2px;
   }
 
   .logo {
-    width: 200px;
+    width: 146px;
     margin: 0;
-    margin-bottom: 1em;
+    margin-bottom: .6em;
   }
 
   span {
     display: block;
     color: $black;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
   }
 
 }

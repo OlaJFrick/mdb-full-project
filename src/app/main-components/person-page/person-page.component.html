@@ -1,86 +1,176 @@
-<div class="container mb-5">
+<div class="hidden-md-up">
+  <img class="img-fluid" src="/assets/images/persons/{{personData.imagePath}}">
+  <span class="upload-btn">
+    <app-upload-picture [person]="personData"></app-upload-picture>
+  </span>
+</div>
+
+<div class="container-fluid pt-2 pt-sm-5">
   <div class="row">
-    <div class="col col-md-3">
-      <h1>
+
+    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4 flex-last flex-md-first">
+      <img class="img-fluid hidden-sm-down" src="/assets/images/persons/{{personData.imagePath}}">
+      <span class="upload-btn">
+        <app-upload-picture [person]="personData"></app-upload-picture>
+      </span>
+    </div>
+
+
+    <div class="offset-xs-1 col-xs-10 col-md-5 col-lg-4 mt-4 mt-sm-0">
+
+      <h1 class="app-headline">
         <span *ngIf="!globalservice.user">{{personData.firstName}} {{personData.lastName}}</span>
+
         <inline-editor *ngIf="globalservice.user" type="text" empty="Add firstName" [(ngModel)]="personData.firstName" (onSave)="saveEditable($event, 'persons', 'firstName')"></inline-editor>
+
         <inline-editor *ngIf="globalservice.user" type="text" empty="Add lastname" [(ngModel)]="personData.lastName" (onSave)="saveEditable($event, 'persons', 'lastName')"></inline-editor>
       </h1>
 
-      <img class="img-fluid img-thumbnail mb-2" src="../../assets/images/persons/{{personData.imagePath}}">
-      <app-upload-picture [person]="personData"></app-upload-picture>
+      <table class="table table-bordered my-4">
+        <tbody>
+          <tr>
 
-      <h6 class="my-2" >Nationality:
+            <td>
+              <span class="d-inline-flex justify-content-center">
+              <span *ngIf="!globalservice.user"><span class="pr-2">Nationality:</span><strong>{{personData.nationality}}</strong></span>
+              <inline-editor
+                *ngIf="globalservice.user"
+                empty="{{personData.nationality}}"
+                type="select" [(ngModel)]="editableSelect"
+                (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
+                value="valor"></inline-editor>
+              </span>
+            </td>
+            <td>
+              <span class="d-inline-flex justify-content-center">
+              <span *ngIf="!globalservice.user"><span class="pr-2">Gender:</span><strong>{{personData.gender}}</strong></span>
+              <inline-editor *ngIf="globalservice.user" empty="{{personData.gender}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'gender')" [options]="genderSelectOptions"
+                     value="valor"></inline-editor>
+                   </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+             <span class="d-inline-flex justify-content-center">
+              <span *ngIf="!globalservice.user"><span class="pr-2">Born:</span>
+              {{personData.birth}}</span>
+              <inline-editor *ngIf="globalservice.user" empty="{{personData.birth}} 2000-01-01" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')" value="valor"></inline-editor>
+              </span>
+            </td>
+            <td>
 
-      </h6>
-      <span *ngIf="!globalservice.user">{{personData.nationality}}</span>
-      <inline-editor *ngIf="globalservice.user" class="mt-2" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
-             value="valor"></inline-editor>
+              <div *ngIf="!personData.death">
+                <span class="d-inline-flex justify-content-center">
+                 <span class="pr-2">Age: {{personData.age}}</span>
+                 </span>
+              </div>
 
-      <h6 class="mt-2">Born:
-      </h6>
-      <span *ngIf="!globalservice.user">{{personData.birth}}</span>
-       <inline-editor *ngIf="globalservice.user" class="mt-2" empty="{{personData.birth}} 2000-01-01" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')"
-              value="valor"></inline-editor>
+              <div *ngIf="personData.death">
+                <span class="d-inline-flex justify-content-center">
+                 <span *ngIf="!globalservice.user"><span class="pr-2">Death:</span>{{personData.death}}</span>
+                 <inline-editor *ngIf="globalservice.user" empty="{{personData.death}} v" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')" value="valor"></inline-editor>
+                 </span>
+              </div>
 
-      <h6 *ngIf="personData.death" class="mt-2">Deceased:
-      </h6>
-      <span *ngIf="!globalservice.user">{{personData.death}}</span>
-       <inline-editor *ngIf="globalservice.user" class="mt-2" empty="{{personData.death}}" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')"
-              value="valor"></inline-editor>
-    </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div class="col-12 col-md-7">
-      <div class="row">
-        <div class="col-12 col-md-12 mb-4">
-          <h6>MINI BIO</h6>
-          <hr>
-          <p class="text-left">
-            <span *ngIf="!globalservice.user">{{personData.miniBio}}</span>
-            <inline-editor *ngIf="globalservice.user" empty="Add a short Bio" type="textarea" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event, 'persons', 'miniBio')"></inline-editor>
-          </p>
+      <p>
+        <span *ngIf="!globalservice.user">{{personData.miniBio}}</span>
+        <inline-editor *ngIf="globalservice.user" empty="Add bio text"  type="textarea" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event, 'persons', 'miniBio')"></inline-editor>
+
+
+      </p>
+
+      <!--  director area -->
+      <div *ngIf="directorData.length">
+        <div class="d-inline-flex align-items-baseline pt-4 mb-3">
+          <h6 class="headliner pr-4"><span class="underliner-colored">Has Directed</span></h6>
         </div>
 
-        <div class="col-md-12 mb-4" *ngIf="directorData.length">
-          <h6>HAS DIRECTED</h6>
-          <hr>
-          <div class="row align-items-center" *ngFor="let director of directorData">
-            <div class="col-2">
-              <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{director.imagePath}}" routerLink="/film-page/{{director.filmId}}">
-            </div>
-            <div class="col">
-              <p>{{director.title}}</p>
-            </div>
-            <div class="col">
-              <p>{{director.year}}</p>
-            </div>
-            <div class="col">
-              <app-star-rating [id]="director.filmId"></app-star-rating>
-            </div>
-          </div>
-        </div>
+        <table class="col">
+          <tbody *ngFor="let director of directorData" class="table my-4">
+            <tr>
+              <td>
+                <div class="circular-portrait">
+                  <img src="../../assets/images/films/{{director.imagePath}}" routerLink="/film-page/{{director.filmId}}" />
+                </div>
+              </td>
+              <td class="align-middle">
+                <div class="list-inline-item title-p" routerLink="/film-page/{{director.filmId}}">{{director.title}}</div>
+              </td>
+              <td class="align-middle">
+                <div class="title-p">{{director.year}}</div>
+              </td>
+          </tbody>
+        </table>
 
-        <div class="col-md-12 mb-4" *ngIf="actorData.length">
-          <h6>HAS ACTED IN</h6>
-          <hr>
-          <div class="row align-items-center" *ngFor="let actor of actorData">
-            <div class="col-2">
-              <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{actor.imagePath}}" routerLink="/film-page/{{actor.filmId}}">
-            </div>
-            <div class="col-3">
-              <p>{{actor.title}}</p>
-            </div>
-            <div class="col-2">
-              <p>{{actor.year}}</p>
-            </div>
-            <div class="col">
-              <p><span>as</span> {{actor.character}}</p>
-            </div>
-          </div>
-        </div>
       </div>
 
-    </div>
+      <!--  acted area -->
+      <div *ngIf="actorData.length">
+        <div class="d-inline-flex align-items-baseline pt-4 mb-3">
+          <h6 class="headliner pr-4"><span class="underliner-colored">Has Acted in</span></h6>
+        </div>
 
+        <table class="col">
+          <tbody *ngFor="let actor of actorData" class="table my-4">
+            <tr>
+              <td>
+                <div class="circular-portrait">
+                  <img src="/assets/images/films/{{actor.imagePath}}" routerLink="/film-page/{{actor.filmId}}" />
+                </div>
+              </td>
+              <td class="align-middle">
+                <div class="list-inline-item title-p" routerLink="/film-page/{{actor.filmId}}">{{actor.title}}</div>
+              </td>
+              <td class="align-middle">
+                <div class="title-p"><span>as</span> {{actor.character}}</div>
+              </td>
+          </tbody>
+        </table>
+
+      </div>
+
+
+
+
+<!--       <form *ngIf="addDirectorForm" #d="ngForm" (ngSubmit)="submitPerson(d.value, 'directorId', 'films_directors')" class="bg-secondary p-2 mb-2">
+        <div class="add-content-form">
+          <div class="form-group">
+            <span>Select a person from the database</span>
+
+            <select class="form-control" id="directorId" name="directorId" ngModel>
+              <option *ngFor="let person of allPersons" value="{{person.id}}">{{person.firstName}} {{person.lastName}}
+              </option>
+            </select>
+            <button type="button" class="btn-primary btn my-2" routerLink="/add-person/d/{{filmid}}">
+              Or add new person
+            </button>
+          </div>
+          <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
+          <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="addDirectorForm= !addDirectorForm">Cancel</button>
+        </div>
+      </form> -->
+
+<!-- <table class="col">
+        <tbody *ngFor="let director of directorData" class="table my-4">
+          <tr>
+            <td>
+              <div class="circular-portrait">
+                <img src="../../assets/images/persons/{{director.directorImage}}" />
+              </div>
+            </td>
+            <td class="text-left">
+              <div class="list-inline-item title-p pl-3" routerLink="/person-page/{{director.personId}}">{{director.directorName}}</div>
+            </td>
+            <td>
+              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(d)"></fa>
+            </td>
+        </tbody>
+      </table> -->
+    </div>
   </div>
 </div>

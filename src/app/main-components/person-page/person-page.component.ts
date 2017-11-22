@@ -22,6 +22,7 @@ export class PersonPageComponent implements OnInit {
   actorData: any = [];
   editableSelect: number;
   countrySelectOptions = [];
+  genderSelectOptions = [{ value: 0, text: 'female' }, { value: 1, text: 'male' }];
 
   constructor(private http: Http,
     private restservice: RestService,
@@ -39,6 +40,10 @@ export class PersonPageComponent implements OnInit {
 
       let bb = this.personData.birth,
       bd = this.personData.death;
+
+      let today = new Date();
+      let birthDate = new Date(bb);
+      this.personData.age = today.getFullYear() - birthDate.getFullYear();
 
       if (bb) {
         this.personData.birth = bb.slice(0, 4) + '-' + bb.slice(5, 7) + '-' + bb.slice(8, 10);
@@ -102,6 +107,8 @@ export class PersonPageComponent implements OnInit {
     body[colName] = value;
     if (colName === 'nationality') {
       body['nationality'] = this.countrySelectOptions[value].text;
+    } else if (colName === 'gender') {
+      body['gender'] = this.genderSelectOptions[value].text;
     }
 
     body['changerId'] = this.globalservice.user.id;
