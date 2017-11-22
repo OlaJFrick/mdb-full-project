@@ -1,31 +1,48 @@
-<div class="container">
-
+<div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
   <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <h1 class="display-4">Latest Reviews</h1>
-      <hr>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col mb-3">
-      <div class="row item py-4" *ngFor="let item of mySqlData">
-        <div class="col-12 col-md-4">
-          <img class="mdb-default-image img-fluid clickable" src="../../assets/images/films/{{item.imagePath}}"
-                routerLink="/film-page/{{item.id}}">
+    <div class="col">
+      <div class="row">
+        <div class="offset-md-1 offset-lg-2 col-md-2 col-lg-1">
+          <img class="img-fluid list-title hidden-sm-down" src="/assets/images/list-rev.svg">
         </div>
 
-        <div class="col-12 col-md-8 mt-2">
-          <p class="d-inline">Created: {{item.timeCreated | date}}</p>
-          <p><strong>Reviewer: {{item.username}}</strong></p>
-          <h4 class="mb-2">{{item.title}}</h4>
-          <div class="d-inline-block mr-3"><app-star-rating [rating]="item.rating"></app-star-rating></div>
-          <p>user rating: {{item.rating | number}}</p>
-          <p>{{item.textbody}}</p>
-        </div>
+        <div class="col-md-7">
+          <h6 class="headliner hidden-md-up pr-4 mt-3">
+            <span class="underliner-colored">
+              latest Reviews
+            </span>
+          </h6>
+          <table>
+            <tbody *ngFor="let item of mySqlData" class="table my-4">
+              <tr class="my-5">
+                <td class="align-top">
+                  <div class="normal-list-portrait hidden-sm-down">
+                    <img src="/assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
+                  </div>
+                </td>
 
+                <td class="list-inline-item">
+                  <div class="title-list-p" routerLink="/film-page/{{item.id}}">
+                    <strong>{{item.title}}
+                      </strong>
+                  </div>
+
+                  Created: {{item.timeCreated | date}}
+                  <div class="inline mini-p">
+                    <span>Reviewer: {{item.username}}</span>
+                  </div>
+                </td>
+                <td class="list-inline-item">
+
+                  <div class="inline mini-p">
+                    <span>{{item.textbody}}</span>
+                  </div>
+                </td>
+
+            </tbody>
+          </table>
+
+        </div>
       </div>
-    </div>
-
   </div>
 </div>

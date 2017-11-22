@@ -1,74 +1,84 @@
 <img class="img-fluid hidden-md-up" src="/assets/images/front-1.png">
 
-<div class="container-fluid pt-2 pt-sm-5">
+<div>
 
-  <div class="row">
-    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 hidden-sm-down">
-      <img class="img-fluid" src="/assets/images/front-1.png">
-    </div>
-    <div class="offset-1 col-10 offset-md-1 col-md-4 col-lg-3 d-flex align-items-center">
-      <div>
-        <img class="img-fluid pb-5" src="/assets/images/whole-logo.svg">
-        <p class="text-center text-sm-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ipsum ex natus itaque adipisci esse quidem veritatis recusandae ea ut quos cumque, maxime in alias perspiciatis cupiditate repellendus suscipit ad quas. </p>
+  <div class="container-fluid pt-2 pt-sm-5">
+
+    <div class="row">
+      <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 hidden-sm-down">
+        <img class="img-fluid" src="/assets/images/front-1.png" [@fadeIn-2]>
+      </div>
+      <div class="offset-1 col-10 offset-md-1 col-md-4 col-lg-3 d-flex align-items-center">
+        <div>
+          <img class="img-fluid pb-5" src="/assets/images/whole-logo.svg">
+          <p class="text-center text-sm-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia vero ipsum ex natus itaque adipisci esse quidem veritatis recusandae ea ut quos cumque, maxime in alias perspiciatis cupiditate repellendus suscipit ad quas. </p>
+        </div>
       </div>
     </div>
+
   </div>
 
-</div>
-
-<div class="container-fluid activity my-5 py-5">
-  <div class="row">
-    <div class="offset-md-1 offset-lg-2 col-md-10 d-inline-flex align-items-baseline pt-sm-5">
-      <h6 class="headliner pr-5"><span class="underliner">Latest Additions</span></h6>
-      <p class="sub-linker" routerLink="lists/list-all-films">View All Movies > </p>
+  <div class="container-fluid activity my-5 py-5" [@fadeIn-1]>
+    <div class="row">
+      <div class="offset-md-1 offset-lg-2 col-md-10 d-inline-flex align-items-baseline pt-sm-5">
+        <h6 class="headliner pr-5"><span class="underliner">Latest Additions</span></h6>
+        <p class="sub-linker" routerLink="lists/list-all-films"><span>View All Movies</span> > </p>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8">
-      <div class="row mt-3">
-        <div *ngFor="let item of latestfilms" class="col-6 col-md-3">
-          <figure class="figure">
-            <img class="img-fluid film-img" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
-            <div class="fat-title">
-              <span>{{item.title}}</span>
-            </div>
-          </figure>
+    <div class="row">
+      <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8">
+        <div class="row mt-3">
+          <div *ngFor="let item of latestfilms" class="col-6 col-md-3">
+            <figure class="figure">
+              <img class="img-fluid film-img" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
+              <div class="fat-title">
+                <span>{{item.title}}</span>
+              </div>
+            </figure>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid my-5">
-  <div class="row">
-    <div class="offset-md-4 col-md-6 d-inline-flex align-items-baseline pt-5">
-      <h6 class="headliner pr-5"><span class="underliner">Popular Movies</span></h6>
-      <p class="sub-linker" routerLink="lists/list-top-10">View all Top 10 Lists > </p>
+  <div class="container-fluid my-5" [@fadeIn-1]>
+    <div class="row">
+      <div class="offset-sm-1 offset-md-4 col-md-6 d-inline-flex align-items-baseline pt-5">
+        <h6 class="headliner pr-5"><span class="underliner">Popular Movies</span></h6>
+        <p class="sub-linker" routerLink="lists/list-top-10"><span>View all Top 10 Lists</span> > </p>
+      </div>
+
     </div>
+    <div class="row">
+      <table  class="offset-sm-1 offset-md-4 col-md-5 top-table">
+        <tbody *ngFor="let item of topfilms, let i = index" class="table my-4">
+          <tr>
+            <td>
+              <div class="circular-list-portrait hidden-md-up">
+                <img src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"/>
+              </div>
+              <div class="circular-list-desktop-portrait hidden-sm-down">
+                <img src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"/>
+              </div>
+            </td>
+            <td class="list-inline-item popular-table align-middle">
+              <div class=" title-list-p" routerLink="/film-page/{{item.id}}"><strong>{{i + 1}}. </strong>{{item.title}}</div>
+              <div class="d-inline-flex align-items-center mini-p">
+                <span>Avg Rating:</span>
+              <app-star-rating [rating]="item.avgRating">
+              </app-star-rating>
+              <span class="pl-2">({{item.avgRating | number: '1.2-2'}})</span>
+              </div>
+              <div class="inline mini-p">
+                <span>Year: {{item.year}}</span>
+              </div>
+            </td>
+            <tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-  </div>
-  <div class="row">
-    <table  class="offset-md-4 col-md-5 top-table">
-      <tbody *ngFor="let item of topfilms, let i = index" class="table my-4">
-        <tr>
-          <td class="popular-table">
-            <div class="circular-portrait">
-              <img src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"/>
-            </div>
-          </td>
-          <td class="list-inline-item popular-table">
-            <div class=" title-p" routerLink="/film-page/{{item.id}}"><strong>{{i + 1}}. </strong>{{item.title}}</div>
-            <div class="d-inline-flex align-items-center mini-p">
-              <span>Avg Rating:</span>
-            <app-star-rating [rating]="item.avgRating">
-            </app-star-rating>
-            <span class="pl-2">({{item.avgRating | number: '1.2-2'}})</span>
-            </div>
-            <div class="inline mini-p">
-              <span>Year: {{item.year}}</span>
-            </div>
-          </td>
-      </tbody>
-    </table>
-  </div>
 </div>
+
+

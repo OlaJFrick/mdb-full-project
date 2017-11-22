@@ -1,9 +1,8 @@
-<div class="container">
+<div class="container my-5">
 
   <div class="row">
-    <div class="col-md-5 offset-md-3">
+    <div class="col-md-5">
       <h1>ALL USERS & ADMINS</h1>
-      <hr>
     </div>
   </div>
 
@@ -55,11 +54,11 @@
 
     <div class="col-md-1">
 
-        <button *ngIf="user.warnings < 3 && user.role !== 'admin'" type="button" class="btn btn-danger"
+        <button *ngIf="user.warnings < 3 && user.role !== 'admin'" type="button" class="btn btn-sm btn-danger"
                 (click)="warnUser(user.id, user.warnings)">WARN USER</button>
 
         <button *ngIf="user.warnings == 3 || user.role == 'admin'" type="button"
-                class="btn btn-danger" disabled>WARN USER</button>
+                class="btn btn-sm btn-danger" disabled>WARN USER</button>
 
 
 

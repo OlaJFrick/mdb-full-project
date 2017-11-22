@@ -19,6 +19,13 @@ import { LoginComponent } from '../../main-components/login/login.component';
       transition('in => out', animate('300ms ease-in-out')),
       transition('out => in', animate('300ms ease-in-out'))
     ]),
+    trigger('fadeIn-2', [
+      state('in', style({opacity: '1'})),
+      transition('void => *', [
+        style({opacity: '0'}),
+        animate('100ms 20ms ease-in')
+      ])
+    ])
   ],
   providers: [
     RestService
@@ -27,7 +34,6 @@ import { LoginComponent } from '../../main-components/login/login.component';
 
 export class HeaderComponent implements OnInit {
 	mySqlData: any;
-
   menuState:string = 'out';
 
   header: LoginComponent;
@@ -50,6 +56,10 @@ export class HeaderComponent implements OnInit {
   	//console.log('in parent');
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
   }
+
+  // toggleLine() {
+  //   this.lineState = this.lineState === 'out' ? 'in' : 'out';
+  // }
 }
 
 

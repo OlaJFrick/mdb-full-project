@@ -1,8 +1,8 @@
 <div class="container-fluid">
 
-  <div class="row hidden-sm-down mt-5 mb-3 desktop-navigation">
+  <div class="row hidden-sm-down mt-5 mb-3 desktop-navigation" [@fadeIn-2]>
     <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-5 d-flex justify-content-start align-items-center">
-      <img class="img-fluid logo-sm pr-3" routerLink="/" src="/assets/images/mdb-logo.png">
+      <img class="img-fluid logo-sm pr-4" routerLink="/" src="/assets/images/mdb-logo.png">
       <app-search class="search"></app-search>
     </div>
 
@@ -30,19 +30,24 @@
     </div>
   </div>
 
-  <div class="row hidden-sm-down mt-5">
+  <div class="row hidden-sm-down nav-linkage">
     <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8 d-flex justify-content-between">
-      <h4 class="navigation-sub" routerLink="lists/list-all-films">All Movies</h4>
-      <h4 class="navigation-sub" routerLink="lists/list-all-directors">All Directors</h4>
-      <h4 class="navigation-sub" routerLink="lists/list-all-actors">All Actors</h4>
-      <h4 class="navigation-sub" routerLink="lists/list-latest-reviews">Latest Reviews</h4>
-      <h4 class="navigation-sub" routerLink="lists/list-top-10">Top 10 Lists</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-all-films"
+        routerLinkActive="active">All Movies</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-all-directors"
+        routerLinkActive="active">All Directors</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-all-actors"
+        routerLinkActive="active">All Actors</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-latest-reviews"
+        routerLinkActive="active">Latest Reviews</h4>
+      <h4 class="navigation-sub" routerLink="lists/list-top-10"
+        routerLinkActive="active">Top 10 Lists</h4>
     </div>
   </div>
 
   <div class="row hidden-sm-down mt-3">
     <div class="offset-md-1 offset-lg-2 col-md-10 col-lg-8 d-flex justify-content-between">
-      <div class="line-break">
+      <div class="line-break m-auto">
       </div>
     </div>
   </div>

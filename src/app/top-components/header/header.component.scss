@@ -6,14 +6,17 @@
 }
 
 .navigation-sub:hover {
-  color: $mid-grey;
   cursor: pointer;
+}
+
+.nav-linkage {
+  margin-top: 2.6em;
 }
 
 .desktop-navigation {
 
   .logo-sm {
-    max-height: 32px;
+    max-height: 42px;
   }
 
   .user-screen {

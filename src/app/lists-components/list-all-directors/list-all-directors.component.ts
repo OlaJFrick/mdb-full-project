@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { RestService } from '../../services/rest.service';
 
 declare var jquery: any;
@@ -8,6 +9,21 @@ declare var $: any;
   selector: 'app-list-all-directors',
   templateUrl: './list-all-directors.component.html',
   styleUrls: ['./list-all-directors.component.scss'],
+  animations: [
+    trigger('fadeIn-1', [
+      state('in', style({opacity: '1'})),
+      transition('void => *', [
+        style({opacity: '0'}),
+        animate('400ms 200ms ease-in')
+      ])
+    ]),
+    trigger('fadeIn-2', [
+      state('in', style({opacity: '1'})),
+      transition('void => *', [
+        style({opacity: '0'}),
+        animate('100ms 120ms ease-in')
+      ])
+    ])],
   providers: [
     RestService
   ]

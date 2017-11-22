@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Http } from '@angular/http';
 import { RestService } from '../../services/rest.service';
 import { GlobalService } from '../../services/global.service';
@@ -8,6 +9,21 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
   selector: 'app-person-page',
   templateUrl: './person-page.component.html',
   styleUrls: ['./person-page.component.scss'],
+  animations: [
+    trigger('fadeIn-1', [
+      state('in', style({opacity: '1'})),
+      transition('void => *', [
+        style({opacity: '0'}),
+        animate('200ms 120ms ease-in-out')
+      ])
+    ]),
+    trigger('fadeIn-2', [
+      state('in', style({opacity: '1'})),
+      transition('void => *', [
+        style({opacity: '0'}),
+        animate('100ms 120ms ease-in')
+      ])
+    ])],
   providers: [
     RestService,
     Location, { provide: LocationStrategy, useClass: PathLocationStrategy }

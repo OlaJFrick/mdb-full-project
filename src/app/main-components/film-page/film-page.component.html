@@ -5,17 +5,17 @@
   </span>
 </div>
 
-<div class="container-fluid pt-2 pt-sm-5">
+<div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
   <div class="row">
 
     <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4 flex-last flex-md-first">
-      <img class="img-fluid hidden-sm-down" src="/assets/images/films/{{film.imagePath}}">
+      <img class="img-fluid hidden-sm-down" src="/assets/images/films/{{film.imagePath}}" [@fadeIn-1]>
       <span class="upload-btn">
-        <app-upload-picture [film]="film"></app-upload-picture>
+        <!-- <app-upload-picture [film]="film"></app-upload-picture> -->
       </span>
 
       <!-- review content -->
-      <div class="review-area mt-3 mb-4 p-4">
+      <div class="review-area mt-3 mb-4 p-4" [@fadeIn-2]>
         <div class="pt-2 mb-3">
           <h6 class="headliner pr-5"><span class="underliner">User Reviews</span></h6>
         </div>
@@ -61,9 +61,7 @@
 
     </div>
 
-
-
-    <div class="offset-xs-1 col-xs-10 offset-xl-1 col-md-5 col-lg-4 col-xl-3 mt-4 mt-sm-0">
+    <div class="offset-xs-1 col-xs-10 col-md-5 col-lg-4 mt-4 mt-sm-0" >
       <h1 class="app-headline">
         <span *ngIf="!globalservice.user">{{film.title}}</span>
           <inline-editor *ngIf="globalservice.user" type="text" empty="Add a title" [(ngModel)]="film.title" (onSave)="saveEditable($event, 'films', 'title')"></inline-editor>
@@ -119,7 +117,7 @@
       <!--  director area -->
       <div class="d-inline-flex align-items-baseline pt-4 mb-3">
         <h6 class="headliner pr-4"><span class="underliner-colored">DIRECTED BY</span></h6>
-        <p *ngIf="globalservice.user" class="sub-linker" (click)="addDirectorForm = !addDirectorForm">Add a Director > </p>
+        <p *ngIf="globalservice.user" class="sub-linker" (click)="addDirectorForm = !addDirectorForm"><span>Add a Director</span> > </p>
       </div>
 
       <form *ngIf="addDirectorForm" #d="ngForm" (ngSubmit)="submitPerson(d.value, 'directorId', 'films_directors')" class="bg-secondary p-2 mb-2">
@@ -175,7 +173,7 @@
       <!--  Actor area -->
       <div class="d-inline-flex align-items-baseline pt-4 mb-3">
         <h6 class="headliner pr-5"><span class="underliner-colored">Starring</span></h6>
-        <p *ngIf="globalservice.user" class="sub-linker" (click)="addActorForm = !addActorForm">Add an Actor > </p>
+        <p *ngIf="globalservice.user" class="sub-linker" (click)="addActorForm = !addActorForm"><span>Add an Actor</span> > </p>
       </div>
       <form *ngIf="addActorForm" #a="ngForm" (ngSubmit)="submitPerson(a.value, 'actorId', 'films_actors')" class="bg-secondary p-2 mb-2">
         <div class="add-content-form">

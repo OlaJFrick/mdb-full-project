@@ -5,18 +5,18 @@
   </span>
 </div>
 
-<div class="container-fluid pt-2 pt-sm-5">
+<div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
   <div class="row">
 
     <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4 flex-last flex-md-first">
-      <img class="img-fluid hidden-sm-down" src="/assets/images/persons/{{personData.imagePath}}">
+      <img class="img-fluid hidden-sm-down" src="/assets/images/persons/{{personData.imagePath}}" [@fadeIn-1]>
       <span class="upload-btn">
         <app-upload-picture [person]="personData"></app-upload-picture>
       </span>
     </div>
 
 
-    <div class="offset-xs-1 col-xs-10 col-md-5 col-lg-4 mt-4 mt-sm-0">
+    <div class="offset-xs-1 col-xs-10 col-md-5 col-lg-4 mt-4 mt-sm-0" [@fadeIn-2]>
 
       <h1 class="app-headline">
         <span *ngIf="!globalservice.user">{{personData.firstName}} {{personData.lastName}}</span>

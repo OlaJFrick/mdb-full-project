@@ -1,128 +1,101 @@
-<div class="container py-5">
-
+<div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
   <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <h1 class="display-4">Top 10 Highest</h1>
-      <hr>
-    </div>
-  </div>
-
-  <div class="row hidden-sm-down">
-    <div class="col-2">
-    </div>
-    <div class="col-2">
-      <p><strong>Rank</strong></p>
-    </div>
-    <div class="col-3">
-      <p><strong>Title</strong></p>
-    </div>
-    <div class="col-4">
-      <p><strong>Rating</strong></p>
-    </div>
-    <div class="col-1">
-      <p><strong>Year</strong></p>
-    </div>
-  </div>
-
-  <div class="col-12 list-all-actors-container" *ngFor="let item of highestData, let i = index">
-    <div class="row hidden-sm-down align-items-center mb-3">
-      <div class="col-2">
-        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';"
-                routerLink="/film-page/{{item.id}}">
-      </div>
-      <div class="col-2">
-        <p class="align-middle">{{i + 1 }}</p>
-      </div>
-      <div class="col-3">
-        <p>{{item.title}}</p>
-      </div>
-      <div class="col-4">
-        <div>
-          <app-star-rating [rating]="item.avgRating"></app-star-rating>
-          <p class="rating-text">AVG Rating: {{item.avgRating | number: '1.2-2' || 'not rated'}} / by {{item.counter}}
-            <span *ngIf="item.counter != 1">Users</span><span *ngIf="item.counter == 1">User</span>
-          </p>
-
+    <div class="col">
+      <div class="row">
+        <div class="offset-md-1 offset-lg-2 col-md-2 col-lg-1">
+          <img class="img-fluid list-title hidden-sm-down" src="/assets/images/list-top.svg">
         </div>
-      </div>
-      <div class="col-1">
-        <p class="text-right">{{item.year}}</p>
-      </div>
-    </div>
 
-    <div class="row hidden-md-up align-items-center">
-      <div class="col-6">
-        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
-      </div>
-      <div class="col-6">
-        <p>{{item.name}}</p>
-        <p>{{item.nationality}}</p>
-        <p>Known for roles in: ({{item.films}})</p>
-      </div>
-    </div>
-  </div>
+        <div class="offset-md-1 col-md-6">
+          <h6 class="headliner pr-4 ">
+            <span class="underliner-colored">
+              Top 10 Most popular Movies
+            </span>
+          </h6>
+          <table>
+            <tbody *ngFor="let item of highestData, let i = index" class="table my-4">
+              <tr class="my-3">
+                <td class="align-middle">
+                  <div class="circular-list-portrait hidden-md-up">
+                    <img src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
+                  </div>
+                  <div class="circular-list-desktop-portrait hidden-sm-down">
+                    <img src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
+                  </div>
+                </td>
+                <td class="list-inline-item">
+                  <div class="title-list-p" routerLink="/film-page/{{item.id}}">
+                    <strong>{{i + 1 }} {{item.title}}
+                      <span class="mini-p">
+                      ({{item.year}})</span>
+                      </strong>
+                  </div>
+                  <div class="d-inline-flex align-items-center mini-p">
+                    <span>Avg Rating:</span>
+                    <app-star-rating [rating]="item.avgRating">
+                    </app-star-rating>
+                    <span class="pl-2">({{item.avgRating | number: '1.2-2'}})</span>
+                    <span *ngIf="!item.avgRating">Unrated</span>
+                  </div>
+                  <div class="inline mini-p">
+                    <span>Directed by: {{item.directed}}</span>
+                    <span *ngIf="!item.directed">Unknown</span>
+                  </div>
+                  <div class="inline mini-p">
+                    <span>Starring: {{item.starring | truncate: 3}}</span>
+                    <span *ngIf="!item.starring">Unknown</span>
+                  </div>
+                </td>
+            </tbody>
+          </table>
 
-  <br />
-
-  <div class="row">
-    <div class="col-xs-12 col-md-12">
-      <h1 class="display-4">Top 10 Lowest</h1>
-      <hr>
-    </div>
-  </div>
-  <div class="row hidden-sm-down">
-    <div class="col-2">
-    </div>
-    <div class="col-2">
-      <p><strong>Rank</strong></p>
-    </div>
-    <div class="col-3">
-      <p><strong>Title</strong></p>
-    </div>
-    <div class="col-4">
-      <p><strong>Rating</strong></p>
-    </div>
-    <div class="col-1">
-      <p><strong>Year</strong></p>
-    </div>
-  </div>
-
-  <div class="col-12 list-all-actors-container" *ngFor="let item of lowestData, let i = index">
-    <div class="row hidden-sm-down align-items-center mb-3">
-      <div class="col-2">
-        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';"
-                routerLink="/film-page/{{item.id}}">
-      </div>
-      <div class="col-2">
-        <p class="align-middle">{{i + 1 }}</p>
-      </div>
-      <div class="col-3">
-        <p>{{item.title}}</p>
-      </div>
-      <div class="col-4">
-        <div>
-          <app-star-rating [rating]="item.avgRating"></app-star-rating>
-          <p class="rating-text">AVG Rating: {{item.avgRating | number: '1.2-2' || 'not rated'}} / by {{item.counter}}
-            <span *ngIf="item.counter != 1">Users</span>
-            <span *ngIf="item.counter == 1">User</span>
-          </p>
+          <h6 class="headliner pr-4 mt-3">
+                      <span class="underliner-colored">
+                        Top 10 Least popular Movies
+                      </span>
+                    </h6>
+          <table>
+            <tbody *ngFor="let item of lowestData, let i = index" class="table my-4">
+              <tr class="my-3">
+                <td class="align-middle">
+                  <div class="circular-list-portrait hidden-md-up">
+                    <img src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
+                  </div>
+                  <div class="circular-list-desktop-portrait hidden-sm-down">
+                    <img src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
+                  </div>
+                </td>
+                <td class="list-inline-item">
+                  <div class="title-list-p" routerLink="/film-page/{{item.id}}">
+                    <strong>{{i + 1 }} {{item.title}}
+                      <span class="mini-p">
+                      ({{item.year}})</span>
+                      </strong>
+                  </div>
+                  <div class="d-inline-flex align-items-center mini-p">
+                    <span>Avg Rating:</span>
+                    <app-star-rating [rating]="item.avgRating">
+                    </app-star-rating>
+                    <span class="pl-2">({{item.avgRating | number: '1.2-2'}})</span>
+                    <span *ngIf="!item.avgRating">Unrated</span>
+                  </div>
+                  <div class="inline mini-p">
+                    <span>Directed by: {{item.directed}}</span>
+                    <span *ngIf="!item.directed">Unknown</span>
+                  </div>
+                  <div class="inline mini-p">
+                    <span>Starring: {{item.starring | truncate: 3}}</span>
+                    <span *ngIf="!item.starring">Unknown</span>
+                  </div>
+                </td>
+            </tbody>
+          </table>
         </div>
-      </div>
-      <div class="col-1">
-        <p>{{item.year}}</p>
-      </div>
-    </div>
 
-    <div class="row hidden-md-up align-items-center">
-      <div class="col-6">
-        <img class="img-fluid img-thumbnail clickable" src="../../assets/images/films/{{item.imagePath}}" routerLink="/person-page/{{item.id}}">
-      </div>
-      <div class="col-6">
-        <p>{{item.name}}</p>
-        <p>{{item.nationality}}</p>
-        <p>Known for roles in: ({{item.films}})</p>
+
+
+
+
       </div>
     </div>
   </div>
-
-</div>
