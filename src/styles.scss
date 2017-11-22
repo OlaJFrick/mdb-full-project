@@ -14,6 +14,15 @@ $cloud: #EDEBEB;
 $white: #FAFAFA;
 
 
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $default-font;
+  background: $white;
+  color: $dark-grey;
+  margin: 0;
+}
+
 .btn-primary {
   background: $blue;
   border: none;
@@ -40,15 +49,6 @@ $white: #FAFAFA;
   -moz-transition: .7s ease;
   -o-transition: .7s ease;
   transition: .7s ease;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: $default-font;
-  background: $white;
-  color: $dark-grey;
-  margin: 0;
 }
 
 a, img, .sub-linker, .title-p {
@@ -187,6 +187,11 @@ a {
   height: auto;
 }
 
+.upload-btn {
+  position: relative;
+  top: -80px;
+  left: 30px;
+}
 
 // INLINE EDITOR
 .ng-untouched {

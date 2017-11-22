@@ -3,19 +3,19 @@
 .uploader-area {
   cursor: pointer;
   background: $white;
-  margin-top: 1em;
   border: 1px solide $black;
-  width: 140px;
-  padding: .5em 0;
+  width: 130px;
+  padding: .4em 0;
   text-align: center;
   border: 1px solid $black;
 
   span {
-    font-size: 12px;
+    font-size: 11px;
     color: $black;
   }
+
   .image-icon {
-    width: 20px;
+    width: 18px;
   }
 
 }
