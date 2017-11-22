@@ -68,7 +68,7 @@
             </div>
             <div class="col">
               <p class="list-inline-item" routerLink="/person-page/{{director.personId}}"><strong>{{director.directorName}}</strong></p>
-              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(d)"></fa>
+              <fa *ngIf="globalservice.user" class="ml-2 clickable pointer" name="trash" (click)="removeModal(d)"></fa>
 
               <!-- Modal for removing directors -->
               <ng-template #d let-c="close" let-d="dismiss">
@@ -128,7 +128,7 @@
               as
               <span *ngIf="!globalservice.user">{{actor.character}}</span>
               <inline-editor *ngIf="globalservice.user" class="list-inline-item" type="text" [(ngModel)]="actor.character" (onSave)="updateCharacter($event, actor.actorId, actor.isMainCharacter)"></inline-editor>
-              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(a)">
+              <fa *ngIf="globalservice.user" class="ml-2 clickable pointer" name="trash" (click)="removeModal(a)">
               </fa>
 
               <!-- Modal for removing actors -->
@@ -197,6 +197,14 @@
       </p>
       <h6>REVIEWS:</h6>
       <hr>
+
+      <p *ngFor="let alert of alerts">
+        <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">bob is here</ngb-alert>
+      </p>
+      <p>
+        <button type="button" class="btn btn-primary" (click)="reset()">Reset</button>
+      </p>
+
       <p>{{reviewstatus}}</p>
       <div *ngFor="let review of reviews">
         <em *ngIf="review.textbody">
