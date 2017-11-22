@@ -219,14 +219,6 @@ export class FilmPageComponent implements OnInit {
     });
   }
 
-  /*removeDirectorModal(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }*/
-
   removeModal(d,a) {
     this.modalService.open(d,a).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
