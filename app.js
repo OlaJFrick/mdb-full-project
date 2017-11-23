@@ -1,4 +1,5 @@
 const express = require('express'),
+      scraperjs = require('scraperjs'),
       cors = require('cors')
   	  app = express(),
       bodyParser = require('body-parser'),
@@ -70,6 +71,37 @@ app.use(Rest.start({
   },
   runtimeErrors: false
 }));
+
+// webscraping IMDB News
+
+
+let newsFromIMDB = [];
+
+async function scrapeIMDB(){
+  let imdb = scraperjs.StaticScraper.create('http://www.imdb.com/news/top?ref_=nv_tp_nw_1');
+
+  let news = await imdb.scrape(($) => {
+
+    return $('.news-article').map(function(obj){
+      return {
+        title: $(this).find("h2").text(),
+        body: $(this).find(".news-article__body").text(),
+        img: $(this).find("img").attr('src'),
+        url: 'http://www.imdb.com' + $(this).find("a").attr('href'),
+        date: $(this).find(".news-article__date").text()
+        // text: $(this).closest("h2").find('.news-article__title').text()
+      };
+    }).get();
+  });
+  newsFromIMDB = news;
+}
+
+scrapeIMDB();
+setInterval(scrapeIMDB, 60 * 1000);
+
+app.get('/imdb-news', (req, res) => {
+    res.json(newsFromIMDB);
+})
 
 global.dbQuery = Rest.query;
 

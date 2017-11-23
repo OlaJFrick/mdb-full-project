@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../../services/rest.service';
+import { Http } from '@angular/http';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 @Component({
@@ -29,8 +30,10 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 export class FrontPageComponent implements OnInit {
   topfilms: object[];
   latestfilms: object[];
+  news: object[];
 
-  constructor(private restservice: RestService) {
+  constructor(private http: Http,
+    private restservice: RestService) {
   }
 
   ngOnInit() {
@@ -43,6 +46,27 @@ export class FrontPageComponent implements OnInit {
 
     this.restservice.get('current_films?limit=4&order_by=timeCreated&desc=1').then(data => {
       this.latestfilms = data.json();
+    }, err => {
+      console.log('Error occured.');
+    });
+
+    this.loadNews();
+  }
+
+  loadNews() {
+    this.http.get('http://localhost:3000/imdb-news').toPromise().then(data => {
+      const arr = data.json();
+      this.news = arr.slice(0, 2);
+      console.log(this.news);
+
+      // this.genreSelectOptions = [];
+      // for (let i = 0; i < gs.length; i++) {
+      //   this.genreSelectOptions.push({ value: i, text: gs[i] });
+      // }
+      // this.editableSelect = this.genreSelectOptions.findIndex((g) => {
+      //   return g.text === this.film.genre
+      // });
+
     }, err => {
       console.log('Error occured.');
     });
