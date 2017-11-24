@@ -19,7 +19,14 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
       state('in', style({opacity: '1'})),
       transition('void => *', [
         style({opacity: '0'}),
-        animate('100ms 20ms ease-in')
+        animate('400ms 10ms ease-in')
+      ])
+    ]),
+    trigger('fadeIn-3', [
+      state('in', style({opacity: '1'})),
+      transition('void => *', [
+        style({opacity: '0'}),
+        animate('500ms 600ms ease-in')
       ])
     ])],
   providers: [
@@ -31,12 +38,15 @@ export class FrontPageComponent implements OnInit {
   topfilms: object[];
   latestfilms: object[];
   news: object[];
+  randomImage: string;
 
   constructor(private http: Http,
     private restservice: RestService) {
   }
 
   ngOnInit() {
+    // Randomize front img
+    this.randomImage = 'url(./assets/images/front-page/' + Math.floor( 1 + Math.random() * 6 ) + '.png)'
 
     this.restservice.get('top10_highest?limit=5').then(data => {
       this.topfilms = data.json();
@@ -58,15 +68,6 @@ export class FrontPageComponent implements OnInit {
       const arr = data.json();
       this.news = arr.slice(0, 2);
       console.log(this.news);
-
-      // this.genreSelectOptions = [];
-      // for (let i = 0; i < gs.length; i++) {
-      //   this.genreSelectOptions.push({ value: i, text: gs[i] });
-      // }
-      // this.editableSelect = this.genreSelectOptions.findIndex((g) => {
-      //   return g.text === this.film.genre
-      // });
-
     }, err => {
       console.log('Error occured.');
     });

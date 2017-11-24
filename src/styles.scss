@@ -39,14 +39,13 @@ body {
   textarea {
     color: $soft-grey;
   }
-
 }
 
 .card {
   background: none;
 }
 
-.mid-page {
+.footer-fix {
   min-height: 90vh;
 }
 
@@ -120,11 +119,17 @@ p {
   line-height: 24px;
 }
 
+.front-p {
+  font-size: 13px;
+  line-height: 22px;
+}
+
 .title-list-p {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 24px;
   margin-top: .3em;
   font-weight: 600;
+  color: black;
 }
 
 .mini-p {
@@ -187,6 +192,8 @@ a {
 }
 
 .sub-linker > span:hover {
+  @include ease-transition;
+  color: $blue;
   text-decoration: underline;
 }
 
@@ -210,7 +217,11 @@ a {
   height: 80px;
   overflow: hidden;
   border-radius: 50%;
-  border: 2px solid #CB2;
+  border: 2px solid $blue;
+}
+
+.highlight-person {
+  border-bottom: 2px solid $blue;
 }
 
 .circular-list-portrait {
@@ -257,6 +268,9 @@ a {
   top: -80px;
   left: 30px;
 }
+
+
+
 
 // INLINE EDITOR
 .ng-untouched {
@@ -321,36 +335,4 @@ a {
   border: 2px solid $soft-grey;
   font-size: 12px;
   text-transform: uppercase;
-}
-
-.news-area {
-  background: $cloud;
-  // padding: 30px;
-
-    .header {
-      outline: none;
-      color: $black;
-      font-size: 16px;
-      font-family: $headline-font;
-      text-transform: uppercase;
-    }
-
-    img {
-      max-width: 140px;
-      max-height: 140px;
-    }
-
-    .date-format {
-      color: $blue;
-      font-weight: 600;
-      font-size: 12px;
-    }
-    .n-text, a {
-      font-size: 12px;
-      color: $black;
-    }
-
-    a {
-      font-weight: 600;
-    }
 }

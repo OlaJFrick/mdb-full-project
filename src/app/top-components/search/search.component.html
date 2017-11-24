@@ -1,5 +1,5 @@
 <div class="searchArea">
-    <input type="text" class="form-control" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" (input)="onKey($event)" (blur)="onBlur()" (focus)="onFocus()">
+    <input type="text" class="form-control" placeholder="&#xF002;   Search" style="font-family:Arial, FontAwesome" (input)="onKey($event)" (blur)="onBlur()" (focus)="onFocus()">
     <div class="searchDropdown" [ngClass]="{'d-none': hidden}" (blur)="onBlur()" (mousedown)="onFocus()">
       <div *ngIf="hasResults" class="container-fluid py-2">
         <section *ngIf="actors.length">

@@ -8,7 +8,7 @@ import { LoginComponent } from '../../main-components/login/login.component';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-   animations: [
+  animations: [
     trigger('slideInOut', [
       state('in', style({
         transform: 'translate3d(0, 0, 0)'
@@ -20,9 +20,10 @@ import { LoginComponent } from '../../main-components/login/login.component';
       transition('out => in', animate('300ms ease-in-out'))
     ]),
     trigger('fadeIn-2', [
-      state('in', style({opacity: '1'})),
+      state('in', style({ opacity: '1' })),
+      state('out', style({ opacity: '0' })),
       transition('void => *', [
-        style({opacity: '0'}),
+        style({ opacity: '0' }),
         animate('100ms 20ms ease-in')
       ])
     ])
@@ -33,33 +34,22 @@ import { LoginComponent } from '../../main-components/login/login.component';
 })
 
 export class HeaderComponent implements OnInit {
-	mySqlData: any;
-  menuState:string = 'out';
-
+  mySqlData: any;
+  menuState = 'out';
+  fadeState = 'out';
+  homepage = true;
   header: LoginComponent;
 
   constructor(private restservice: RestService, private globalservice: GlobalService, private router: Router) {
     this.header = new LoginComponent(restservice, router, globalservice);
-
-    // 22b5cebec7427dfa0b179af0641190e17693c1a2
   }
 
   ngOnInit() {
-  	/*this.restservice.get('').then(data => {
-      this.onDbLoad(data);
-    }, err => {
-        console.log('Error occured.');
-    });*/
   }
 
   toggleMenu() {
-  	//console.log('in parent');
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
   }
-
-  // toggleLine() {
-  //   this.lineState = this.lineState === 'out' ? 'in' : 'out';
-  // }
 }
 
 

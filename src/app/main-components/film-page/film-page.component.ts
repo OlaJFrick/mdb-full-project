@@ -8,7 +8,6 @@ import { StarRatingComponent } from '../../reusable-components/star-rating/star-
 import { DomSanitizer } from '@angular/platform-browser';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
-
 @Component({
   selector: 'app-film-page',
   templateUrl: './film-page.component.html',
@@ -243,8 +242,8 @@ export class FilmPageComponent implements OnInit {
     });
   }
 
-  removeModal(d,a) {
-    this.modalService.open(d,a).result.then((result) => {
+  removeModal(d, a) {
+    this.modalService.open(d, a).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

@@ -6,6 +6,7 @@
 }
 
 .navigation-sub:hover {
+  color: $blue;
   cursor: pointer;
 }
 
@@ -20,11 +21,12 @@
   }
 
   .user-screen {
-    border: solid 1px $soft-grey;
     border-radius: 28px;
     padding: 7px 0;
     font-size: 12px;
     min-height: 46px;
+    background-color: $cloud;
+    opacity: 0.7;
   }
 
   .user {
@@ -45,11 +47,9 @@
     display: block;
     color: #808080;
   }
-
 }
 
 .mobile-navigation {
-
   .logo-mini {
     max-height: 21px;
   }
@@ -62,5 +62,4 @@
   .hamburger{
     max-height: 18px;
   }
-
 }
