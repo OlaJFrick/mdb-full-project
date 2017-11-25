@@ -149,7 +149,7 @@
             <td class="text-left align-middle">
               <div class="list-inline-item title-p pl-3" routerLink="/person-page/{{director.personId}}">{{director.directorName}}</div>
             </td>
-            <td>
+            <td class="align-middle">
               <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(d)"></fa>
             </td>
             <!-- Modal for removing directors -->
