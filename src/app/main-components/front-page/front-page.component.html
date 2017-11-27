@@ -37,7 +37,7 @@
         <div class="row mt-3">
           <div *ngFor="let item of latestfilms" class="col-6 col-md-3">
             <figure class="figure">
-              <img class="img-fluid film-img" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
+              <img class="img-fluid film-img clickable" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}">
               <div class="fat-title">
                 <span>{{item.title}}</span>
               </div>
@@ -64,11 +64,11 @@
                   <tr>
                     <td>
                       <div class="circular-list-portrait">
-                        <img src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"/>
+                        <img class="clickable" src="/assets/images/films/{{item.imagePath}}" routerLink="/film-page/{{item.id}}"/>
                       </div>
                     </td>
                     <td class="list-inline-item popular-table align-middle">
-                      <div class=" title-list-p" routerLink="/film-page/{{item.id}}"><strong>{{i + 1}}. </strong>{{item.title}}</div>
+                      <div class="clickable title-list-p" routerLink="/film-page/{{item.id}}"><strong>{{i + 1}}. </strong>{{item.title}}</div>
                       <div class="d-inline-flex align-items-center mini-p">
                         <span>Avg Rating:</span>
                       <app-star-rating [rating]="item.avgRating">

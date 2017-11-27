@@ -120,7 +120,7 @@
         <span *ngIf="!globalservice.user">{{film.plot}}</span>
         <inline-editor *ngIf="globalservice.user" empty="Add a plot text" type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event, 'films', 'plot')"></inline-editor>
       </p>
-      
+
       <!--  director area -->
       <div class="d-inline-flex align-items-baseline pt-4 mb-3">
         <h6 class="headliner pr-4">
@@ -152,7 +152,7 @@
         <tbody *ngFor="let director of directorData" class="table my-4">
           <tr>
             <td>
-              <div class="circular-portrait">
+              <div class="circular-portrait clickable">
                 <img src="../../assets/images/persons/{{director.directorImage}}" routerLink="/person-page/{{director.personId}}" />
               </div>
             </td>
