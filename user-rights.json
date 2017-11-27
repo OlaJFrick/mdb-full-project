@@ -45,7 +45,7 @@
     "reviews": ["get", "post", "put", "delete"],
     "top10_highest": ["get", "post", "put", "delete"],
     "top10_lowest": ["get", "post", "put", "delete"],
-    "users": "get"
+    "users": ["get", "put"]
   },
 
   "banned": {
