@@ -207,7 +207,6 @@ export class FilmPageComponent implements OnInit {
     delete body.versionId;
     delete body.timeCreated;
 
-
     // call to http service
     this.restservice.postVid(table, body, this.filmid).then(res => {
     }, err => {

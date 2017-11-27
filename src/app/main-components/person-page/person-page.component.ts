@@ -57,8 +57,8 @@ export class PersonPageComponent implements OnInit {
       let bb = this.personData.birth,
         bd = this.personData.death;
 
-      let today = new Date();
-      let birthDate = this.personData.birth;
+      const today = new Date();
+      const birthDate = this.personData.birth;
       this.personData.age = (today.getFullYear() - this.personData.birth.slice(0, 4));
 
       if (bb) {
@@ -131,9 +131,10 @@ export class PersonPageComponent implements OnInit {
     body['changerId'] = this.globalservice.user.id;
 
     delete body.id;
+    delete body.age;
     delete body.versionId;
     delete body.timeCreated;
-    // console.log(body);
+    console.log(body);
 
     // // call to http service
     this.restservice.postVid(table, body, this.personId).then(res => {
