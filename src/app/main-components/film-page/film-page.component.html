@@ -1,5 +1,5 @@
 <div class="hidden-md-up">
-  <img class="img-fluid" src="/assets/images/films/{{film.imagePath}}">
+  <img class="mdb-img" src="/assets/images/films/{{film.imagePath}}">
   <span class="upload-btn">
     <app-upload-picture [film]="film"></app-upload-picture>
   </span>
@@ -120,7 +120,7 @@
         <span *ngIf="!globalservice.user">{{film.plot}}</span>
         <inline-editor *ngIf="globalservice.user" empty="Add a plot text" type="textarea" [(ngModel)]="film.plot" (onSave)="saveEditable($event, 'films', 'plot')"></inline-editor>
       </p>
-      
+
       <!--  director area -->
       <div class="d-inline-flex align-items-baseline pt-4 mb-3">
         <h6 class="headliner pr-4">
