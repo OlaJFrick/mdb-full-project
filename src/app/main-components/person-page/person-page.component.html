@@ -1,4 +1,3 @@
-
 <div class="hidden-md-up">
   <img class="img-fluid" src="/assets/images/persons/{{personData.imagePath}}">
   <span class="upload-btn">
@@ -20,56 +19,59 @@
 
       <h1 class="app-headline">
         <span *ngIf="!globalservice.user">{{personData.firstName}} {{personData.lastName}}</span>
-
         <inline-editor *ngIf="globalservice.user" type="text" empty="Add firstName" [(ngModel)]="personData.firstName" (onSave)="saveEditable($event, 'persons', 'firstName')"></inline-editor>
-
         <inline-editor *ngIf="globalservice.user" type="text" empty="Add lastname" [(ngModel)]="personData.lastName" (onSave)="saveEditable($event, 'persons', 'lastName')"></inline-editor>
       </h1>
 
       <table class="table table-bordered my-4">
         <tbody>
           <tr>
-
             <td>
               <span class="d-inline-flex justify-content-center">
-              <span *ngIf="!globalservice.user"><span class="pr-2">Nationality:</span><strong>{{personData.nationality}}</strong></span>
-              <inline-editor
-                *ngIf="globalservice.user"
-                empty="{{personData.nationality}}"
-                type="select" [(ngModel)]="editableSelect"
-                (onSave)="saveEditable($event, 'persons', 'nationality')" [options]="countrySelectOptions"
-                value="valor"></inline-editor>
+                <span *ngIf="!globalservice.user">
+                  <span class="pr-2">Nationality:</span>
+                  <strong>{{personData.nationality}}</strong>
+                </span>
+                <inline-editor *ngIf="globalservice.user" empty="{{personData.nationality}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'nationality')"
+                  [options]="countrySelectOptions" value="valor"></inline-editor>
               </span>
             </td>
             <td>
               <span class="d-inline-flex justify-content-center">
-              <span *ngIf="!globalservice.user"><span class="pr-2">Gender:</span><strong>{{personData.gender}}</strong></span>
-              <inline-editor *ngIf="globalservice.user" empty="{{personData.gender}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'gender')" [options]="genderSelectOptions"
-                     value="valor"></inline-editor>
-                   </span>
+                <span *ngIf="!globalservice.user">
+                  <span class="pr-2">Gender:</span>
+                  <strong>{{personData.gender}}</strong>
+                </span>
+                <inline-editor *ngIf="globalservice.user" empty="{{personData.gender}}" type="select" [(ngModel)]="editableSelect" (onSave)="saveEditable($event, 'persons', 'gender')"
+                  [options]="genderSelectOptions" value="valor"></inline-editor>
+              </span>
             </td>
           </tr>
           <tr>
             <td>
-             <span class="d-inline-flex justify-content-center"><span class="pr-2">Born:</span>
-              <span *ngIf="!globalservice.user">
-              {{personData.birth}}</span>
-              <inline-editor *ngIf="globalservice.user" empty="{{personData.birth}} 2000-01-01" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')" value="valor"></inline-editor>
+              <span class="d-inline-flex justify-content-center">
+                <span class="pr-2">Born:</span>
+                <span *ngIf="!globalservice.user">
+                  {{personData.birth}}</span>
+                <inline-editor *ngIf="globalservice.user" empty="{{personData.birth}} 2000-01-01" type="date" [(ngModel)]="personData.birth"
+                  (onSave)="saveEditable($event, 'persons', 'birth')" value="valor"></inline-editor>
               </span>
             </td>
             <td>
 
               <div *ngIf="!personData.death">
                 <span class="d-inline-flex justify-content-center">
-                 <span class="pr-2">Age: {{personData.age}}</span>
-                 </span>
+                  <span class="pr-2">Age: {{personData.age}}</span>
+                </span>
               </div>
 
               <div *ngIf="personData.death">
                 <span class="d-inline-flex justify-content-center">
-                 <span *ngIf="!globalservice.user"><span class="pr-2">Death:</span>{{personData.death}}</span>
-                 <inline-editor *ngIf="globalservice.user" empty="{{personData.death}} v" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')" value="valor"></inline-editor>
-                 </span>
+                  <span *ngIf="!globalservice.user">
+                    <span class="pr-2">Death:</span>{{personData.death}}</span>
+                  <inline-editor *ngIf="globalservice.user" empty="{{personData.death}} v" type="date" [(ngModel)]="personData.death" (onSave)="saveEditable($event, 'persons', 'death')"
+                    value="valor"></inline-editor>
+                </span>
               </div>
 
             </td>
@@ -79,15 +81,15 @@
 
       <p>
         <span *ngIf="!globalservice.user">{{personData.miniBio}}</span>
-        <inline-editor *ngIf="globalservice.user" empty="Add bio text"  type="textarea" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event, 'persons', 'miniBio')"></inline-editor>
-
-
+        <inline-editor *ngIf="globalservice.user" empty="Add bio text" type="textarea" [(ngModel)]="personData.miniBio" (onSave)="saveEditable($event, 'persons', 'miniBio')"></inline-editor>
       </p>
 
       <!--  director area -->
       <div *ngIf="directorData.length">
         <div class="d-inline-flex align-items-baseline pt-4 mb-3">
-          <h6 class="headliner pr-4"><span class="underliner-colored">Has Directed</span></h6>
+          <h6 class="headliner pr-4">
+            <span class="underliner-colored">Has Directed</span>
+          </h6>
         </div>
 
         <table class="col">
@@ -106,13 +108,14 @@
               </td>
           </tbody>
         </table>
-
       </div>
 
       <!--  acted area -->
       <div *ngIf="actorData.length">
         <div class="d-inline-flex align-items-baseline pt-4 mb-3">
-          <h6 class="headliner pr-4"><span class="underliner-colored">Has Acted in</span></h6>
+          <h6 class="headliner pr-4">
+            <span class="underliner-colored">Has Acted in</span>
+          </h6>
         </div>
 
         <table class="col">
@@ -127,7 +130,8 @@
                 <div class="list-inline-item title-p" routerLink="/film-page/{{actor.filmId}}">{{actor.title}}</div>
               </td>
               <td class="align-middle">
-                <div class="title-p"><span>as</span> {{actor.character}}</div>
+                <div class="title-p">
+                  <span>as</span> {{actor.character}}</div>
               </td>
           </tbody>
         </table>

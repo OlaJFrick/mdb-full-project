@@ -11,16 +11,16 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
   styleUrls: ['./person-page.component.scss'],
   animations: [
     trigger('fadeIn-1', [
-      state('in', style({opacity: '1'})),
+      state('in', style({ opacity: '1' })),
       transition('void => *', [
-        style({opacity: '0'}),
+        style({ opacity: '0' }),
         animate('200ms 120ms ease-in-out')
       ])
     ]),
     trigger('fadeIn-2', [
-      state('in', style({opacity: '1'})),
+      state('in', style({ opacity: '1' })),
       transition('void => *', [
-        style({opacity: '0'}),
+        style({ opacity: '0' }),
         animate('100ms 120ms ease-in')
       ])
     ])],
@@ -55,12 +55,11 @@ export class PersonPageComponent implements OnInit {
       this.personData = data.json();
 
       let bb = this.personData.birth,
-      bd = this.personData.death;
+        bd = this.personData.death;
 
       let today = new Date();
       let birthDate = this.personData.birth;
-      console.log(today.getFullYear());
-      this.personData.age = (today.getFullYear() - this.personData.birth.slice(0,4));
+      this.personData.age = (today.getFullYear() - this.personData.birth.slice(0, 4));
 
       if (bb) {
         this.personData.birth = bb.slice(0, 4) + '-' + bb.slice(5, 7) + '-' + bb.slice(8, 10);
@@ -134,16 +133,13 @@ export class PersonPageComponent implements OnInit {
     delete body.id;
     delete body.versionId;
     delete body.timeCreated;
-
-    console.log(body);
+    // console.log(body);
 
     // // call to http service
-
     this.restservice.postVid(table, body, this.personId).then(res => {
     }, err => {
       console.log('Error occured.');
     });
-
   }
 
 }

@@ -9,23 +9,23 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
   styleUrls: ['./front-page.component.scss'],
   animations: [
     trigger('fadeIn-1', [
-      state('in', style({opacity: '1'})),
+      state('in', style({ opacity: '1' })),
       transition('void => *', [
-        style({opacity: '0'}),
+        style({ opacity: '0' }),
         animate('400ms 10ms ease-in')
       ])
     ]),
     trigger('fadeIn-2', [
-      state('in', style({opacity: '1'})),
+      state('in', style({ opacity: '1' })),
       transition('void => *', [
-        style({opacity: '0'}),
+        style({ opacity: '0' }),
         animate('400ms 10ms ease-in')
       ])
     ]),
     trigger('fadeIn-3', [
-      state('in', style({opacity: '1'})),
+      state('in', style({ opacity: '1' })),
       transition('void => *', [
-        style({opacity: '0'}),
+        style({ opacity: '0' }),
         animate('500ms 600ms ease-in')
       ])
     ])],
@@ -46,7 +46,7 @@ export class FrontPageComponent implements OnInit {
 
   ngOnInit() {
     // Randomize front img
-    this.randomImage = 'url(./assets/images/front-page/' + Math.floor( 1 + Math.random() * 6 ) + '.png)'
+    this.randomImage = 'url(./assets/images/front-page/' + Math.floor(1 + Math.random() * 6) + '.png)'
 
     this.restservice.get('top10_highest?limit=5').then(data => {
       this.topfilms = data.json();
@@ -67,7 +67,6 @@ export class FrontPageComponent implements OnInit {
     this.http.get('http://localhost:3000/imdb-news').toPromise().then(data => {
       const arr = data.json();
       this.news = arr.slice(0, 2);
-      console.log(this.news);
     }, err => {
       console.log('Error occured.');
     });

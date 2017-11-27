@@ -86,7 +86,7 @@ export class ListAllDirectorsComponent implements OnInit, OnDestroy {
     this.order = order;
     this.offset = 0;
     this.mySqlData = [];
-    console.log('setting order:', this.order, 'is desc:', this.desc)
+    // console.log('setting order:', this.order, 'is desc:', this.desc)
     this.getListData();
   }
 
