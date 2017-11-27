@@ -15,10 +15,10 @@
             <tbody *ngFor="let item of highestData, let i = index" class="table my-4">
               <tr class="my-3">
                 <td class="align-middle">
-                  <div class="circular-list-portrait hidden-md-up">
+                  <div class="circular-list-portrait hidden-md-up clickable">
                     <img src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
                   </div>
-                  <div class="circular-list-desktop-portrait hidden-sm-down">
+                  <div class="circular-list-desktop-portrait hidden-sm-down clickable">
                     <img src="../../assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
                   </div>
                 </td>

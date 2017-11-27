@@ -24,11 +24,11 @@
               <tr class="my-3">
 
                 <td class="align-middle">
-                  <div class="circular-list-portrait hidden-md-up">
+                  <div class="circular-list-portrait hidden-md-up clickable">
                     <img src="/assets/images/persons/{{item.imagePath}}" routerLink="/person-page/{{item.id}}" />
                     <img *ngIf="!item.imagePath" src="../../assets/images/persons/default.png" routerLink="/film-page/{{item.id}}">
                   </div>
-                  <div class="circular-list-desktop-portrait hidden-sm-down">
+                  <div class="circular-list-desktop-portrait hidden-sm-down clickable">
                     <img src="assets/images/persons/{{item.imagePath}}" routerLink="/person-page/{{item.id}}" />
                     <img *ngIf="!item.imagePath" src="../../assets/images/persons/default.png" routerLink="/film-page/{{item.id}}">
                   </div>

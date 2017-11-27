@@ -16,7 +16,7 @@
             <tbody *ngFor="let item of mySqlData" class="table my-4">
               <tr class="my-5">
                 <td class="align-top">
-                  <div class="normal-list-portrait hidden-sm-down">
+                  <div class="normal-list-portrait hidden-sm-down clickable">
                     <img src="/assets/images/films/{{item.imagePath}}" onerror="this.src='../../assets/images/films/default.png';" routerLink="/film-page/{{item.id}}" />
                   </div>
                 </td>
