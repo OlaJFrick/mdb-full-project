@@ -9,16 +9,25 @@ const express = require('express'),
       Login = require('./classes/login.class'),
       Search = require('./classes/search.class'),
       UploadPicture = require('./classes/upload-picture.class'),
-      devPassword = require('./dev-password');
+      devPassword = require('./dev-password'),
+      os = require('os');
 
 
 process.on('unhandledRejection', error=>console.log('unhandledRejection', error));
 
 const cookieSession = new Cookiesession();
 
+// Is on live server
+// (we know the live server has less than 3 GB memory)
+const isOnLiveServer = os.totalmem() < 3 * 1024**3;
+
+
 // Added CORS to read further: https://enable-cors.org/server_expressjs.html
 // app.use(cors());
-app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+!isOnLiveServer && app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+
+// Serve images
+app.use(express.static('/src/assets/images'));
 
 /* MIDDLEWARE */
 app.use(bodyParser.json({ limit: '5mb' }));

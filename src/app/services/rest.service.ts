@@ -6,7 +6,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RestService {
 
-  private url = 'http://localhost:3000/';
+  // Only expect https in live mode where the res url then will be set differently
+  private url = location.protocol == 'https:' ? '/rest/' : 'http://localhost:3000/';
 
   constructor(private http: Http) { }
 
