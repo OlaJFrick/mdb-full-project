@@ -1,3 +1,4 @@
+
 <div class="hidden-md-up">
   <img class="img-fluid" src="/assets/images/persons/{{personData.imagePath}}">
   <span class="upload-btn">
@@ -14,7 +15,6 @@
         <app-upload-picture [person]="personData"></app-upload-picture>
       </span>
     </div>
-
 
     <div class="offset-xs-1 col-xs-10 col-md-5 col-lg-4 mt-4 mt-sm-0" [@fadeIn-2]>
 
@@ -51,8 +51,8 @@
           </tr>
           <tr>
             <td>
-             <span class="d-inline-flex justify-content-center">
-              <span *ngIf="!globalservice.user"><span class="pr-2">Born:</span>
+             <span class="d-inline-flex justify-content-center"><span class="pr-2">Born:</span>
+              <span *ngIf="!globalservice.user">
               {{personData.birth}}</span>
               <inline-editor *ngIf="globalservice.user" empty="{{personData.birth}} 2000-01-01" type="date" [(ngModel)]="personData.birth" (onSave)="saveEditable($event, 'persons', 'birth')" value="valor"></inline-editor>
               </span>
@@ -131,46 +131,7 @@
               </td>
           </tbody>
         </table>
-
       </div>
-
-
-
-
-<!--       <form *ngIf="addDirectorForm" #d="ngForm" (ngSubmit)="submitPerson(d.value, 'directorId', 'films_directors')" class="bg-secondary p-2 mb-2">
-        <div class="add-content-form">
-          <div class="form-group">
-            <span>Select a person from the database</span>
-
-            <select class="form-control" id="directorId" name="directorId" ngModel>
-              <option *ngFor="let person of allPersons" value="{{person.id}}">{{person.firstName}} {{person.lastName}}
-              </option>
-            </select>
-            <button type="button" class="btn-primary btn my-2" routerLink="/add-person/d/{{filmid}}">
-              Or add new person
-            </button>
-          </div>
-          <button type="submit" class="submit-review btn btn-secondary btn-sm">Submit</button>
-          <button type="button" class="cancel-review btn btn-danger btn-sm" (click)="addDirectorForm= !addDirectorForm">Cancel</button>
-        </div>
-      </form> -->
-
-<!-- <table class="col">
-        <tbody *ngFor="let director of directorData" class="table my-4">
-          <tr>
-            <td>
-              <div class="circular-portrait">
-                <img src="../../assets/images/persons/{{director.directorImage}}" />
-              </div>
-            </td>
-            <td class="text-left">
-              <div class="list-inline-item title-p pl-3" routerLink="/person-page/{{director.personId}}">{{director.directorName}}</div>
-            </td>
-            <td>
-              <fa *ngIf="globalservice.user" class="ml-2 clickable" name="trash" (click)="removeModal(d)"></fa>
-            </td>
-        </tbody>
-      </table> -->
     </div>
   </div>
 </div>

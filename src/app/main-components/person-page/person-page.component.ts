@@ -58,8 +58,9 @@ export class PersonPageComponent implements OnInit {
       bd = this.personData.death;
 
       let today = new Date();
-      let birthDate = new Date(bb);
-      this.personData.age = today.getFullYear() - birthDate.getFullYear();
+      let birthDate = this.personData.birth;
+      console.log(today.getFullYear());
+      this.personData.age = (today.getFullYear() - this.personData.birth.slice(0,4));
 
       if (bb) {
         this.personData.birth = bb.slice(0, 4) + '-' + bb.slice(5, 7) + '-' + bb.slice(8, 10);
@@ -119,6 +120,7 @@ export class PersonPageComponent implements OnInit {
   }
 
   saveEditable(value: any, table: string, colName: string) {
+
     const body = this.personData;
     body[colName] = value;
     if (colName === 'nationality') {
