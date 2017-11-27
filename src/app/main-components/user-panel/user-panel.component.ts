@@ -23,7 +23,7 @@ export class UserPanelComponent implements OnInit {
 
   constructor(private restservice: RestService, private router: Router, private globalservice: GlobalService) {
     setTimeout(() => {
-      console.log(this.globalservice.user);
+      // console.log(this.globalservice.user);
 
       this.userData = {
         firstName: this.globalservice.user.firstName,
