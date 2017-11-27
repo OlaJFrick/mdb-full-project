@@ -18,6 +18,10 @@ Clone or download the source files & install dependencies:
 
 ```sh
 $ npm install
+
+$ npm install scraperjs
+
+$ npm install phantomjs-prebuilt
 ```
 
 ### mySQL
@@ -25,7 +29,7 @@ $ npm install
 in folder 'current-mysql-db-export' Import database.sql, dummydata.sql, views.sql (in that order):
 
 
-### Create password file: 
+### Create password file:
 
 create a file: 'dev-password' in the root folder and paste the following:
 

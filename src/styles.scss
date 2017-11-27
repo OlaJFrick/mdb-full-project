@@ -41,6 +41,12 @@ body {
   }
 }
 
+// Temporary solution
+/*.list-title {
+  height: 810px;
+  width: 100px;
+}*/
+
 .card {
   background: none;
 }
@@ -191,7 +197,7 @@ a {
   }
 }
 
-.sub-linker, .title-p, .clickable {
+.sub-linker, .title-p, .clickable, button {
   cursor: pointer;
 }
 
