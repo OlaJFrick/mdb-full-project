@@ -185,14 +185,30 @@ ORDER BY title;
 
 
 CREATE OR REPLACE VIEW top10_highest AS
-SELECT f.id, f.title, f.year, f.imagePath, r.avgRating, r.counter
+SELECT f.id, f.title, f.year, f.imagePath, r.avgRating, r.counter,
+(SELECT director
+FROM film_directed
+WHERE id = f.id)
+AS directed,
+(SELECT starring
+FROM film_starring
+WHERE id = f.id)
+AS starring
 FROM current_films AS f, ratings AS r
 WHERE r.id = f.id
 ORDER BY avgRating DESC;
 
 
 CREATE OR REPLACE VIEW top10_lowest AS
-SELECT f.id, f.title, f.year, f.imagePath, r.avgRating, r.counter
+SELECT f.id, f.title, f.year, f.imagePath, r.avgRating, r.counter,
+(SELECT director
+FROM film_directed
+WHERE id = f.id)
+AS directed,
+(SELECT starring
+FROM film_starring
+WHERE id = f.id)
+AS starring
 FROM current_films AS f, ratings AS r
 WHERE r.id = f.id
 ORDER BY avgRating;
