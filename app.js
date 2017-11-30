@@ -43,7 +43,7 @@ new UploadPicture(app);
 
 /* Create URL for Genre */
 
-app.get('/genre', async (req, res) => {
+app.get('/rest/genre', async (req, res) => {
   let s = await Rest.query('DESCRIBE films genre');
   s = s[0].Type;
   s = s.split('set(')[1].split(')')[0];
@@ -53,7 +53,7 @@ app.get('/genre', async (req, res) => {
   res.json(s);
 });
 
-app.get('/countries', async (req, res) => {
+app.get('/rest/countries', async (req, res) => {
   let s = await Rest.query('DESCRIBE persons nationality');
   s = s[0].Type;
   s = s.split('enum(')[1].split(')')[0];
@@ -108,7 +108,7 @@ async function scrapeIMDB(){
 scrapeIMDB();
 setInterval(scrapeIMDB, 60 * 1000);
 
-app.get('/imdb-news', (req, res) => {
+app.get('/rest/imdb-news', (req, res) => {
     res.json(newsFromIMDB);
 })
 

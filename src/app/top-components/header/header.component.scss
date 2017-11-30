@@ -50,16 +50,29 @@
 }
 
 .mobile-navigation {
+
+
+
   .logo-mini {
     max-height: 21px;
   }
 
   .title-mini {
-    max-height: 40px;
+    max-height: 24px;
     margin-top: -5px;
   }
 
   .hamburger{
     max-height: 18px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .bg-div {
+    -webkit-background-size: none;
+    -moz-background-size: none;
+    -o-background-size: none;
+    background-size: none;
   }
 }

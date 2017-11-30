@@ -123,7 +123,7 @@ export class FilmPageComponent implements OnInit {
   }
 
   loadGenres() {
-    this.http.get('http://localhost:3000/genre/').toPromise().then(data => {
+    this.http.get('https://mdb.olafrick.se/rest/genre/').toPromise().then(data => {
       const gs = data.json();
       this.genreSelectOptions = [];
       for (let i = 0; i < gs.length; i++) {

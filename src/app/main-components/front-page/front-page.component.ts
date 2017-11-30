@@ -59,12 +59,11 @@ export class FrontPageComponent implements OnInit {
     }, err => {
       console.log('Error occured.');
     });
-
     this.loadNews();
   }
 
   loadNews() {
-    this.http.get('http://localhost:3000/imdb-news').toPromise().then(data => {
+    this.http.get('https://mdb.olafrick.se/rest/imdb-news').toPromise().then(data => {
       const arr = data.json();
       this.news = arr.slice(0, 2);
     }, err => {

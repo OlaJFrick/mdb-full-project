@@ -1,7 +1,7 @@
 module.exports = class Search {
 
   constructor(app){
-    app.get('/search/:searchWord', (req, res) => {
+    app.get('/rest/search/:searchWord', (req, res) => {
       this.search(res, req.params.searchWord);
     });
   }
