@@ -1,5 +1,5 @@
-<div class="hidden-md-up">
-  <img class="mdb-img" src="/assets/images/films/{{film.imagePath}}">
+<div class="hidden-md-up" lazy-load-images>
+  <img class="mdb-img" data-src="/assets/images/films/{{film.imagePath}}">
   <span class="upload-btn">
     <app-upload-picture [film]="film"></app-upload-picture>
   </span>
@@ -8,8 +8,8 @@
 <div class="container-fluid pt-2 pt-sm-5" [@fadeIn-2]>
   <div class="row">
 
-    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4 flex-last flex-md-first">
-      <img class="img-fluid hidden-sm-down" src="/assets/images/films/{{film.imagePath}}" [@fadeIn-1]>
+    <div class="offset-md-1 offset-lg-2 col-md-5 col-lg-4 col-xl-4 flex-last flex-md-first" lazy-load-images>
+      <img class="img-fluid hidden-sm-down" data-src="/assets/images/films/{{film.imagePath}}" [@fadeIn-1]>
       <span class="upload-btn">
         <app-upload-picture [film]="film"></app-upload-picture>
       </span>

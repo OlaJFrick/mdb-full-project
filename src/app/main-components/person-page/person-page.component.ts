@@ -44,10 +44,11 @@ export class PersonPageComponent implements OnInit {
     private restservice: RestService,
     private location: Location,
     private globalservice: GlobalService) {
-    this.personData.imagePath = 'default.png';
+    
   }
 
   ngOnInit() {
+    this.personData.imagePath = 'default.png';
     this.personId = this.location.path().slice(13);
 
     /* PERSON */

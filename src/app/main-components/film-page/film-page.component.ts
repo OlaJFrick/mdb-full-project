@@ -57,10 +57,11 @@ export class FilmPageComponent implements OnInit {
     private location: Location,
     private globalservice: GlobalService,
     private modalService: NgbModal) {
-    this.film.imagePath = 'default.png';
+    
   }
 
   ngOnInit() {
+    // this.film.imagePath = 'default.png';
     this.scrollToTop();
     this.filmid = Number(this.location.path().slice(11));
 
