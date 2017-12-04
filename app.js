@@ -26,8 +26,6 @@ const isOnLiveServer = os.totalmem() < 3 * 1024**3;
 // app.use(cors());
 !isOnLiveServer && app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 
-// Serve images
-app.use(express.static('/src/assets/images'));
 
 /* MIDDLEWARE */
 app.use(bodyParser.json({ limit: '5mb' }));

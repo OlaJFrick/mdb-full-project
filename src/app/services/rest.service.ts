@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 export class RestService {
 
   // Only expect https in live mode where the res url then will be set differently
-  private url = location.protocol == 'https:' ? '/rest/' : 'http://localhost:3000/';
+  private url = location.protocol == 'https:' ? 'https://' : 'http://localhost:3000/';
 
   constructor(private http: Http) { }
 
