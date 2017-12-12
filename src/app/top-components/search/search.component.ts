@@ -37,7 +37,7 @@ export class SearchComponent {
       this.hasResults = false;
       return;
     }
-    this.http.get('/' + searchWord).toPromise().then(data => {
+    this.http.get('http://localhost:3000/search/' + searchWord).toPromise().then(data => {
     //this.http.get('http://localhost:3000/search/' + searchWord).toPromise().then(data => {
       const sr = data.json();
       Object.assign(this, sr);
